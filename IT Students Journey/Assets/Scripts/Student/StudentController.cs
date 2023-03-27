@@ -21,7 +21,6 @@ namespace ClearSky
         {
             rb = GetComponent<Rigidbody2D>();
             anim = GetComponent<Animator>();
-
         }
 
         private void Update()
@@ -42,6 +41,7 @@ namespace ClearSky
         {
             anim.SetBool("isJump", false);
         }
+
         void KickBoard()
         {
             if (Input.GetKeyDown(KeyCode.Alpha4) && isKickboard)
@@ -176,6 +176,12 @@ namespace ClearSky
                     rb.AddForce(new Vector2(-5f, 1f), ForceMode2D.Impulse);
                 else
                     rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
+            }
+            if (collision.gameObject.tag == "MainBottomPlatform")
+            {
+                anim.SetBool("isJump", false);
+                isJumping = false;
+                anim.SetTrigger("idle");
             }
         }
     }
