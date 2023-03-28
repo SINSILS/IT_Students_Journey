@@ -1,10 +1,10 @@
 using TMPro;
 using UnityEngine;
-
 public class BlueEnemy : MonoBehaviour
 {
     private Animator anim;
-    //private Rigidbody2D rb;
+    //Stats
+    Stats stats = new Stats();
     public float speed = 3f;
     bool canMove = false;
     public int platformIndex { get; set; }
@@ -13,14 +13,14 @@ public class BlueEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        setRandomStats();
     }
 
     // Update is called once per frame
     void Update()
     {
-        titlePosition();
+        titlePositionUpdate();
     }
 
     private void FixedUpdate()
@@ -62,9 +62,33 @@ public class BlueEnemy : MonoBehaviour
             anim.SetTrigger("isIdle");
     }
 
-    void titlePosition()
+    void titlePositionUpdate()
     {
-        title.transform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y, transform.position.z));
-        title.transform.position = new Vector3(title.transform.position.x, title.transform.position.y + 1, title.transform.position.z);
+        title.transform.position = new Vector2(transform.position.x, transform.position.y + (float)0.5);
     }
+
+    void setRandomStats()
+    {
+        int random = Random.Range(0, stats.randomByLevel);
+        int random2 = Random.Range(0, 5);
+        title.text = stats.title[random][random2];
+    }
+}
+
+class Stats
+{
+    //Will be updated when player reaches points 1000 -> 3, 2000 -> 4 and etc...
+    public int randomByLevel = 2;
+    public int[] hp = { 1, 2, 3, 4, 5, 6, 7, 8 };
+    public int[] damage = { 1, 2, 3, 4, 5, 6, 7, 8 };
+    public float[] speed = { 3f, 3.2f, 3.4f, 3.6f, 3.8f, 4f, 4.2f, 4.4f };
+    public string[][] title = new string[8][]{ new string[5]{ "int x;", "string x;", "bool x;", "double x;", "float x;" },
+                                        new string[5]{ "int[ ] x;", "string[ ] x;", "bool[ ] x;", "double[ ] x;", "float[ ] x;"},
+                                        new string[5]{ "List<int> x;", "List<string> x;", "List<bool> x;", "List<double> x;", "List<float> x;"},
+                                        new string[]{ },//int [][] x
+                                        new string[]{ },//stack - queue - deck?
+                                        new string[]{ },
+                                        new string[]{ },
+                                        new string[]{ } //multithreading
+    };
 }
