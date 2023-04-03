@@ -4,23 +4,35 @@ namespace ClearSky
 {
     public class StudentController : MonoBehaviour
     {
+        //Stats
+        //int healthPoints = 100;
+        //int damage = 1;
         public float movePower = 10f;
         public float KickBoardMovePower = 15f;
-        public float jumpPower = 20f; //Set Gravity Scale in Rigidbody2D Component to 5
+        public float jumpPower = 20f;
 
         private Rigidbody2D rb;
         private Animator anim;
-        Vector3 movement;
         private int direction = 1;
         bool isJumping = false;
         private bool alive = true;
         private bool isKickboard = false;
+
+        //Bullet prefab
+        public GameObject bulletPrefab;
+        private double fireRate = 1;
+        private double lastShot = 0.0;
+
+        //Parent GameObjects
+        private GameObject bulletParent;
+
 
         // Start is called before the first frame update
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
             anim = GetComponent<Animator>();
+            bulletParent = new GameObject("Bullets");
         }
 
         private void Update()
@@ -54,7 +66,6 @@ namespace ClearSky
                 isKickboard = true;
                 anim.SetBool("isKickBoard", true);
             }
-
         }
 
         void Run()
@@ -110,7 +121,7 @@ namespace ClearSky
         }
         void Jump()
         {
-            if ((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") > 0)
+            if ((Input.GetKeyDown(KeyCode.W) || Input.GetAxisRaw("Vertical") > 0)
             && !anim.GetBool("isJump"))
             {
                 isJumping = true;
@@ -130,10 +141,23 @@ namespace ClearSky
         }
         void Attack()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Space) && Time.time > fireRate + lastShot)
             {
                 anim.SetTrigger("attack");
+                float x = transform.position.x + 1.5f;
+                if (direction == -1)
+                {
+                    x = transform.position.x - 1.5f;
+                }
+                float y = transform.position.y + 1.5f;
+                // Create a new bullet
+                var bullet = GameObject.Instantiate(bulletPrefab, new Vector2(x, y), Quaternion.identity);
+                bullet.GetComponent<BulletController>().bulletDirection = direction;
+                bullet.transform.SetParent(bulletParent.transform, false);
+                // Save last shot time
+                lastShot = Time.time;
             }
+
         }
         void Hurt()
         {
