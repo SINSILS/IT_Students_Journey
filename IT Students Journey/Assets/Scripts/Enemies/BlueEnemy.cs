@@ -1,3 +1,4 @@
+using ClearSky;
 using TMPro;
 using UnityEngine;
 public class BlueEnemy : MonoBehaviour
@@ -11,7 +12,9 @@ public class BlueEnemy : MonoBehaviour
     int hp;
     int damage;
     public float speed;
+    public int value;
 
+    //Additional parameters
     bool canMove = false;
     public bool isDead = false;
     public int platformIndex { get; set; }
@@ -21,7 +24,6 @@ public class BlueEnemy : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        setRandomStats();
     }
 
     // Update is called once per frame
@@ -95,7 +97,14 @@ public class BlueEnemy : MonoBehaviour
             else
             {
                 anim.SetTrigger("isDead");
+                StudentController student = GameObject.FindWithTag("Player").GetComponent<StudentController>();
+                student.coins += value;
             }
+        }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            StudentController student = GameObject.FindWithTag("Player").GetComponent<StudentController>();
+            student.takeDamage(damage);
         }
     }
 
@@ -114,31 +123,46 @@ public class BlueEnemy : MonoBehaviour
         title.transform.position = new Vector2(transform.position.x, transform.position.y + (float)0.5);
     }
 
-    void setRandomStats()
+    public void setRandomStats(int level)
     {
-        int random = Random.Range(0, stats.randomByLevel);
-        int random2 = Random.Range(0, 5);
+        int random = Random.Range(0, level);
+        int random2;
+        if (random <= 4)
+        {
+            random2 = Random.Range(0, 5);
+        }
+        else if (random <= 6)
+        {
+            random2 = 0;
+        }
+        else
+        {
+            random2 = Random.Range(0, 4);
+        }
+        Debug.Log(random + "  " + random2);
         title.text = stats.title[random][random2];
         hp = stats.hp[random];
         damage = stats.damage[random];
         speed = stats.speed[random];
+        value = stats.value[random];
     }
 }
 
 class Stats
 {
     //Will be updated when player reaches points 1000 -> 3, 2000 -> 4 and etc...
-    public int randomByLevel = 2;
     public string[][] title = new string[8][]{ new string[5]{ "int x;", "string x;", "bool x;", "double x;", "float x;" },
                                         new string[5]{ "int[ ] x;", "string[ ] x;", "bool[ ] x;", "double[ ] x;", "float[ ] x;"},
                                         new string[5]{ "List<int> x;", "List<string> x;", "List<bool> x;", "List<double> x;", "List<float> x;"},
-                                        new string[]{ },//int [][] x
-                                        new string[]{ },//stack - queue - deck?
-                                        new string[]{ },
-                                        new string[]{ },
-                                        new string[]{ } //multithreading
+                                        new string[5]{ "int[ ][ ] x;", "string[ ][ ] x;", "bool[ ][ ] x;" ,"double[ ][ ] x;", "float[ ][ ] x;",},
+                                        new string[5]{ "Stack<T> x;", "Queue<T> x", "LinkedList<T> x", "Dictionary<Tkey, TValue> x", "HashSet<T> x"},
+                                        new string[1]{ "LINQ"},
+                                        new string[1]{ "ASP.NET"},
+                                        new string[4]{ "Thread.Start()", "Thread.Join()", "Thread.Sleep()", "Thread.Abort()"}
     };
     public int[] hp = { 10, 20, 30, 40, 50, 60, 70, 80 };
-    public int[] damage = { 1, 2, 3, 4, 5, 6, 7, 8 };
-    public float[] speed = { 3f, 3.2f, 3.4f, 3.6f, 3.8f, 4f, 4.2f, 4.4f };
+    public int[] damage = { 5, 10, 15, 20, 25, 30, 35, 40 };
+    //public float[] speed = { 3f, 3.2f, 3.4f, 3.6f, 3.8f, 4f, 4.2f, 4.4f };
+    public float[] speed = { 3f, 3.4f, 3.8f, 4.2f, 4.6f, 5f, 5.4f, 5.8f };
+    public int[] value = { 1, 2, 3, 4, 5, 6, 7, 8 };
 }

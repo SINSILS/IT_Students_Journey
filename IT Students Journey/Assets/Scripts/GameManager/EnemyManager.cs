@@ -10,7 +10,6 @@ public class EnemyManager : MonoBehaviour
 
     //Parent GameObjects
     private GameObject blueEnemyParent;
-    private GameObject platformParent;
 
     // Start is called before the first frame update
     void Start()
@@ -24,9 +23,16 @@ public class EnemyManager : MonoBehaviour
 
     }
 
-    public void spawnEnemy(List<GameObject> platforms)
+    public void increaseEnemyCount()
     {
-        if (blueEnemies.Count < maxEnemyCount)
+        maxEnemyCount++;
+    }
+
+    public void spawnEnemy(List<GameObject> platforms, int level)
+    {
+        //0 - on platform, 1 - on the ground
+        int random = Random.Range(0, 2);
+        if (blueEnemies.Count < maxEnemyCount && random == 0)
         {
             int randomPlatformIndex = Random.Range(0, platforms.Count);
             var tempPlatform = platforms[randomPlatformIndex].GetComponent<Platform>();
@@ -34,16 +40,29 @@ public class EnemyManager : MonoBehaviour
             if (tempPlatform.transform.position.x > 23 && !tempPlatform.IsTaken)
             {
                 float x = tempPlatform.transform.position.x;
-                float y = tempPlatform.transform.position.y + 2f;
+                float y = tempPlatform.transform.position.y + 0.4f;
                 // Create a new enemy
-                var blueEnemy = GameObject.Instantiate(blueEnemyPrefab, new Vector2(x, y), Quaternion.identity);
+                var newEnemy = GameObject.Instantiate(blueEnemyPrefab, new Vector2(x, y), Quaternion.identity);
                 tempPlatform.IsTaken = true;
-                blueEnemy.transform.SetParent(blueEnemyParent.transform, false);
-                blueEnemy.transform.Rotate(0, 180, 0);
-                blueEnemy.GetComponent<BlueEnemy>().platformIndex = randomPlatformIndex;
+                newEnemy.transform.SetParent(blueEnemyParent.transform, false);
+                newEnemy.transform.Rotate(0, 180, 0);
+                BlueEnemy enemyComponent = newEnemy.GetComponent<BlueEnemy>();
+                enemyComponent.platformIndex = randomPlatformIndex;
+                enemyComponent.setRandomStats(level);
                 // Add the new enemy
-                blueEnemies.Add(blueEnemy);
+                blueEnemies.Add(newEnemy);
             }
+        }
+        else if (blueEnemies.Count < maxEnemyCount && random == 1)
+        {
+            float x = Random.Range(25f, 45f);
+            float y = -7f;
+            var newEnemy = GameObject.Instantiate(blueEnemyPrefab, new Vector2(x, y), Quaternion.identity);
+            newEnemy.transform.SetParent(blueEnemyParent.transform, false);
+            newEnemy.transform.Rotate(0, 180, 0);
+            BlueEnemy enemyComponent = newEnemy.GetComponent<BlueEnemy>();
+            enemyComponent.setRandomStats(level);
+            blueEnemies.Add(newEnemy);
         }
         else
         {
@@ -59,7 +78,11 @@ public class EnemyManager : MonoBehaviour
             {
                 blueEnemies.Remove(tempEnemy);
                 Destroy(tempEnemy);
-                platforms[tempEnemy.GetComponent<BlueEnemy>().platformIndex].GetComponent<Platform>().IsTaken = false;
+                BlueEnemy tempEnemyComponent = tempEnemy.GetComponent<BlueEnemy>();
+                if (!tempEnemyComponent.platformIndex.Equals(null))
+                {
+                    platforms[tempEnemyComponent.platformIndex].GetComponent<Platform>().IsTaken = false;
+                }
             }
         }
     }

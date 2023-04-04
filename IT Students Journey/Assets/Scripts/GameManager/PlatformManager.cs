@@ -9,7 +9,7 @@ public class PlatformManager : MonoBehaviour
     private float platformStartPointX = 20f;
     private float platformEndPointX;
     private float[] yValues = { -3.5f, 0f, 4f };
-    private int lastPlatformLevel = 0;
+    private int nextPlatformLevel = 0;
 
     //Parent GameObjects
     private GameObject platformParent;
@@ -39,25 +39,20 @@ public class PlatformManager : MonoBehaviour
             // Generate a random position for the platform
             platformStartPointX = platformStartPointX + Random.Range(7f, 15f);
             float x = platformStartPointX;
-            float y = yValues[lastPlatformLevel];
-            if (lastPlatformLevel == 0)
+            float y = yValues[nextPlatformLevel];
+            if (nextPlatformLevel == 0)
             {
-                int temp = Random.Range(0, 2);
-                y = yValues[temp];
-                lastPlatformLevel = temp;
+                y = yValues[nextPlatformLevel];
             }
-            else if (lastPlatformLevel == 1)
+            else if (nextPlatformLevel == 1)
             {
-                int temp = Random.Range(0, 3);
-                y = yValues[temp];
-                lastPlatformLevel = temp;
+                y = yValues[nextPlatformLevel];
             }
             else
             {
-                int temp = Random.Range(0, 2);
-                y = yValues[temp];
-                lastPlatformLevel = temp;
+                y = yValues[nextPlatformLevel];
             }
+            nextPlatformLevel = Random.Range(0, 2);
 
             // Create a new platform at the generated position
             var platform = GameObject.Instantiate(platformPrefab, new Vector2(x, y), Quaternion.identity);
@@ -76,24 +71,24 @@ public class PlatformManager : MonoBehaviour
                 {
                     // Generate a new position for the platform
                     float x = platformEndPointX - 42;
-                    float y = yValues[lastPlatformLevel];
-                    if (lastPlatformLevel == 0)
+                    float y = yValues[nextPlatformLevel];
+                    if (nextPlatformLevel == 0)
                     {
                         int temp = Random.Range(0, 2);
                         y = yValues[temp];
-                        lastPlatformLevel = temp;
+                        nextPlatformLevel = temp;
                     }
-                    else if (lastPlatformLevel == 1)
+                    else if (nextPlatformLevel == 1)
                     {
                         int temp = Random.Range(0, 3);
                         y = yValues[temp];
-                        lastPlatformLevel = temp;
+                        nextPlatformLevel = temp;
                     }
                     else
                     {
                         int temp = Random.Range(0, 2);
                         y = yValues[temp];
-                        lastPlatformLevel = temp;
+                        nextPlatformLevel = temp;
                     }
                     // Move the existing platform to the new position
                     platform.transform.position = new Vector2(x, y);

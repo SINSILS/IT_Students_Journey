@@ -1,8 +1,14 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - ClearSky.DemoCollegeStudentController
+    - BlueEnemy
+    - BulletController
+    - ClearSky.StudentController
+    - EnemyManager
+    - GameManager
     - MenuManager
+    - Platform
+    - PlatformManager
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Animation.Runtime.dll:
@@ -26,6 +32,14 @@ ScriptsOnlyBuild:
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
     - TMPro.TextMeshProUGUI
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -68,10 +82,36 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1598}
+      Script: {instanceID: 1480}
     - Class: 114
-      Script: {instanceID: 2648}
+      Script: {instanceID: 1600}
+    - Class: 114
+      Script: {instanceID: 1820}
+    - Class: 114
+      Script: {instanceID: 2468}
+    - Class: 114
+      Script: {instanceID: 2650}
+    - Class: 114
+      Script: {instanceID: 2750}
+    - Class: 114
+      Script: {instanceID: 2796}
+    - Class: 114
+      Script: {instanceID: 2964}
+    - Class: 114
+      Script: {instanceID: 3190}
+    - Class: 114
+      Script: {instanceID: 3748}
+    - Class: 114
+      Script: {instanceID: 4296}
+    - Class: 114
+      Script: {instanceID: 4916}
+    - Class: 114
+      Script: {instanceID: 5228}
+    - Class: 114
+      Script: {instanceID: 5276}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -80,6 +120,14 @@ ScriptsOnlyBuild:
     - Class: 212
       Script: {instanceID: 0}
     - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 251
       Script: {instanceID: 0}
     Assets/Scenes/MainMenu.unity:
     - Class: 1
@@ -101,29 +149,29 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1538}
+      Script: {instanceID: 1480}
     - Class: 114
-      Script: {instanceID: 1818}
+      Script: {instanceID: 1540}
     - Class: 114
-      Script: {instanceID: 2184}
+      Script: {instanceID: 1820}
     - Class: 114
-      Script: {instanceID: 2590}
+      Script: {instanceID: 2186}
     - Class: 114
-      Script: {instanceID: 2748}
+      Script: {instanceID: 2750}
     - Class: 114
-      Script: {instanceID: 2794}
+      Script: {instanceID: 2796}
     - Class: 114
-      Script: {instanceID: 2962}
+      Script: {instanceID: 2964}
     - Class: 114
-      Script: {instanceID: 3188}
+      Script: {instanceID: 3190}
     - Class: 114
-      Script: {instanceID: 3302}
+      Script: {instanceID: 3304}
     - Class: 114
-      Script: {instanceID: 3850}
+      Script: {instanceID: 3854}
     - Class: 114
-      Script: {instanceID: 4592}
+      Script: {instanceID: 4598}
     - Class: 114
-      Script: {instanceID: 4946}
+      Script: {instanceID: 4954}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -158,17 +206,17 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1818}
+      Script: {instanceID: 1480}
     - Class: 114
-      Script: {instanceID: 2590}
+      Script: {instanceID: 1820}
     - Class: 114
-      Script: {instanceID: 2748}
+      Script: {instanceID: 2750}
     - Class: 114
-      Script: {instanceID: 2794}
+      Script: {instanceID: 2796}
     - Class: 114
-      Script: {instanceID: 2962}
+      Script: {instanceID: 2964}
     - Class: 114
-      Script: {instanceID: 3188}
+      Script: {instanceID: 3190}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -188,6 +236,12 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: a1aa98c78061c6f03a8c124cda576e67
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: CanvasScaler
   - hash:
       serializedVersion: 2
       Hash: 5ab533713adae59372fb3e10a585c186
@@ -322,16 +376,16 @@ ScriptsOnlyBuild:
     className: IKManager2D
   - hash:
       serializedVersion: 2
-      Hash: a1aa98c78061c6f03a8c124cda576e67
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: CanvasScaler
+      Hash: 3958fb5b8465911e96f493b851abec86
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemyManager
   - hash:
       serializedVersion: 2
-      Hash: 6ae3d85f8162fdd54b0182dd8ae588c9
+      Hash: 45cf6f6e00df23cf41ad403808ecca9a
     assemblyName: Assembly-CSharp.dll
     namespaceName: ClearSky
-    className: DemoCollegeStudentController
+    className: StudentController
   - hash:
       serializedVersion: 2
       Hash: cf9f5cf2c3145a37ac07f00e50e460f9
@@ -502,6 +556,12 @@ ScriptsOnlyBuild:
     className: BaseInput
   - hash:
       serializedVersion: 2
+      Hash: 195c4d9e78260c1259d97d7ff0ac733d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameManager
+  - hash:
+      serializedVersion: 2
       Hash: 18c222bef9ae745ce69ddde9b74337ca
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -592,6 +652,12 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
+      Hash: 773d104272c9b409771973f71e8781fe
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BulletController
+  - hash:
+      serializedVersion: 2
       Hash: 523ce309f50d9eee6a8fc0e2f86c9c97
     assemblyName: Unity.2D.SpriteShape.Runtime.dll
     namespaceName: 
@@ -676,6 +742,12 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
+      Hash: 0bfff4fc26ce873d20330ece7c5e03db
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BlueEnemy
+  - hash:
+      serializedVersion: 2
       Hash: fd68d84f33fad85aac38f2739c0ee270
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -692,6 +764,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.Animation.Runtime.dll
     namespaceName: UnityEngine.U2D.Animation
     className: BufferManager
+  - hash:
+      serializedVersion: 2
+      Hash: a0a7edc45f00459bf1d629bc8c2959cb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlatformManager
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Platform
   - hash:
       serializedVersion: 2
       Hash: 8220b46879dc5e37db1b940c938f5744

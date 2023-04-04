@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7537126879796182014}
   - component: {fileID: 258398984233177467}
   - component: {fileID: 8301863972248347551}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -111.47, y: -14.61}
+  m_AnchoredPosition: {x: -113.5, y: -14.75}
   m_SizeDelta: {x: 5.9615, y: 1.9565}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &258398984233177467
@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e5253a595b4d27242949326a40e76c8f, type: 2}
+  m_sharedMaterial: {fileID: -8145203468080219803, guid: e5253a595b4d27242949326a40e76c8f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 32
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -1.101563, y: 0.26342782, z: -1.9232175, w: 0.75347894}
+  m_margin: {x: -1.101563, y: -0.8492738, z: -5.066742, w: 0.75347894}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -148,9 +148,9 @@ GameObject:
   - component: {fileID: 1459001902427510640}
   - component: {fileID: 1459001902427510641}
   - component: {fileID: 1459001902427510653}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: blueEnemyPrefab
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -301,8 +301,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d4072c3d3397ad41981e0ebfa1b8652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
   title: {fileID: 8301863972248347551}
+  speed: 2
+  value: 0
+  isDead: 0
 --- !u!1 &9152252731056451753
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +317,7 @@ GameObject:
   - component: {fileID: 4900958657418604927}
   - component: {fileID: 3376358275306058586}
   - component: {fileID: 3158186853695728249}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Enemy Canvas
   m_TagString: Enemy
   m_Icon: {fileID: 0}

@@ -1,16 +1,20 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 namespace ClearSky
 {
     public class StudentController : MonoBehaviour
     {
         //Stats
-        //int healthPoints = 100;
+        public int hp = 50;
+        public int coins = 0;
         //int damage = 1;
         public float movePower = 10f;
         public float KickBoardMovePower = 15f;
         public float jumpPower = 20f;
 
+        public TMP_Text hpLabel;
+        public TMP_Text coinsLabel;
         private Rigidbody2D rb;
         private Animator anim;
         private int direction = 1;
@@ -37,16 +41,15 @@ namespace ClearSky
 
         private void Update()
         {
-            Restart();
+            //Restart();
+            updateHPLabel();
             if (alive)
             {
-                Hurt();
-                Die();
                 Attack();
                 Jump();
                 KickBoard();
                 Run();
-
+                updateCoinsLabel();
             }
         }
         private void OnTriggerEnter2D(Collider2D other)
@@ -159,26 +162,33 @@ namespace ClearSky
             }
 
         }
+
+        public void takeDamage(int damage)
+        {
+            if (alive)
+            {
+                hp -= damage;
+                Debug.Log("Student took " + damage + " damage. Health remaining: " + hp);
+                if (hp <= 0)
+                {
+                    Die();
+                }
+            }
+        }
         void Hurt()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                anim.SetTrigger("hurt");
-                if (direction == 1)
-                    rb.AddForce(new Vector2(-5f, 1f), ForceMode2D.Impulse);
-                else
-                    rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
-            }
+            anim.SetTrigger("hurt");
+            if (direction == 1)
+                rb.AddForce(new Vector2(-5f, 1f), ForceMode2D.Impulse);
+            else
+                rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
         }
         void Die()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                isKickboard = false;
-                anim.SetBool("isKickBoard", false);
-                anim.SetTrigger("die");
-                alive = false;
-            }
+            //isKickboard = false;
+            //anim.SetBool("isKickBoard", false);
+            anim.SetTrigger("die");
+            alive = false;
         }
         void Restart()
         {
@@ -190,22 +200,36 @@ namespace ClearSky
                 alive = true;
             }
         }
+        void updateHPLabel()
+        {
+            if (hp < 0)
+            {
+                hpLabel.text = "HP : 0";
+            }
+            else
+            {
+                hpLabel.text = "HP : " + hp;
+            }
+        }
+
+        void updateCoinsLabel()
+        {
+            coinsLabel.text = "Coins : " + coins;
+        }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.TryGetComponent<BlueEnemy>(out BlueEnemy blueEnemyComponent))
+            if (alive)
             {
-                anim.SetTrigger("hurt");
-                if (direction == 1)
-                    rb.AddForce(new Vector2(-5f, 1f), ForceMode2D.Impulse);
-                else
-                    rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
-            }
-            if (collision.gameObject.tag == "MainBottomPlatform")
-            {
-                anim.SetBool("isJump", false);
-                isJumping = false;
-                anim.SetTrigger("idle");
+                if (collision.gameObject.TryGetComponent<BlueEnemy>(out BlueEnemy blueEnemyComponent))
+                {
+                    Hurt();
+                }
+                if (collision.gameObject.tag == "MainBottomPlatform")
+                {
+                    anim.SetBool("isJump", false);
+                    isJumping = false;
+                }
             }
         }
     }
