@@ -5,13 +5,17 @@ namespace ClearSky
 {
     public class StudentController : MonoBehaviour
     {
-        //Stats
-        public int hp = 50;
+        //Student stats
+        int hp = 50;
         public int coins = 0;
-        //int damage = 1;
-        public float movePower = 10f;
         public float KickBoardMovePower = 15f;
         public float jumpPower = 20f;
+
+        //Upgradable stats
+        private int maxHP = 50;
+        private float speed = 10f;
+        private int power = 5;
+        private double fireRate = 1.0;
 
         public TMP_Text hpLabel;
         public TMP_Text coinsLabel;
@@ -24,7 +28,6 @@ namespace ClearSky
 
         //Bullet prefab
         public GameObject bulletPrefab;
-        private double fireRate = 1;
         private double lastShot = 0.0;
 
         //Parent GameObjects
@@ -41,7 +44,6 @@ namespace ClearSky
 
         private void Update()
         {
-            //Restart();
             updateHPLabel();
             if (alive)
             {
@@ -99,7 +101,7 @@ namespace ClearSky
                         anim.SetBool("isRun", true);
 
                 }
-                transform.position += moveVelocity * movePower * Time.deltaTime;
+                transform.position += moveVelocity * speed * Time.deltaTime;
 
             }
             if (isKickboard)
@@ -168,7 +170,6 @@ namespace ClearSky
             if (alive)
             {
                 hp -= damage;
-                Debug.Log("Student took " + damage + " damage. Health remaining: " + hp);
                 if (hp <= 0)
                 {
                     Die();
@@ -190,16 +191,7 @@ namespace ClearSky
             anim.SetTrigger("die");
             alive = false;
         }
-        void Restart()
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha0))
-            {
-                isKickboard = false;
-                anim.SetBool("isKickBoard", false);
-                anim.SetTrigger("idle");
-                alive = true;
-            }
-        }
+
         void updateHPLabel()
         {
             if (hp < 0)
@@ -215,6 +207,31 @@ namespace ClearSky
         void updateCoinsLabel()
         {
             coinsLabel.text = "Coins : " + coins;
+        }
+
+        public int getMaxHP()
+        {
+            return maxHP;
+        }
+
+        public float getSpeed()
+        {
+            return speed;
+        }
+
+        public int getPower()
+        {
+            return power;
+        }
+
+        public double getFireRate()
+        {
+            return fireRate;
+        }
+
+        public int getHPPotion()
+        {
+            return maxHP - hp;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

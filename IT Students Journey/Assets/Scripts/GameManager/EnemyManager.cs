@@ -39,7 +39,7 @@ public class EnemyManager : MonoBehaviour
             // Check if there is already an enemy on the platform
             if (tempPlatform.transform.position.x > 23 && !tempPlatform.IsTaken)
             {
-                float x = tempPlatform.transform.position.x;
+                float x = tempPlatform.transform.position.x - 0.5f;
                 float y = tempPlatform.transform.position.y + 0.4f;
                 // Create a new enemy
                 var newEnemy = GameObject.Instantiate(blueEnemyPrefab, new Vector2(x, y), Quaternion.identity);

@@ -85,14 +85,6 @@ public class BlueEnemy : MonoBehaviour
             if (hp > 0)
             {
                 anim.Play("Blue Hurt - Animation");
-                if (bulletComponent.bulletDirection == 1)
-                {
-                    rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
-                }
-                else
-                {
-                    rb.AddForce(new Vector2(-5f, 1f), ForceMode2D.Impulse);
-                }
             }
             else
             {
@@ -139,7 +131,6 @@ public class BlueEnemy : MonoBehaviour
         {
             random2 = Random.Range(0, 4);
         }
-        Debug.Log(random + "  " + random2);
         title.text = stats.title[random][random2];
         hp = stats.hp[random];
         damage = stats.damage[random];
