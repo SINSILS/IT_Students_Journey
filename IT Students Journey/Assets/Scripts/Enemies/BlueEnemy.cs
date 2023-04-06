@@ -81,7 +81,7 @@ public class BlueEnemy : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<BulletController>(out BulletController bulletComponent))
         {
-            hp = hp - bulletComponent.damage;
+            hp = hp - bulletComponent.getDamage();
             if (hp > 0)
             {
                 anim.Play("Blue Hurt - Animation");
@@ -90,7 +90,7 @@ public class BlueEnemy : MonoBehaviour
             {
                 anim.SetTrigger("isDead");
                 StudentController student = GameObject.FindWithTag("Player").GetComponent<StudentController>();
-                student.coins += value;
+                student.addCoins(value);
             }
         }
         else if (collision.gameObject.CompareTag("Player"))
@@ -151,7 +151,7 @@ class Stats
                                         new string[1]{ "ASP.NET"},
                                         new string[4]{ "Thread.Start()", "Thread.Join()", "Thread.Sleep()", "Thread.Abort()"}
     };
-    public int[] hp = { 10, 20, 30, 40, 50, 60, 70, 80 };
+    public int[] hp = { 15, 20, 30, 40, 50, 60, 70, 80 };
     public int[] damage = { 5, 10, 15, 20, 25, 30, 35, 40 };
     //public float[] speed = { 3f, 3.2f, 3.4f, 3.6f, 3.8f, 4f, 4.2f, 4.4f };
     public float[] speed = { 3f, 3.4f, 3.8f, 4.2f, 4.6f, 5f, 5.4f, 5.8f };

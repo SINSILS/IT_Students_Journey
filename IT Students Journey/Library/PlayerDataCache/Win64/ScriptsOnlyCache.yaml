@@ -9,6 +9,7 @@ ScriptsOnlyBuild:
     - MenuManager
     - Platform
     - PlatformManager
+    - UpgradeManager
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Animation.Runtime.dll:
@@ -52,7 +53,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
   sceneClasses:
-    Assets/Scenes/Gameplay.unity:
+    Assets/Scenes/Learn C#.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -84,31 +85,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1480}
     - Class: 114
-      Script: {instanceID: 1600}
+      Script: {instanceID: 1542}
     - Class: 114
-      Script: {instanceID: 1820}
+      Script: {instanceID: 1602}
     - Class: 114
-      Script: {instanceID: 2468}
+      Script: {instanceID: 1822}
     - Class: 114
-      Script: {instanceID: 2650}
+      Script: {instanceID: 2470}
     - Class: 114
-      Script: {instanceID: 2750}
+      Script: {instanceID: 2652}
     - Class: 114
-      Script: {instanceID: 2796}
+      Script: {instanceID: 2752}
     - Class: 114
-      Script: {instanceID: 2964}
+      Script: {instanceID: 2798}
     - Class: 114
-      Script: {instanceID: 3190}
+      Script: {instanceID: 2966}
     - Class: 114
-      Script: {instanceID: 3748}
+      Script: {instanceID: 3192}
     - Class: 114
-      Script: {instanceID: 4296}
+      Script: {instanceID: 3306}
     - Class: 114
-      Script: {instanceID: 4916}
+      Script: {instanceID: 3750}
     - Class: 114
-      Script: {instanceID: 5228}
+      Script: {instanceID: 4298}
     - Class: 114
-      Script: {instanceID: 5276}
+      Script: {instanceID: 4308}
+    - Class: 114
+      Script: {instanceID: 4920}
+    - Class: 114
+      Script: {instanceID: 5232}
+    - Class: 114
+      Script: {instanceID: 5280}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -151,27 +158,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1480}
     - Class: 114
-      Script: {instanceID: 1540}
+      Script: {instanceID: 1542}
     - Class: 114
-      Script: {instanceID: 1820}
+      Script: {instanceID: 1822}
     - Class: 114
-      Script: {instanceID: 2186}
+      Script: {instanceID: 2188}
     - Class: 114
-      Script: {instanceID: 2750}
+      Script: {instanceID: 2752}
     - Class: 114
-      Script: {instanceID: 2796}
+      Script: {instanceID: 2798}
     - Class: 114
-      Script: {instanceID: 2964}
+      Script: {instanceID: 2966}
     - Class: 114
-      Script: {instanceID: 3190}
+      Script: {instanceID: 3192}
     - Class: 114
-      Script: {instanceID: 3304}
+      Script: {instanceID: 3306}
     - Class: 114
-      Script: {instanceID: 3854}
+      Script: {instanceID: 3856}
     - Class: 114
-      Script: {instanceID: 4598}
+      Script: {instanceID: 4602}
     - Class: 114
-      Script: {instanceID: 4954}
+      Script: {instanceID: 4958}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -208,15 +215,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1480}
     - Class: 114
-      Script: {instanceID: 1820}
+      Script: {instanceID: 1822}
     - Class: 114
-      Script: {instanceID: 2750}
+      Script: {instanceID: 2752}
     - Class: 114
-      Script: {instanceID: 2796}
+      Script: {instanceID: 2798}
     - Class: 114
-      Script: {instanceID: 2964}
+      Script: {instanceID: 2966}
     - Class: 114
-      Script: {instanceID: 3190}
+      Script: {instanceID: 3192}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -382,7 +389,7 @@ ScriptsOnlyBuild:
     className: EnemyManager
   - hash:
       serializedVersion: 2
-      Hash: 45cf6f6e00df23cf41ad403808ecca9a
+      Hash: bf006996639a36944805db7839124c36
     assemblyName: Assembly-CSharp.dll
     namespaceName: ClearSky
     className: StudentController
@@ -556,7 +563,7 @@ ScriptsOnlyBuild:
     className: BaseInput
   - hash:
       serializedVersion: 2
-      Hash: 195c4d9e78260c1259d97d7ff0ac733d
+      Hash: aa284b9bd4f00d3b8b99a107e727535b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -586,7 +593,7 @@ ScriptsOnlyBuild:
     className: AnimationTrack
   - hash:
       serializedVersion: 2
-      Hash: 79b6777c25ffd5815d6bd67df021da49
+      Hash: 3d97b7263f866400580f57f265ed4e5c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuManager
@@ -652,10 +659,16 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
-      Hash: 773d104272c9b409771973f71e8781fe
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BulletController
+  - hash:
+      serializedVersion: 2
+      Hash: f4015870f81837635ac9e23b3d5b4e77
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UpgradeManager
   - hash:
       serializedVersion: 2
       Hash: 523ce309f50d9eee6a8fc0e2f86c9c97
@@ -809,6 +822,6 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
-  - Assets/Scenes/Gameplay.unity
+  - Assets/Scenes/Learn C#.unity
   - Assets/Scenes/Tutorial.unity
   playerPath: C:/Users/Lenovo/Desktop/Zaidims/IT Students Journey.exe

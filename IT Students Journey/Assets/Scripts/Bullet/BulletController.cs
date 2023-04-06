@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    public float speed = 10f;
-    public int bulletDirection = 1;
-    public int damage = 5;
+    private float bulletSpeed = 10f;
+    private int bulletDirection = 1;
+    private int bulletDamage = 5;
     private Rigidbody2D rb;
 
     private void Start()
@@ -40,8 +40,28 @@ public class BulletController : MonoBehaviour
     void move()
     {
         if (bulletDirection == 1)
-            transform.position += Vector3.right * speed * Time.deltaTime;
+            transform.position += Vector3.right * bulletSpeed * Time.deltaTime;
         else
-            transform.position += Vector3.left * speed * Time.deltaTime;
+            transform.position += Vector3.left * bulletSpeed * Time.deltaTime;
+    }
+
+    public void setDirection(int direction)
+    {
+        bulletDirection = direction;
+    }
+
+    public int getDamage()
+    {
+        return bulletDamage;
+    }
+
+    public void setDamage(int damage)
+    {
+        bulletDamage = damage;
+    }
+
+    public void setSpeed(float speed)
+    {
+        bulletSpeed = speed;
     }
 }

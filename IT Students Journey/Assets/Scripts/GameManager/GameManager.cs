@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("updateScoreAndLevel", 0.05f, 0.05f); // Call UpdateScore every 1 second
-        //InvokeRepeating("updateScoreAndLevel", 0.005f, 0.005f); // Call UpdateScore every 1 second
+        InvokeRepeating("updateScoreAndLevel", 0.05f, 0.05f);
+        //InvokeRepeating("updateScoreAndLevel", 0.005f, 0.005f);
         upgradePanel = GameObject.FindWithTag("UpgradePanel");
         upgradePanel.SetActive(false);
     }
@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour
         {
             level++;
             enemyManager.increaseEnemyCount();
-            Debug.Log("LEVEL " + level);
         }
     }
 

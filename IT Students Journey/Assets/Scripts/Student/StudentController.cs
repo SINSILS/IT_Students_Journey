@@ -7,14 +7,14 @@ namespace ClearSky
     {
         //Student stats
         int hp = 50;
-        public int coins = 0;
+        private int coins = 0;
         public float KickBoardMovePower = 15f;
         public float jumpPower = 20f;
 
         //Upgradable stats
         private int maxHP = 50;
         private float speed = 10f;
-        private int power = 5;
+        private int power = 10;
         private double fireRate = 1.0;
 
         public TMP_Text hpLabel;
@@ -40,6 +40,7 @@ namespace ClearSky
             rb = GetComponent<Rigidbody2D>();
             anim = GetComponent<Animator>();
             bulletParent = new GameObject("Bullets");
+            InvokeRepeating("regenerateHP", 0.1f, 5.0f);
         }
 
         private void Update()
@@ -157,7 +158,10 @@ namespace ClearSky
                 float y = transform.position.y + 1.5f;
                 // Create a new bullet
                 var bullet = GameObject.Instantiate(bulletPrefab, new Vector2(x, y), Quaternion.identity);
-                bullet.GetComponent<BulletController>().bulletDirection = direction;
+                var bulletController = bullet.GetComponent<BulletController>();
+                bulletController.setDirection(direction);
+                bulletController.setSpeed(speed);
+                bulletController.setDamage(power);
                 bullet.transform.SetParent(bulletParent.transform, false);
                 // Save last shot time
                 lastShot = Time.time;
@@ -184,12 +188,37 @@ namespace ClearSky
             else
                 rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
         }
+
         void Die()
         {
             //isKickboard = false;
             //anim.SetBool("isKickBoard", false);
             anim.SetTrigger("die");
             alive = false;
+        }
+
+        void regenerateHP()
+        {
+            if (alive && hp < maxHP)
+            {
+                hp++;
+            }
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (alive)
+            {
+                if (collision.gameObject.TryGetComponent<BlueEnemy>(out BlueEnemy blueEnemyComponent))
+                {
+                    Hurt();
+                }
+                if (collision.gameObject.tag == "MainBottomPlatform")
+                {
+                    anim.SetBool("isJump", false);
+                    isJumping = false;
+                }
+            }
         }
 
         void updateHPLabel()
@@ -229,25 +258,69 @@ namespace ClearSky
             return fireRate;
         }
 
-        public int getHPPotion()
+        public int getMissingHP()
         {
             return maxHP - hp;
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        public int getCurrentHP()
         {
-            if (alive)
+            return hp;
+        }
+
+        public int getCoins()
+        {
+            return coins;
+        }
+
+        public void addCoins(int amount)
+        {
+            coins += amount;
+        }
+
+        public void payCoins(int amount)
+        {
+            coins -= amount;
+        }
+
+
+        public void updateMaxHP(int x)
+        {
+            if (hp >= 60 && x < 0)
             {
-                if (collision.gameObject.TryGetComponent<BlueEnemy>(out BlueEnemy blueEnemyComponent))
-                {
-                    Hurt();
-                }
-                if (collision.gameObject.tag == "MainBottomPlatform")
-                {
-                    anim.SetBool("isJump", false);
-                    isJumping = false;
-                }
+                maxHP += x;
+                hp += x;
+            }
+            else if (hp >= 50 && x < 0)
+            {
+                hp = 50;
+                maxHP += x;
+            }
+            else
+            {
+                maxHP += x;
             }
         }
+
+        public void updateSpeed(float x)
+        {
+            speed += x;
+        }
+
+        public void updatePower(int x)
+        {
+            power += x;
+        }
+
+        public void updateFireRate(double x)
+        {
+            fireRate -= x;
+        }
+
+        public void resetHealth()
+        {
+            hp = maxHP;
+        }
+
     }
 }
