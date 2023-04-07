@@ -79,6 +79,11 @@ public class BlueEnemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (isDead) // Check if the enemy is dead
+        {
+            return; // If so, don't do anything
+        }
+
         if (collision.gameObject.TryGetComponent<BulletController>(out BulletController bulletComponent))
         {
             hp = hp - bulletComponent.getDamage();
@@ -88,6 +93,8 @@ public class BlueEnemy : MonoBehaviour
             }
             else
             {
+                isDead = true; // Mark the enemy as dead
+                gameObject.layer = 7;
                 anim.SetTrigger("isDead");
                 StudentController student = GameObject.FindWithTag("Player").GetComponent<StudentController>();
                 student.addCoins(value);
@@ -95,19 +102,17 @@ public class BlueEnemy : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
-            StudentController student = GameObject.FindWithTag("Player").GetComponent<StudentController>();
-            student.takeDamage(damage);
+            if (!isDead) // Check if the enemy is alive
+            {
+                StudentController student = GameObject.FindWithTag("Player").GetComponent<StudentController>();
+                student.takeDamage(damage);
+            }
         }
     }
 
     public void setIsHurtFalse()
     {
         anim.SetTrigger("isIdle");
-    }
-
-    public void setIsDeadTrue()
-    {
-        isDead = true;
     }
 
     void titlePositionUpdate()
@@ -151,7 +156,7 @@ class Stats
                                         new string[1]{ "ASP.NET"},
                                         new string[4]{ "Thread.Start()", "Thread.Join()", "Thread.Sleep()", "Thread.Abort()"}
     };
-    public int[] hp = { 15, 20, 30, 40, 50, 60, 70, 80 };
+    public int[] hp = { 10, 20, 30, 40, 50, 60, 70, 80 };
     public int[] damage = { 5, 10, 15, 20, 25, 30, 35, 40 };
     //public float[] speed = { 3f, 3.2f, 3.4f, 3.6f, 3.8f, 4f, 4.2f, 4.4f };
     public float[] speed = { 3f, 3.4f, 3.8f, 4.2f, 4.6f, 5f, 5.4f, 5.8f };

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,6 +27,12 @@ public class EnemyManager : MonoBehaviour
     public void increaseEnemyCount()
     {
         maxEnemyCount++;
+    }
+
+    IEnumerator DestroyTempEnemy(GameObject tempEnemy)
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(tempEnemy);
     }
 
     public void spawnEnemy(List<GameObject> platforms, int level)
@@ -77,12 +84,12 @@ public class EnemyManager : MonoBehaviour
             if (tempEnemy != null)
             {
                 blueEnemies.Remove(tempEnemy);
-                Destroy(tempEnemy);
                 BlueEnemy tempEnemyComponent = tempEnemy.GetComponent<BlueEnemy>();
                 if (!tempEnemyComponent.platformIndex.Equals(null))
                 {
                     platforms[tempEnemyComponent.platformIndex].GetComponent<Platform>().IsTaken = false;
                 }
+                StartCoroutine(DestroyTempEnemy(tempEnemy));
             }
         }
     }

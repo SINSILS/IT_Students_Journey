@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2788123725788752602}
   - component: {fileID: 6895494212075784710}
   - component: {fileID: 3816650113527895433}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: calculator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,9 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4975a3a165fa02c46a3bed575c403dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  bulletDirection: 1
-  damage: 5
 --- !u!61 &3816650113527895433
 BoxCollider2D:
   m_ObjectHideFlags: 0

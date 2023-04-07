@@ -14,7 +14,7 @@ namespace ClearSky
         //Upgradable stats
         private int maxHP = 50;
         private float speed = 10f;
-        private int power = 10;
+        private int power = 5;
         private double fireRate = 1.0;
 
         public TMP_Text hpLabel;
