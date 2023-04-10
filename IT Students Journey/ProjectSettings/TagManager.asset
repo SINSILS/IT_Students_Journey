@@ -10,6 +10,10 @@ TagManager:
   - Score
   - UpgradePanel
   - Button
+  - Exit
+  - QuestionPanel1
+  - QuestionPanel2
+  - GameOver
   layers:
   - Default
   - TransparentFX

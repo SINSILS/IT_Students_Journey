@@ -19,8 +19,6 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.IK.IKEditorManager
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
-    - UnityEditor.Tilemaps.GridPaletteBrushes
-    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
@@ -36,10 +34,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -85,37 +81,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1480}
     - Class: 114
-      Script: {instanceID: 1542}
+      Script: {instanceID: 1540}
     - Class: 114
-      Script: {instanceID: 1602}
+      Script: {instanceID: 1600}
     - Class: 114
-      Script: {instanceID: 1822}
+      Script: {instanceID: 1820}
     - Class: 114
-      Script: {instanceID: 2470}
+      Script: {instanceID: 2468}
     - Class: 114
-      Script: {instanceID: 2652}
+      Script: {instanceID: 2650}
     - Class: 114
-      Script: {instanceID: 2752}
+      Script: {instanceID: 2750}
     - Class: 114
-      Script: {instanceID: 2798}
+      Script: {instanceID: 2796}
     - Class: 114
-      Script: {instanceID: 2966}
+      Script: {instanceID: 2964}
     - Class: 114
-      Script: {instanceID: 3192}
+      Script: {instanceID: 3190}
     - Class: 114
-      Script: {instanceID: 3306}
+      Script: {instanceID: 3304}
     - Class: 114
-      Script: {instanceID: 3750}
+      Script: {instanceID: 3748}
     - Class: 114
-      Script: {instanceID: 4298}
+      Script: {instanceID: 4296}
     - Class: 114
-      Script: {instanceID: 4308}
+      Script: {instanceID: 4306}
     - Class: 114
-      Script: {instanceID: 4920}
+      Script: {instanceID: 4918}
     - Class: 114
-      Script: {instanceID: 5232}
+      Script: {instanceID: 5230}
     - Class: 114
-      Script: {instanceID: 5280}
+      Script: {instanceID: 5278}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -158,27 +154,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1480}
     - Class: 114
-      Script: {instanceID: 1542}
+      Script: {instanceID: 1540}
     - Class: 114
-      Script: {instanceID: 1822}
+      Script: {instanceID: 1820}
     - Class: 114
-      Script: {instanceID: 2188}
+      Script: {instanceID: 2186}
     - Class: 114
-      Script: {instanceID: 2752}
+      Script: {instanceID: 2750}
     - Class: 114
-      Script: {instanceID: 2798}
+      Script: {instanceID: 2796}
     - Class: 114
-      Script: {instanceID: 2966}
+      Script: {instanceID: 2964}
     - Class: 114
-      Script: {instanceID: 3192}
+      Script: {instanceID: 3190}
     - Class: 114
-      Script: {instanceID: 3306}
+      Script: {instanceID: 3304}
     - Class: 114
-      Script: {instanceID: 3856}
+      Script: {instanceID: 3854}
     - Class: 114
-      Script: {instanceID: 4602}
+      Script: {instanceID: 4600}
     - Class: 114
-      Script: {instanceID: 4958}
+      Script: {instanceID: 4956}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -215,15 +211,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1480}
     - Class: 114
-      Script: {instanceID: 1822}
+      Script: {instanceID: 1820}
     - Class: 114
-      Script: {instanceID: 2752}
+      Script: {instanceID: 2750}
     - Class: 114
-      Script: {instanceID: 2798}
+      Script: {instanceID: 2796}
     - Class: 114
-      Script: {instanceID: 2966}
+      Script: {instanceID: 2964}
     - Class: 114
-      Script: {instanceID: 3192}
+      Script: {instanceID: 3190}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
