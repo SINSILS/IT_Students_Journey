@@ -160,7 +160,6 @@ namespace ClearSky
                 var bullet = GameObject.Instantiate(bulletPrefab, new Vector2(x, y), Quaternion.identity);
                 var bulletController = bullet.GetComponent<BulletController>();
                 bulletController.setDirection(direction);
-                bulletController.setSpeed(speed);
                 bulletController.setDamage(power);
                 bullet.transform.SetParent(bulletParent.transform, false);
                 // Save last shot time
@@ -209,7 +208,8 @@ namespace ClearSky
         {
             if (alive)
             {
-                if (collision.gameObject.TryGetComponent<BlueEnemy>(out BlueEnemy blueEnemyComponent))
+                if (collision.gameObject.TryGetComponent<BlueEnemy>(out BlueEnemy blueEnemyComponent) ||
+                    collision.gameObject.TryGetComponent<projectileController>(out projectileController projectile))
                 {
                     Hurt();
                 }

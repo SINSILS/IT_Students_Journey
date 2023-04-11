@@ -11,11 +11,13 @@ public class EnemyManager : MonoBehaviour
 
     //Parent GameObjects
     private GameObject blueEnemyParent;
+    private GameObject blueEnemyProjectileParent;
 
     // Start is called before the first frame update
     void Start()
     {
         blueEnemyParent = new GameObject("BlueEnemies");
+        blueEnemyProjectileParent = new GameObject("EnemyProjectiles");
     }
 
     // Update is called once per frame
@@ -63,7 +65,7 @@ public class EnemyManager : MonoBehaviour
         else if (blueEnemies.Count < maxEnemyCount && random == 1)
         {
             float x = Random.Range(25f, 45f);
-            float y = -7f;
+            float y = -8.4f;
             var newEnemy = GameObject.Instantiate(blueEnemyPrefab, new Vector2(x, y), Quaternion.identity);
             newEnemy.transform.SetParent(blueEnemyParent.transform, false);
             newEnemy.transform.Rotate(0, 180, 0);

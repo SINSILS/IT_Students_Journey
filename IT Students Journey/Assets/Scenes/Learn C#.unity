@@ -1816,7 +1816,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6389408, y: 0.8777895, z: -10}
+  m_LocalPosition: {x: 1.6389465, y: 0.8778238, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4875,7 +4875,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1227073070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.97999763, y: -10.571741, z: -10}
+  m_LocalPosition: {x: 0.97999763, y: -12.218799, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1421284738}
@@ -5671,14 +5671,14 @@ MonoBehaviour:
   m_ZDamping: 1
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
-  m_ScreenY: -0.15
+  m_ScreenY: -0.2
   m_CameraDistance: 10
   m_DeadZoneWidth: 0
-  m_DeadZoneHeight: 0.2
+  m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 1
-  m_SoftZoneHeight: 0.2
+  m_SoftZoneHeight: 0.06
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -6692,7 +6692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8095947265537644598, guid: 82139f5fb84f14f498a9746d48c45adc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.15
+      value: -7.84
       objectReference: {fileID: 0}
     - target: {fileID: 8095947265537644598, guid: 82139f5fb84f14f498a9746d48c45adc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7507,12 +7507,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -528.48553, y: -245.56494}
-      - {x: -569.14734, y: -245.52011}
-      - {x: -569.12683, y: -248.88872}
-      - {x: -569.09045, y: -268.07037}
-      - {x: -528.422, y: -268.12088}
-      - {x: -528.50055, y: -248.93587}
+    - - {x: -528.5006, y: -245.57942}
+      - {x: -569.21594, y: -245.53154}
+      - {x: -569.2216, y: -248.92447}
+      - {x: -569.22156, y: -268.06558}
+      - {x: -528.5005, y: -268.0656}
+      - {x: -528.50055, y: -248.92387}
 --- !u!1 &1869786518
 GameObject:
   m_ObjectHideFlags: 0

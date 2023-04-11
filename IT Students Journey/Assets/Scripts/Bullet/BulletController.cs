@@ -28,15 +28,6 @@ public class BulletController : MonoBehaviour
         }
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    other.gameObject.TryGetComponent<BlueEnemy>(out BlueEnemy enemyComponent);
-    //    if (!enemyComponent.isDead)
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
-
     void outOfScreen()
     {
         if (transform.position.x <= -23 || transform.position.x >= 23)
@@ -71,10 +62,5 @@ public class BulletController : MonoBehaviour
     public void setDamage(int damage)
     {
         bulletDamage = damage;
-    }
-
-    public void setSpeed(float speed)
-    {
-        bulletSpeed = speed;
     }
 }

@@ -1,8 +1,10 @@
 using ClearSky;
 using TMPro;
 using UnityEngine;
+
 public class BlueEnemy : MonoBehaviour
 {
+    public projectileController projectile;
     private Rigidbody2D rb;
     private Animator anim;
 
@@ -16,6 +18,8 @@ public class BlueEnemy : MonoBehaviour
 
     //Additional parameters
     bool canMove = false;
+    bool canFire = true;
+    float firePosition;
     public bool isDead = false;
     public int platformIndex { get; set; }
 
@@ -24,12 +28,14 @@ public class BlueEnemy : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        setFirePosition();
     }
 
     // Update is called once per frame
     void Update()
     {
         titlePositionUpdate();
+        fireProjectile();
     }
 
     private void FixedUpdate()
@@ -141,6 +147,28 @@ public class BlueEnemy : MonoBehaviour
         damage = stats.damage[random];
         speed = stats.speed[random];
         value = stats.value[random];
+    }
+
+    public void setFirePosition()
+    {
+        if (!canMove)
+        {
+            firePosition = Random.Range(-17f, 21f);
+        }
+    }
+
+    //Might need to update with fireRate instead of 1 projectile per enemy
+    public void fireProjectile()
+    {
+        if (!isDead && !canMove && canFire && transform.position.x < firePosition)
+        {
+            var newProjectile = GameObject.Instantiate(projectile, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+            GameObject projectileParent = GameObject.Find("EnemyProjectiles");
+            newProjectile.transform.SetParent(projectileParent.transform, false);
+            projectileController projectileComponent = newProjectile.GetComponent<projectileController>();
+            projectileComponent.setDamage(damage);
+            canFire = false;
+        }
     }
 }
 
