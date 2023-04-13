@@ -126,9 +126,10 @@ public class BlueEnemy : MonoBehaviour
         title.transform.position = new Vector2(transform.position.x, transform.position.y + (float)0.5);
     }
 
-    public void setRandomStats(int level)
+    public void setRandomStats(int minLevel, int maxLevel)
     {
-        int random = Random.Range(0, level);
+
+        int random = Random.Range(minLevel, maxLevel);
         int random2;
         if (random <= 4)
         {
@@ -186,7 +187,6 @@ class Stats
     };
     public int[] hp = { 10, 20, 30, 40, 50, 60, 70, 80 };
     public int[] damage = { 5, 10, 15, 20, 25, 30, 35, 40 };
-    //public float[] speed = { 3f, 3.2f, 3.4f, 3.6f, 3.8f, 4f, 4.2f, 4.4f };
     public float[] speed = { 3f, 3.4f, 3.8f, 4.2f, 4.6f, 5f, 5.4f, 5.8f };
     public int[] value = { 1, 2, 3, 4, 5, 6, 7, 8 };
 }

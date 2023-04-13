@@ -37,7 +37,7 @@ public class EnemyManager : MonoBehaviour
         Destroy(tempEnemy);
     }
 
-    public void spawnEnemy(List<GameObject> platforms, int level)
+    public void spawnEnemy(List<GameObject> platforms, int minLevel, int maxLevel)
     {
         //0 - on platform, 1 - on the ground
         int random = Random.Range(0, 2);
@@ -57,7 +57,7 @@ public class EnemyManager : MonoBehaviour
                 newEnemy.transform.Rotate(0, 180, 0);
                 BlueEnemy enemyComponent = newEnemy.GetComponent<BlueEnemy>();
                 enemyComponent.platformIndex = randomPlatformIndex;
-                enemyComponent.setRandomStats(level);
+                enemyComponent.setRandomStats(minLevel, maxLevel);
                 // Add the new enemy
                 blueEnemies.Add(newEnemy);
             }
@@ -70,7 +70,7 @@ public class EnemyManager : MonoBehaviour
             newEnemy.transform.SetParent(blueEnemyParent.transform, false);
             newEnemy.transform.Rotate(0, 180, 0);
             BlueEnemy enemyComponent = newEnemy.GetComponent<BlueEnemy>();
-            enemyComponent.setRandomStats(level);
+            enemyComponent.setRandomStats(minLevel, maxLevel);
             blueEnemies.Add(newEnemy);
         }
         else

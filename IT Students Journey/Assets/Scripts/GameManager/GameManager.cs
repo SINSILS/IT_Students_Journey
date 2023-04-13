@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text semester;
     public TMP_Text score;
     int scoreValue = 0;
-    int level = 1;
+    int minLevel = 0;
+    int maxLevel = 1;
     bool universityDone = false;
 
     GameObject upgradePanel;
@@ -31,13 +32,13 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("updateScoreAndLevel", 0.05f, 0.05f);
         //InvokeRepeating("updateScoreAndLevel", 0.005f, 0.005f);
         setupPanels();
-        ShowSemesterLabel("Semester " + level);
+        ShowSemesterLabel("Semester " + maxLevel);
     }
 
     // Update is called once per frame
     void Update()
     {
-        enemyManager.spawnEnemy(platformManager.getPlatforms(), level);
+        enemyManager.spawnEnemy(platformManager.getPlatforms(), minLevel, maxLevel);
         handleUpgradePanel();
         handleExitPanel();
         GameOver();
@@ -47,18 +48,21 @@ public class GameManager : MonoBehaviour
     {
         scoreValue++;
         score.text = "Score : " + scoreValue;
-        if (scoreValue % 1000 == 0 && level < 8)
+        if (scoreValue % 1000 == 0 && maxLevel < 8)
         {
-            level++;
+            maxLevel++;
             enemyManager.increaseEnemyCount();
-            ShowSemesterLabel("Semester " + level);
+            ShowSemesterLabel("Semester " + maxLevel);
         }
-        else if (scoreValue % 1000 == 0 && level == 8 && !universityDone)
+        else if (scoreValue % 1000 == 0 && maxLevel == 8 && !universityDone)
         {
             ShowSemesterLabel("Real life problems!");
             universityDone = true;
         }
-        //Increase levels here, if its decided to make monsters even stronger in real life levels
+        else if (scoreValue % 1000 == 0 && minLevel < 4 && universityDone)
+        {
+            minLevel++;
+        }
     }
 
     void setupPanels()
@@ -210,7 +214,7 @@ public class GameManager : MonoBehaviour
 
     void ShowSemesterLabel(string text)
     {
-        semester.text = "Semester " + level;
+        semester.text = "Semester " + maxLevel;
         semester.enabled = true;
         StartCoroutine(FadeOutSemesterLabel());
     }
