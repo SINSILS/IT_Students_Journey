@@ -21,7 +21,7 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        collision.gameObject.TryGetComponent<BlueEnemy>(out BlueEnemy enemyComponent);
+        collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent);
         if (!enemyComponent.isDead)
         {
             Destroy(gameObject);

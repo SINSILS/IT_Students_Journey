@@ -1,33 +1,21 @@
 using ClearSky;
-using TMPro;
 using UnityEngine;
 
-public class BlueEnemy : MonoBehaviour
+public class BlueEnemy : Enemy
 {
-    public projectileController projectile;
-    private Rigidbody2D rb;
     private Animator anim;
 
-    //Stats
+    //Blue enemy stats
     Stats stats = new Stats();
-    public TMP_Text title;
     int hp;
     int damage;
     public float speed;
     public int value;
 
-    //Additional parameters
-    bool canMove = false;
-    bool canFire = true;
-    float firePosition;
-    public bool isDead = false;
-    public int platformIndex { get; set; }
-
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
         setFirePosition();
     }
 
@@ -51,12 +39,12 @@ public class BlueEnemy : MonoBehaviour
         anim.SetBool("isJump", false);
     }
 
-    public void TakeDamage(float damageAmount)
+    public override void TakeDamage(int damageAmount)
     {
-        Debug.Log("I was touched!!!");
+        hp = hp - damageAmount;
     }
 
-    void Move()
+    public override void Move()
     {
         if (!isDead)
         {
@@ -92,7 +80,7 @@ public class BlueEnemy : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent<BulletController>(out BulletController bulletComponent))
         {
-            hp = hp - bulletComponent.getDamage();
+            TakeDamage(bulletComponent.getDamage());
             if (hp > 0)
             {
                 anim.Play("Blue Hurt - Animation");
@@ -116,17 +104,17 @@ public class BlueEnemy : MonoBehaviour
         }
     }
 
-    public void setIsHurtFalse()
+    public override void setIsHurtFalse()
     {
         anim.SetTrigger("isIdle");
     }
 
-    void titlePositionUpdate()
+    public override void titlePositionUpdate()
     {
         title.transform.position = new Vector2(transform.position.x, transform.position.y + (float)0.5);
     }
 
-    public void setRandomStats(int minLevel, int maxLevel)
+    public override void setRandomStats(int minLevel, int maxLevel)
     {
 
         int random = Random.Range(minLevel, maxLevel);
@@ -150,7 +138,7 @@ public class BlueEnemy : MonoBehaviour
         value = stats.value[random];
     }
 
-    public void setFirePosition()
+    public override void setFirePosition()
     {
         if (!canMove)
         {
@@ -159,7 +147,7 @@ public class BlueEnemy : MonoBehaviour
     }
 
     //Might need to update with fireRate instead of 1 projectile per enemy
-    public void fireProjectile()
+    public override void fireProjectile()
     {
         if (!isDead && !canMove && canFire && transform.position.x < firePosition)
         {
@@ -171,12 +159,10 @@ public class BlueEnemy : MonoBehaviour
             canFire = false;
         }
     }
-}
-
-class Stats
-{
-    //Will be updated when player reaches points 1000 -> 3, 2000 -> 4 and etc...
-    public string[][] title = new string[8][]{ new string[5]{ "int x;", "string x;", "bool x;", "double x;", "float x;" },
+    private class Stats
+    {
+        //Will be updated when player reaches points 1000 -> 3, 2000 -> 4 and etc...
+        public string[][] title = new string[8][]{ new string[5]{ "int x;", "string x;", "bool x;", "double x;", "float x;" },
                                         new string[5]{ "int[ ] x;", "string[ ] x;", "bool[ ] x;", "double[ ] x;", "float[ ] x;"},
                                         new string[5]{ "List<int> x;", "List<string> x;", "List<bool> x;", "List<double> x;", "List<float> x;"},
                                         new string[5]{ "int[ ][ ] x;", "string[ ][ ] x;", "bool[ ][ ] x;" ,"double[ ][ ] x;", "float[ ][ ] x;",},
@@ -185,8 +171,9 @@ class Stats
                                         new string[1]{ "ASP.NET"},
                                         new string[4]{ "Thread.Start()", "Thread.Join()", "Thread.Sleep()", "Thread.Abort()"}
     };
-    public int[] hp = { 10, 20, 30, 40, 50, 60, 70, 80 };
-    public int[] damage = { 5, 10, 15, 20, 25, 30, 35, 40 };
-    public float[] speed = { 3f, 3.4f, 3.8f, 4.2f, 4.6f, 5f, 5.4f, 5.8f };
-    public int[] value = { 1, 2, 3, 4, 5, 6, 7, 8 };
+        public int[] hp = { 10, 20, 30, 40, 50, 60, 70, 80 };
+        public int[] damage = { 5, 10, 15, 20, 25, 30, 35, 40 };
+        public float[] speed = { 3f, 3.4f, 3.8f, 4.2f, 4.6f, 5f, 5.4f, 5.8f };
+        public int[] value = { 1, 2, 3, 4, 5, 6, 7, 8 };
+    }
 }

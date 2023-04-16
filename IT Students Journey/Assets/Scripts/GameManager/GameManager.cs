@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    int sceneIndex;
+
     public StudentController student;
     public PlatformManager platformManager;
     public EnemyManager enemyManager;
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sceneIndex = SceneManager.GetActiveScene().buildIndex;
         Resume(2);
         InvokeRepeating("updateScoreAndLevel", 0.05f, 0.05f);
         //InvokeRepeating("updateScoreAndLevel", 0.005f, 0.005f);
@@ -38,7 +41,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        enemyManager.spawnEnemy(platformManager.getPlatforms(), minLevel, maxLevel);
+        enemyManager.spawnEnemy(sceneIndex, platformManager.getPlatforms(), minLevel, maxLevel);
         handleUpgradePanel();
         handleExitPanel();
         GameOver();

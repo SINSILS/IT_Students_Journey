@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: e4ff899a535e9d24198ba85b5127affa
+  - enabled: 1
+    path: Assets/Scenes/Learn Python.unity
+    guid: bd759786c6d0a7d47a9897642ea059db
   m_configObjects: {}

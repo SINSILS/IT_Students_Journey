@@ -6,18 +6,19 @@ public class EnemyManager : MonoBehaviour
 {
     //Enemy prefab
     public GameObject blueEnemyPrefab;
-    private List<GameObject> blueEnemies = new List<GameObject>();
+    public GameObject greenEnemyPrefab;
+    private List<GameObject> enemies = new List<GameObject>();
     private int maxEnemyCount = 3;
 
     //Parent GameObjects
-    private GameObject blueEnemyParent;
-    private GameObject blueEnemyProjectileParent;
+    private GameObject enemyParent;
+    private GameObject enemyProjectileParent;
 
     // Start is called before the first frame update
     void Start()
     {
-        blueEnemyParent = new GameObject("BlueEnemies");
-        blueEnemyProjectileParent = new GameObject("EnemyProjectiles");
+        enemyParent = new GameObject("Enemies");
+        enemyProjectileParent = new GameObject("EnemyProjectiles");
     }
 
     // Update is called once per frame
@@ -37,11 +38,16 @@ public class EnemyManager : MonoBehaviour
         Destroy(tempEnemy);
     }
 
-    public void spawnEnemy(List<GameObject> platforms, int minLevel, int maxLevel)
+    //int = 2 3 4 - to find out which enemy is being spawned
+    //1 - C# (blueEnemy)
+    //3 - Python (greenEnemy)
+    //4 - JavaScript (redEnemy)
+    public void spawnEnemy(int sceneIndex, List<GameObject> platforms, int minLevel, int maxLevel)
     {
         //0 - on platform, 1 - on the ground
         int random = Random.Range(0, 2);
-        if (blueEnemies.Count < maxEnemyCount && random == 0)
+        //spawn on platform
+        if (enemies.Count < maxEnemyCount && random == 0)
         {
             int randomPlatformIndex = Random.Range(0, platforms.Count);
             var tempPlatform = platforms[randomPlatformIndex].GetComponent<Platform>();
@@ -50,49 +56,84 @@ public class EnemyManager : MonoBehaviour
             {
                 float x = tempPlatform.transform.position.x - 0.5f;
                 float y = tempPlatform.transform.position.y + 0.4f;
-                // Create a new enemy
-                var newEnemy = GameObject.Instantiate(blueEnemyPrefab, new Vector2(x, y), Quaternion.identity);
-                tempPlatform.IsTaken = true;
-                newEnemy.transform.SetParent(blueEnemyParent.transform, false);
-                newEnemy.transform.Rotate(0, 180, 0);
-                BlueEnemy enemyComponent = newEnemy.GetComponent<BlueEnemy>();
-                enemyComponent.platformIndex = randomPlatformIndex;
-                enemyComponent.setRandomStats(minLevel, maxLevel);
-                // Add the new enemy
-                blueEnemies.Add(newEnemy);
+                // Instantiate a new enemy
+                instantiateEnemy(sceneIndex, randomPlatformIndex, tempPlatform, x, y, minLevel, maxLevel);
             }
         }
-        else if (blueEnemies.Count < maxEnemyCount && random == 1)
+        //spawn on the ground
+        else if (enemies.Count < maxEnemyCount && random == 1 && sceneIndex != 3)
         {
             float x = Random.Range(25f, 45f);
             float y = -8.4f;
-            var newEnemy = GameObject.Instantiate(blueEnemyPrefab, new Vector2(x, y), Quaternion.identity);
-            newEnemy.transform.SetParent(blueEnemyParent.transform, false);
-            newEnemy.transform.Rotate(0, 180, 0);
-            BlueEnemy enemyComponent = newEnemy.GetComponent<BlueEnemy>();
-            enemyComponent.setRandomStats(minLevel, maxLevel);
-            blueEnemies.Add(newEnemy);
+            instantiateEnemy(sceneIndex, -1, null, x, y, minLevel, maxLevel);
         }
         else
         {
-            GameObject tempEnemy = null;
-            foreach (var enemy in blueEnemies)
+            removeEnemy(sceneIndex, platforms);
+        }
+    }
+
+    void instantiateEnemy(int sceneIndex, int randomPlatformIndex, Platform tempPlatform, float x, float y, int minLevel, int maxLevel)
+    {
+        GameObject newEnemy = null;
+        Enemy enemyComponent = null;
+        if (sceneIndex == 1)
+        {
+            newEnemy = GameObject.Instantiate(blueEnemyPrefab, new Vector2(x, y), Quaternion.identity);
+            enemyComponent = newEnemy.GetComponent<BlueEnemy>();
+        }
+        else if (sceneIndex == 3)
+        {
+            newEnemy = GameObject.Instantiate(greenEnemyPrefab, new Vector2(x, y), Quaternion.identity);
+            enemyComponent = newEnemy.GetComponent<GreenEnemy>();
+        }
+        else
+        {
+            //Red enemy
+        }
+        newEnemy.transform.SetParent(enemyParent.transform, false);
+        newEnemy.transform.Rotate(0, 180, 0);
+        enemyComponent.setRandomStats(minLevel, maxLevel);
+        if (randomPlatformIndex != -1)
+        {
+            tempPlatform.IsTaken = true;
+            enemyComponent.platformIndex = randomPlatformIndex;
+        }
+        enemies.Add(newEnemy);
+    }
+
+    void removeEnemy(int sceneIndex, List<GameObject> platforms)
+    {
+        GameObject tempEnemy = null;
+        Enemy tempEnemyComponent = null;
+        foreach (var enemy in enemies)
+        {
+            if (sceneIndex == 1)
             {
-                if (enemy.transform.position.x <= -24f || enemy.transform.position.y <= -10f || enemy.GetComponent<BlueEnemy>().isDead)
-                {
-                    tempEnemy = enemy;
-                }
+                tempEnemyComponent = enemy.GetComponent<BlueEnemy>();
             }
-            if (tempEnemy != null)
+            else if (sceneIndex == 3)
             {
-                blueEnemies.Remove(tempEnemy);
-                BlueEnemy tempEnemyComponent = tempEnemy.GetComponent<BlueEnemy>();
-                if (!tempEnemyComponent.platformIndex.Equals(null))
-                {
-                    platforms[tempEnemyComponent.platformIndex].GetComponent<Platform>().IsTaken = false;
-                }
-                StartCoroutine(DestroyTempEnemy(tempEnemy));
+                tempEnemyComponent = enemy.GetComponent<GreenEnemy>();
             }
+            else
+            {
+                //Red enemy
+            }
+            if (enemy.transform.position.x <= -24f || enemy.transform.position.y <= -10f || tempEnemyComponent.isDead)
+            {
+                tempEnemy = enemy;
+            }
+        }
+        if (tempEnemy != null)
+        {
+            enemies.Remove(tempEnemy);
+
+            if (!tempEnemyComponent.platformIndex.Equals(null))
+            {
+                platforms[tempEnemyComponent.platformIndex].GetComponent<Platform>().IsTaken = false;
+            }
+            StartCoroutine(DestroyTempEnemy(tempEnemy));
         }
     }
 }

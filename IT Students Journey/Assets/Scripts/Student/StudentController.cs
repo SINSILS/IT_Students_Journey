@@ -50,7 +50,7 @@ namespace ClearSky
             {
                 Attack();
                 Jump();
-                KickBoard();
+                //KickBoard();
                 Run();
                 updateCoinsLabel();
             }
@@ -165,7 +165,6 @@ namespace ClearSky
                 // Save last shot time
                 lastShot = Time.time;
             }
-
         }
 
         public void takeDamage(int damage)
@@ -190,8 +189,6 @@ namespace ClearSky
 
         void Die()
         {
-            //isKickboard = false;
-            //anim.SetBool("isKickBoard", false);
             anim.SetTrigger("die");
             alive = false;
         }

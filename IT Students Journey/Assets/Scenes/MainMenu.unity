@@ -1156,7 +1156,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2080925470}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: learnCSharp
+        m_MethodName: learnPython
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2791,8 +2791,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 969b2beefe73d484ba0a7bbf54e95196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CSharp: 1
   TutorialScene: 2
+  CSharp: 1
+  Python: 3
 --- !u!4 &2080925471
 Transform:
   m_ObjectHideFlags: 0

@@ -47,6 +47,7 @@ public class UpgradeManager : MonoBehaviour
     void gatherButtons()
     {
         buttons = GameObject.FindGameObjectsWithTag("Button");
+        //Debug.Log(buttons[0].Equals(null));
     }
 
     void updateUpgradeButtons()
