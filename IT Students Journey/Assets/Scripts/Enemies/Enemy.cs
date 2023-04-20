@@ -21,7 +21,6 @@ public class Enemy : MonoBehaviour
     public virtual void Move()
     {
     }
-
     public virtual void setIsHurtFalse()
     {
     }

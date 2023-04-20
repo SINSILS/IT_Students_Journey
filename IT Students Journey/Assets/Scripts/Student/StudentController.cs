@@ -205,7 +205,7 @@ namespace ClearSky
         {
             if (alive)
             {
-                if (collision.gameObject.TryGetComponent<BlueEnemy>(out BlueEnemy blueEnemyComponent) ||
+                if (collision.gameObject.TryGetComponent<Enemy>(out Enemy EnemyComponent) ||
                     collision.gameObject.TryGetComponent<projectileController>(out projectileController projectile))
                 {
                     Hurt();

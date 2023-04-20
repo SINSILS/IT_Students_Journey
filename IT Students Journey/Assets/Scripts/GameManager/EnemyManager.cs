@@ -47,18 +47,14 @@ public class EnemyManager : MonoBehaviour
         //0 - on platform, 1 - on the ground
         int random = Random.Range(0, 2);
         //spawn on platform
-        if (enemies.Count < maxEnemyCount && random == 0)
+        int randomPlatformIndex = Random.Range(0, platforms.Count);
+        var tempPlatform = platforms[randomPlatformIndex].GetComponent<Platform>();
+        if (enemies.Count < maxEnemyCount && random == 0 && tempPlatform.transform.position.x > 23 && !tempPlatform.IsTaken)
         {
-            int randomPlatformIndex = Random.Range(0, platforms.Count);
-            var tempPlatform = platforms[randomPlatformIndex].GetComponent<Platform>();
-            // Check if there is already an enemy on the platform
-            if (tempPlatform.transform.position.x > 23 && !tempPlatform.IsTaken)
-            {
-                float x = tempPlatform.transform.position.x - 0.5f;
-                float y = tempPlatform.transform.position.y + 0.4f;
-                // Instantiate a new enemy
-                instantiateEnemy(sceneIndex, randomPlatformIndex, tempPlatform, x, y, minLevel, maxLevel);
-            }
+            float x = tempPlatform.transform.position.x - 0.5f;
+            float y = tempPlatform.transform.position.y + 0.4f;
+            // Instantiate a new enemy
+            instantiateEnemy(sceneIndex, randomPlatformIndex, tempPlatform, x, y, minLevel, maxLevel);
         }
         //spawn on the ground
         else if (enemies.Count < maxEnemyCount && random == 1 && sceneIndex != 3)
@@ -120,19 +116,19 @@ public class EnemyManager : MonoBehaviour
             {
                 //Red enemy
             }
-            if (enemy.transform.position.x <= -24f || enemy.transform.position.y <= -10f || tempEnemyComponent.isDead)
+            if (enemy.transform.position.x <= -24f || tempEnemyComponent.isDead)
             {
                 tempEnemy = enemy;
+                break;
             }
         }
         if (tempEnemy != null)
         {
-            enemies.Remove(tempEnemy);
-
             if (!tempEnemyComponent.platformIndex.Equals(null))
             {
                 platforms[tempEnemyComponent.platformIndex].GetComponent<Platform>().IsTaken = false;
             }
+            enemies.Remove(tempEnemy);
             StartCoroutine(DestroyTempEnemy(tempEnemy));
         }
     }

@@ -4,18 +4,21 @@ using UnityEngine;
 public class GreenEnemy : Enemy
 {
     private Animator anim;
+    private Rigidbody2D rb;
 
     //Blue enemy stats
     Stats stats = new Stats();
-    int hp;
+
+    int mass;
     int damage;
-    public float speed;
+    public float speed = 3f;
     public int value;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         setFirePosition();
     }
 
@@ -24,14 +27,7 @@ public class GreenEnemy : Enemy
     {
         titlePositionUpdate();
         fireProjectile();
-    }
-
-    private void FixedUpdate()
-    {
-        if (canMove)
-        {
-            Move();
-        }
+        outOfMap();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -39,17 +35,15 @@ public class GreenEnemy : Enemy
         anim.SetBool("isJump", false);
     }
 
-    public override void TakeDamage(int damageAmount)
+    public void Knockback(int direction, int damage)
     {
-        hp = hp - damageAmount;
-    }
+        rb.mass = mass;
+        // Calculate the knockback force based on the enemy's mass and damage
+        float knockbackForce = damage * 0.5f + rb.mass * 0.1f;
 
-    public override void Move()
-    {
-        if (!isDead)
-        {
-            transform.position += Vector3.left * speed * Time.deltaTime;
-        }
+        // Apply the knockback force in the specified direction
+        Vector3 knockbackVector = new Vector3(2.5f * direction, 0.1f, 0f) * knockbackForce;
+        rb.AddForce(knockbackVector, ForceMode2D.Impulse);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -80,19 +74,8 @@ public class GreenEnemy : Enemy
 
         if (collision.gameObject.TryGetComponent<BulletController>(out BulletController bulletComponent))
         {
-            TakeDamage(bulletComponent.getDamage());
-            if (hp > 0)
-            {
-                anim.Play("Green Hurt - Animation");
-            }
-            else
-            {
-                isDead = true; // Mark the enemy as dead
-                gameObject.layer = 7;
-                anim.SetTrigger("isDead");
-                StudentController student = GameObject.FindWithTag("Player").GetComponent<StudentController>();
-                student.addCoins(value);
-            }
+            Knockback(bulletComponent.getDirection(), bulletComponent.getDamage());
+            anim.Play("Green Hurt - Animation");
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
@@ -101,6 +84,18 @@ public class GreenEnemy : Enemy
                 StudentController student = GameObject.FindWithTag("Player").GetComponent<StudentController>();
                 student.takeDamage(damage);
             }
+        }
+    }
+
+    public void outOfMap()
+    {
+        if (transform.position.y <= -10f && !isDead)
+        {
+            isDead = true; // Mark the enemy as dead
+            gameObject.layer = 7;
+            anim.SetTrigger("isDead");
+            StudentController student = GameObject.FindWithTag("Player").GetComponent<StudentController>();
+            student.addCoins(value);
         }
     }
 
@@ -116,25 +111,31 @@ public class GreenEnemy : Enemy
 
     public override void setRandomStats(int minLevel, int maxLevel)
     {
-
         int random = Random.Range(minLevel, maxLevel);
         int random2;
-        if (random <= 4)
-        {
-            random2 = Random.Range(0, 5);
-        }
-        else if (random <= 6)
+        if (random == 4 || random == 7)
         {
             random2 = 0;
         }
-        else
+        else if (random == 5)
+        {
+            random2 = Random.Range(0, 2);
+        }
+        else if (random == 1)
         {
             random2 = Random.Range(0, 4);
         }
+        else if (random == 0)
+        {
+            random2 = Random.Range(0, 5);
+        }
+        else
+        {
+            random2 = Random.Range(0, 3);
+        }
         title.text = stats.title[random][random2];
-        hp = stats.hp[random];
+        mass = stats.mass[random];
         damage = stats.damage[random];
-        speed = stats.speed[random];
         value = stats.value[random];
     }
 
@@ -162,18 +163,17 @@ public class GreenEnemy : Enemy
     private class Stats
     {
         //Will be updated when player reaches points 1000 -> 3, 2000 -> 4 and etc...
-        public string[][] title = new string[8][]{ new string[5]{ "int x;", "string x;", "bool x;", "double x;", "float x;" },
-                                        new string[5]{ "int[ ] x;", "string[ ] x;", "bool[ ] x;", "double[ ] x;", "float[ ] x;"},
-                                        new string[5]{ "List<int> x;", "List<string> x;", "List<bool> x;", "List<double> x;", "List<float> x;"},
-                                        new string[5]{ "int[ ][ ] x;", "string[ ][ ] x;", "bool[ ][ ] x;" ,"double[ ][ ] x;", "float[ ][ ] x;",},
-                                        new string[5]{ "Stack<T> x;", "Queue<T> x", "LinkedList<T> x", "Dictionary<Tkey, TValue> x", "HashSet<T> x"},
-                                        new string[1]{ "LINQ"},
-                                        new string[1]{ "ASP.NET"},
-                                        new string[4]{ "Thread.Start()", "Thread.Join()", "Thread.Sleep()", "Thread.Abort()"}
+        public string[][] title = new string[8][]{ new string[5]{ "x = 5", "x = \"name\"", "x = true", "x = 3.14", "x >= y" },
+                                        new string[4]{ "For", "While", "Break", "Continue"},
+                                        new string[3]{ "x = [1, 2, 3]", "x.append(4)", "x[0] = 5"},
+                                        new string[3]{ "file.read( )", "file.write( )", "file.close( )"},
+                                        new string[1]{ "OPP"},
+                                        new string[2]{ "Try", "Except"},
+                                        new string[3]{ "NumPy", "Pandas", "Matplotlib"},
+                                        new string[1]{ "Multithreading"},
     };
-        public int[] hp = { 10, 20, 30, 40, 50, 60, 70, 80 };
+        public int[] mass = { 2, 4, 6, 8, 10, 12, 14, 16 };
         public int[] damage = { 5, 10, 15, 20, 25, 30, 35, 40 };
-        public float[] speed = { 3f, 3.4f, 3.8f, 4.2f, 4.6f, 5f, 5.4f, 5.8f };
         public int[] value = { 1, 2, 3, 4, 5, 6, 7, 8 };
     }
 }

@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     int minLevel = 0;
     int maxLevel = 1;
     bool universityDone = false;
+    bool mainBottomPlatformGone = false;
 
     GameObject upgradePanel;
     GameObject exitPanel;
@@ -45,6 +46,19 @@ public class GameManager : MonoBehaviour
         handleUpgradePanel();
         handleExitPanel();
         GameOver();
+        if (sceneIndex == 3 && !mainBottomPlatformGone)
+        {
+            removeMainPlatform();
+        }
+    }
+    void removeMainPlatform()
+    {
+        Platform mainBottomPlatform = GameObject.FindWithTag("MainBottomPlatform").GetComponent<Platform>();
+        if (mainBottomPlatform.transform.position.x < -45f)
+        {
+            mainBottomPlatformGone = true;
+            Destroy(GameObject.FindWithTag("MainBottomPlatform"));
+        }
     }
 
     void updateScoreAndLevel()

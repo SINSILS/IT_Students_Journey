@@ -54,6 +54,11 @@ public class BulletController : MonoBehaviour
         bulletDirection = direction;
     }
 
+    public int getDirection()
+    {
+        return bulletDirection;
+    }
+
     public int getDamage()
     {
         return bulletDamage;
