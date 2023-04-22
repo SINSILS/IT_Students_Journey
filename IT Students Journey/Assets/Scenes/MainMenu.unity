@@ -1289,7 +1289,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2080925470}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: learnCSharp
+        m_MethodName: learnJS
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2793,6 +2793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CSharp: 1
   Python: 3
+  JS: 4
   TutorialScene: 2
 --- !u!4 &2080925471
 Transform:

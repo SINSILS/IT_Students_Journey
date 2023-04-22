@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         Resume(2);
         InvokeRepeating("updateScoreAndLevel", 0.05f, 0.05f);
         //InvokeRepeating("updateScoreAndLevel", 0.005f, 0.005f);
-        setupPanels();
+        Invoke("setupPanels", 0.0001f); // Wait for 0.0001 seconds before calling setupPanels()
         ShowSemesterLabel("Semester " + maxLevel);
     }
 

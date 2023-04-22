@@ -7,6 +7,7 @@ public class EnemyManager : MonoBehaviour
     //Enemy prefab
     public GameObject blueEnemyPrefab;
     public GameObject greenEnemyPrefab;
+    public GameObject redEnemyPrefab;
     private List<GameObject> enemies = new List<GameObject>();
     private int maxEnemyCount = 3;
 
@@ -38,34 +39,41 @@ public class EnemyManager : MonoBehaviour
         Destroy(tempEnemy);
     }
 
-    //int = 2 3 4 - to find out which enemy is being spawned
+    //int = 1 3 4 - to find out which enemy is being spawned
     //1 - C# (blueEnemy)
     //3 - Python (greenEnemy)
     //4 - JavaScript (redEnemy)
     public void spawnEnemy(int sceneIndex, List<GameObject> platforms, int minLevel, int maxLevel)
     {
-        //0 - on platform, 1 - on the ground
-        int random = Random.Range(0, 2);
-        //spawn on platform
-        int randomPlatformIndex = Random.Range(0, platforms.Count);
-        var tempPlatform = platforms[randomPlatformIndex].GetComponent<Platform>();
-        if (enemies.Count < maxEnemyCount && random == 0 && tempPlatform.transform.position.x > 23 && !tempPlatform.IsTaken)
+        if (platforms.Count != 0)
         {
-            float x = tempPlatform.transform.position.x - 0.5f;
-            float y = tempPlatform.transform.position.y + 0.4f;
-            // Instantiate a new enemy
-            instantiateEnemy(sceneIndex, randomPlatformIndex, tempPlatform, x, y, minLevel, maxLevel);
-        }
-        //spawn on the ground
-        else if (enemies.Count < maxEnemyCount && random == 1 && sceneIndex != 3)
-        {
-            float x = Random.Range(25f, 45f);
-            float y = -8.4f;
-            instantiateEnemy(sceneIndex, -1, null, x, y, minLevel, maxLevel);
-        }
-        else
-        {
-            removeEnemy(sceneIndex, platforms);
+            //0 - on platform, 1 - on the ground
+            int random = Random.Range(0, 2);
+            //spawn on platform
+            int randomPlatformIndex = Random.Range(0, platforms.Count);
+            //Debug.Log("platforms count: " + platforms.Count + "   I chose random this one: " + randomPlatformIndex);
+            var tempPlatform = platforms[randomPlatformIndex].GetComponent<Platform>();
+            if (enemies.Count < maxEnemyCount && random == 0 && tempPlatform.transform.position.x > 23 && !tempPlatform.IsTaken)
+            {
+                //Debug.Log("instantiate on the platform");
+                float x = tempPlatform.transform.position.x - 0.5f;
+                float y = tempPlatform.transform.position.y + 0.4f;
+                // Instantiate a new enemy
+                instantiateEnemy(sceneIndex, randomPlatformIndex, tempPlatform, x, y, minLevel, maxLevel);
+            }
+            //spawn on the ground
+            else if (enemies.Count < maxEnemyCount && random == 1 && sceneIndex != 3)
+            {
+                //Debug.Log("instantiate on the ground");
+                float x = Random.Range(25f, 45f);
+                float y = -8.4f;
+                instantiateEnemy(sceneIndex, -1, null, x, y, minLevel, maxLevel);
+            }
+            else
+            {
+                //Debug.Log("remove");
+                removeEnemy(sceneIndex, platforms);
+            }
         }
     }
 
@@ -85,7 +93,8 @@ public class EnemyManager : MonoBehaviour
         }
         else
         {
-            //Red enemy
+            newEnemy = GameObject.Instantiate(redEnemyPrefab, new Vector2(x, y), Quaternion.identity);
+            enemyComponent = newEnemy.GetComponent<RedEnemy>();
         }
         newEnemy.transform.SetParent(enemyParent.transform, false);
         newEnemy.transform.Rotate(0, 180, 0);
@@ -114,7 +123,7 @@ public class EnemyManager : MonoBehaviour
             }
             else
             {
-                //Red enemy
+                tempEnemyComponent = enemy.GetComponent<RedEnemy>();
             }
             if (enemy.transform.position.x <= -24f || tempEnemyComponent.isDead)
             {

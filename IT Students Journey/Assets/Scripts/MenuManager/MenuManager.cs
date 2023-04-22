@@ -5,6 +5,7 @@ public class MenuManager : MonoBehaviour
 {
     public int CSharp = 1;
     public int Python = 3;
+    public int JS = 4;
     public int TutorialScene = 2;
 
     public void learnCSharp()
@@ -15,6 +16,11 @@ public class MenuManager : MonoBehaviour
     public void learnPython()
     {
         SceneManager.LoadScene(Python);
+    }
+
+    public void learnJS()
+    {
+        SceneManager.LoadScene(JS);
     }
 
     public void StartTutorial()

@@ -47,7 +47,6 @@ public class UpgradeManager : MonoBehaviour
     void gatherButtons()
     {
         buttons = GameObject.FindGameObjectsWithTag("Button");
-        //Debug.Log(buttons[0].Equals(null));
     }
 
     void updateUpgradeButtons()
@@ -252,7 +251,7 @@ public class UpgradeManager : MonoBehaviour
         var missingHP = student.getMissingHP();
         if (missingHP == 0)
         {
-            hpPotion.text = "HP potion : Full";
+            hpPotion.text = "HP potion : MAX";
             hpPotionPrice.text = "X";
             upgradeStats[4].price = 0;
         }

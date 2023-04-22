@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Learn Python.unity
     guid: bd759786c6d0a7d47a9897642ea059db
+  - enabled: 1
+    path: Assets/Scenes/Learn JS.unity
+    guid: 478e25f40a6cad146951688ade97c22c
   m_configObjects: {}
