@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class BlueEnemy : Enemy
 {
-    private Animator anim;
-
     //Blue enemy stats
     Stats stats = new Stats();
     int hp;
@@ -39,17 +37,9 @@ public class BlueEnemy : Enemy
         anim.SetBool("isJump", false);
     }
 
-    public override void TakeDamage(int damageAmount)
+    public void TakeDamage(int damageAmount)
     {
-        hp = hp - damageAmount;
-    }
-
-    public override void Move()
-    {
-        if (!isDead)
-        {
-            transform.position += Vector3.left * speed * Time.deltaTime;
-        }
+        hp -= damageAmount;
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -104,16 +94,6 @@ public class BlueEnemy : Enemy
         }
     }
 
-    public override void setIsHurtFalse()
-    {
-        anim.SetTrigger("isIdle");
-    }
-
-    public override void titlePositionUpdate()
-    {
-        title.transform.position = new Vector2(transform.position.x, transform.position.y + (float)0.5);
-    }
-
     public override void setRandomStats(int minLevel, int maxLevel)
     {
 
@@ -138,16 +118,8 @@ public class BlueEnemy : Enemy
         value = stats.value[random];
     }
 
-    public override void setFirePosition()
-    {
-        if (!canMove)
-        {
-            firePosition = Random.Range(-17f, 21f);
-        }
-    }
-
     //Might need to update with fireRate instead of 1 projectile per enemy
-    public override void fireProjectile()
+    public void fireProjectile()
     {
         if (!isDead && !canMove && canFire && transform.position.x < firePosition)
         {

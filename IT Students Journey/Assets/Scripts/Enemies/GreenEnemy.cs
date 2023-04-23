@@ -3,12 +3,9 @@ using UnityEngine;
 
 public class GreenEnemy : Enemy
 {
-    private Animator anim;
     private Rigidbody2D rb;
-
-    //Blue enemy stats
+    //Green enemy stats
     Stats stats = new Stats();
-
     int mass;
     int damage;
     public float speed = 3f;
@@ -99,16 +96,6 @@ public class GreenEnemy : Enemy
         }
     }
 
-    public override void setIsHurtFalse()
-    {
-        anim.SetTrigger("isIdle");
-    }
-
-    public override void titlePositionUpdate()
-    {
-        title.transform.position = new Vector2(transform.position.x, transform.position.y + (float)0.5);
-    }
-
     public override void setRandomStats(int minLevel, int maxLevel)
     {
         int random = Random.Range(minLevel, maxLevel);
@@ -139,16 +126,7 @@ public class GreenEnemy : Enemy
         value = stats.value[random];
     }
 
-    public override void setFirePosition()
-    {
-        if (!canMove)
-        {
-            firePosition = Random.Range(-17f, 21f);
-        }
-    }
-
-    //Might need to update with fireRate instead of 1 projectile per enemy
-    public override void fireProjectile()
+    public void fireProjectile()
     {
         if (!isDead && !canMove && canFire && transform.position.x < firePosition)
         {

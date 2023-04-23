@@ -37,12 +37,15 @@ public class GameManager : MonoBehaviour
         //InvokeRepeating("updateScoreAndLevel", 0.005f, 0.005f);
         Invoke("setupPanels", 0.0001f); // Wait for 0.0001 seconds before calling setupPanels()
         ShowSemesterLabel("Semester " + maxLevel);
+        student.setSceneIndex(sceneIndex);
+        enemyManager.setScenIndex(sceneIndex);
+        upgradeManager.setScenIndex(sceneIndex);
     }
 
     // Update is called once per frame
     void Update()
     {
-        enemyManager.spawnEnemy(sceneIndex, platformManager.getPlatforms(), minLevel, maxLevel);
+        enemyManager.spawnEnemy(platformManager.getPlatforms(), minLevel, maxLevel);
         handleUpgradePanel();
         handleExitPanel();
         GameOver();

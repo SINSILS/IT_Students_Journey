@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
 {
+    //To decide which upgrades will be needed
+    public int sceneIndex;
+
     public StudentController student;
     public TMP_Text maxHP;
     public TMP_Text speed;
@@ -44,6 +47,11 @@ public class UpgradeManager : MonoBehaviour
         updateDowngradeButtons();
     }
 
+    public void setScenIndex(int index)
+    {
+        sceneIndex = index;
+    }
+
     void gatherButtons()
     {
         buttons = GameObject.FindGameObjectsWithTag("Button");
@@ -79,7 +87,7 @@ public class UpgradeManager : MonoBehaviour
             buttons[4].SetActive(false);
         }
         //Fire rate
-        if (student.getCoins() >= upgradeStats[3].price && upgradeStats[3].level != 5)
+        if (student.getCoins() >= upgradeStats[3].price && upgradeStats[3].level != 5 && sceneIndex != 4)
         {
             buttons[6].SetActive(true);
         }
@@ -124,7 +132,7 @@ public class UpgradeManager : MonoBehaviour
         {
             buttons[5].SetActive(true);
         }
-        if (upgradeStats[3].level == 1)
+        if (upgradeStats[3].level == 1 || sceneIndex == 4)
         {
             buttons[7].SetActive(false);
         }
@@ -218,7 +226,12 @@ public class UpgradeManager : MonoBehaviour
 
     private void updateFireRateLabel()
     {
-        if (upgradeStats[3].level == 5)
+        if (sceneIndex == 4)
+        {
+            fireRate.text = "Fire rate : X";
+            fireRatePrice.text = "X";
+        }
+        else if (upgradeStats[3].level == 5)
         {
             fireRate.text = "Fire rate : MAX";
             fireRatePrice.text = "X";

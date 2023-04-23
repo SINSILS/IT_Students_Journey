@@ -4,7 +4,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public projectileController projectile;
-
+    public Animator anim;
     public TMP_Text title;
 
     //Additional parameters
@@ -14,30 +14,33 @@ public class Enemy : MonoBehaviour
     public bool isDead = false;
     public int platformIndex { get; set; }
 
-    public virtual void TakeDamage(int damageAmount)
+    public void Move()
     {
+        if (!isDead)
+        {
+            transform.position += Vector3.left * 3 * Time.deltaTime;
+        }
     }
-
-    public virtual void Move()
+    public void titlePositionUpdate()
     {
-    }
-    public virtual void setIsHurtFalse()
-    {
-    }
-    public virtual void titlePositionUpdate()
-    {
+        title.transform.position = new Vector2(transform.position.x, transform.position.y + (float)0.5);
     }
 
     public virtual void setRandomStats(int minLevel, int maxLevel)
     {
+        //Each enemy sets stats diferently
     }
 
     public virtual void setFirePosition()
     {
+        if (!canMove)
+        {
+            firePosition = Random.Range(-17f, 21f);
+        }
     }
-
-    public virtual void fireProjectile()
+    public void setIsHurtFalse()
     {
+        anim.SetTrigger("isIdle");
     }
 }
 

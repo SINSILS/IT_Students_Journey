@@ -5,6 +5,9 @@ namespace ClearSky
 {
     public class StudentController : MonoBehaviour
     {
+        //1 - C#, 3 - Pyhton, 4 - JS
+        private int studyingLanguage;
+
         //Student stats
         int hp = 50;
         private int coins = 0;
@@ -48,11 +51,18 @@ namespace ClearSky
             updateHPLabel();
             if (alive)
             {
-                Attack();
                 Jump();
                 //KickBoard();
                 Run();
                 updateCoinsLabel();
+                if (studyingLanguage != 4)
+                {
+                    Attack();
+                }
+                if (studyingLanguage == 3)
+                {
+                    outOfBoundaries();
+                }
             }
         }
         private void OnTriggerEnter2D(Collider2D other)
@@ -72,6 +82,11 @@ namespace ClearSky
                 isKickboard = true;
                 anim.SetBool("isKickBoard", true);
             }
+        }
+
+        public void setSceneIndex(int index)
+        {
+            studyingLanguage = index;
         }
 
         void Run()
@@ -127,8 +142,7 @@ namespace ClearSky
         }
         void Jump()
         {
-            if ((Input.GetKeyDown(KeyCode.W) || Input.GetAxisRaw("Vertical") > 0)
-            && !anim.GetBool("isJump"))
+            if ((Input.GetKeyDown(KeyCode.W) || Input.GetAxisRaw("Vertical") > 0) && !anim.GetBool("isJump"))
             {
                 isJumping = true;
                 anim.SetBool("isJump", true);
@@ -145,6 +159,20 @@ namespace ClearSky
 
             isJumping = false;
         }
+
+        public void Bounce()
+        {
+            if (!anim.GetBool("isJump"))
+            {
+                isJumping = true;
+                anim.SetBool("isJump", true);
+            }
+            rb.velocity = Vector2.zero;
+            Vector2 jumpVelocity = new Vector2(0, jumpPower);
+            rb.AddForce(jumpVelocity, ForceMode2D.Impulse);
+            isJumping = false;
+        }
+
         void Attack()
         {
             if (Input.GetKeyDown(KeyCode.Space) && Time.time > fireRate + lastShot)
@@ -167,10 +195,20 @@ namespace ClearSky
             }
         }
 
+        void outOfBoundaries()
+        {
+            if (transform.position.y <= -9.2f)
+            {
+                hp = 0;
+                Die();
+            }
+        }
+
         public void takeDamage(int damage)
         {
             if (alive)
             {
+                Hurt();
                 hp -= damage;
                 if (hp <= 0)
                 {
@@ -205,12 +243,11 @@ namespace ClearSky
         {
             if (alive)
             {
-                if (collision.gameObject.TryGetComponent<Enemy>(out Enemy EnemyComponent) ||
-                    collision.gameObject.TryGetComponent<projectileController>(out projectileController projectile))
+                if (collision.gameObject.TryGetComponent<projectileController>(out projectileController projectile))
                 {
                     Hurt();
                 }
-                if (collision.gameObject.tag == "MainBottomPlatform")
+                if (collision.gameObject.tag == "MainBottomPlatform" || (collision.gameObject.tag == "Platform" && studyingLanguage == 3))
                 {
                     anim.SetBool("isJump", false);
                     isJumping = false;
@@ -318,6 +355,5 @@ namespace ClearSky
         {
             hp = maxHP;
         }
-
     }
 }

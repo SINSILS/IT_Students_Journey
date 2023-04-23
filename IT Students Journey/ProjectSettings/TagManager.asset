@@ -15,6 +15,7 @@ TagManager:
   - QuestionPanel2
   - GameOver
   - Projectile
+  - Achievement
   layers:
   - Default
   - TransparentFX

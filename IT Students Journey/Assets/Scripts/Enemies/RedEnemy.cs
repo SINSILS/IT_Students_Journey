@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class RedEnemy : Enemy
 {
-    private Animator anim;
-
-    //Blue enemy stats
+    //Red enemy stats
     Stats stats = new Stats();
     int hp;
     int damage;
@@ -39,17 +37,9 @@ public class RedEnemy : Enemy
         anim.SetBool("isJump", false);
     }
 
-    public override void TakeDamage(int damageAmount)
+    public void TakeDamage(int damageAmount)
     {
-        hp = hp - damageAmount;
-    }
-
-    public override void Move()
-    {
-        if (!isDead)
-        {
-            transform.position += Vector3.left * speed * Time.deltaTime;
-        }
+        hp -= damageAmount;
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -77,41 +67,31 @@ public class RedEnemy : Enemy
         {
             return; // If so, don't do anything
         }
-
-        if (collision.gameObject.TryGetComponent<BulletController>(out BulletController bulletComponent))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            TakeDamage(bulletComponent.getDamage());
-            if (hp > 0)
+            StudentController student = GameObject.FindWithTag("Player").GetComponent<StudentController>();
+            Vector2 contactPoint = collision.contacts[0].point;
+            if (contactPoint.y > transform.position.y && !isDead) // Check if the player is above the enemy
             {
-                anim.Play("Red Hurt - Animation");
+                TakeDamage(student.getPower()); // Receive damage from player
+                student.Bounce();
+                if (hp > 0)
+                {
+                    anim.Play("Red Hurt - Animation");
+                }
+                else
+                {
+                    isDead = true; // Mark the enemy as dead
+                    gameObject.layer = 7;
+                    anim.SetTrigger("isDead");
+                    student.addCoins(value);
+                }
             }
-            else
+            else if (!isDead) // Check if the enemy is alive
             {
-                isDead = true; // Mark the enemy as dead
-                gameObject.layer = 7;
-                anim.SetTrigger("isDead");
-                StudentController student = GameObject.FindWithTag("Player").GetComponent<StudentController>();
-                student.addCoins(value);
-            }
-        }
-        else if (collision.gameObject.CompareTag("Player"))
-        {
-            if (!isDead) // Check if the enemy is alive
-            {
-                StudentController student = GameObject.FindWithTag("Player").GetComponent<StudentController>();
                 student.takeDamage(damage);
             }
         }
-    }
-
-    public override void setIsHurtFalse()
-    {
-        anim.SetTrigger("isIdle");
-    }
-
-    public override void titlePositionUpdate()
-    {
-        title.transform.position = new Vector2(transform.position.x, transform.position.y + (float)0.5);
     }
 
     public override void setRandomStats(int minLevel, int maxLevel)
@@ -119,17 +99,21 @@ public class RedEnemy : Enemy
 
         int random = Random.Range(minLevel, maxLevel);
         int random2;
-        if (random <= 4)
+        if (random == 0)
         {
-            random2 = Random.Range(0, 5);
+            random2 = Random.Range(0, 4);
         }
-        else if (random <= 6)
+        else if (random == 2 || random == 4 || random == 5 || random == 7)
         {
             random2 = 0;
         }
+        else if (random == 3 || random == 6)
+        {
+            random2 = Random.Range(0, 2);
+        }
         else
         {
-            random2 = Random.Range(0, 4);
+            random2 = Random.Range(0, 3);
         }
         title.text = stats.title[random][random2];
         hp = stats.hp[random];
@@ -140,16 +124,12 @@ public class RedEnemy : Enemy
 
     public override void setFirePosition()
     {
-        if (!canMove)
-        {
-            firePosition = Random.Range(-17f, 21f);
-        }
+        firePosition = Random.Range(-17f, 21f);
     }
 
-    //Might need to update with fireRate instead of 1 projectile per enemy
-    public override void fireProjectile()
+    public void fireProjectile()
     {
-        if (!isDead && !canMove && canFire && transform.position.x < firePosition)
+        if (!isDead && canFire && transform.position.x < firePosition)
         {
             var newProjectile = GameObject.Instantiate(projectile, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
             GameObject projectileParent = GameObject.Find("EnemyProjectiles");
@@ -162,14 +142,14 @@ public class RedEnemy : Enemy
     private class Stats
     {
         //Will be updated when player reaches points 1000 -> 3, 2000 -> 4 and etc...
-        public string[][] title = new string[8][]{ new string[5]{ "int x;", "string x;", "bool x;", "double x;", "float x;" },
-                                        new string[5]{ "int[ ] x;", "string[ ] x;", "bool[ ] x;", "double[ ] x;", "float[ ] x;"},
-                                        new string[5]{ "List<int> x;", "List<string> x;", "List<bool> x;", "List<double> x;", "List<float> x;"},
-                                        new string[5]{ "int[ ][ ] x;", "string[ ][ ] x;", "bool[ ][ ] x;" ,"double[ ][ ] x;", "float[ ][ ] x;",},
-                                        new string[5]{ "Stack<T> x;", "Queue<T> x", "LinkedList<T> x", "Dictionary<Tkey, TValue> x", "HashSet<T> x"},
-                                        new string[1]{ "LINQ"},
-                                        new string[1]{ "ASP.NET"},
-                                        new string[4]{ "Thread.Start()", "Thread.Join()", "Thread.Sleep()", "Thread.Abort()"}
+        public string[][] title = new string[8][]{ new string[4]{ "let x = 5", "var x = \"name\"", "let x = true", "var x = 3.14" },
+                                        new string[3]{ "Control flow", "While", "For"},
+                                        new string[1]{ "Functions"},
+                                        new string[2]{ "Arrays", "Objects",},
+                                        new string[1]{ "DOM"},
+                                        new string[1]{ "Events"},
+                                        new string[2]{ "AJAX", "API"},
+                                        new string[1]{ "ES6"}
     };
         public int[] hp = { 10, 20, 30, 40, 50, 60, 70, 80 };
         public int[] damage = { 5, 10, 15, 20, 25, 30, 35, 40 };

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    //To decide which enemies needs to be spawned
+    public int sceneIndex;
+
     //Enemy prefab
     public GameObject blueEnemyPrefab;
     public GameObject greenEnemyPrefab;
@@ -22,10 +25,9 @@ public class EnemyManager : MonoBehaviour
         enemyProjectileParent = new GameObject("EnemyProjectiles");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void setScenIndex(int index)
     {
-
+        sceneIndex = index;
     }
 
     public void increaseEnemyCount()
@@ -43,7 +45,7 @@ public class EnemyManager : MonoBehaviour
     //1 - C# (blueEnemy)
     //3 - Python (greenEnemy)
     //4 - JavaScript (redEnemy)
-    public void spawnEnemy(int sceneIndex, List<GameObject> platforms, int minLevel, int maxLevel)
+    public void spawnEnemy(List<GameObject> platforms, int minLevel, int maxLevel)
     {
         if (platforms.Count != 0)
         {
