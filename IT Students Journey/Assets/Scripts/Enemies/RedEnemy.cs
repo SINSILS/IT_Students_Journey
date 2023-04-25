@@ -81,6 +81,7 @@ public class RedEnemy : Enemy
                 }
                 else
                 {
+                    PlayerConfig.instance.playerData.levelScores[LanguageEnum.JavaScript].mobsKilled++;
                     isDead = true; // Mark the enemy as dead
                     gameObject.layer = 7;
                     anim.SetTrigger("isDead");

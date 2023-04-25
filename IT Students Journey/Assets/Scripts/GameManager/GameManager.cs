@@ -7,11 +7,13 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     int sceneIndex;
+    bool gameOver = false;
 
     public StudentController student;
     public PlatformManager platformManager;
     public EnemyManager enemyManager;
     public UpgradeManager upgradeManager;
+    public ExamManager examManager;
 
     public TMP_Text semester;
     public TMP_Text score;
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
     GameObject question1Panel;
     GameObject question2Panel;
     GameObject gameOverPanel;
+    GameObject examPanel;
 
 
     // Start is called before the first frame update
@@ -33,13 +36,14 @@ public class GameManager : MonoBehaviour
     {
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
         Resume(2);
-        InvokeRepeating("updateScoreAndLevel", 0.05f, 0.05f);
-        //InvokeRepeating("updateScoreAndLevel", 0.005f, 0.005f);
+        //InvokeRepeating("updateScoreAndLevel", 0.05f, 0.05f);
+        InvokeRepeating("updateScoreAndLevel", 0.005f, 0.005f);
         Invoke("setupPanels", 0.0001f); // Wait for 0.0001 seconds before calling setupPanels()
         ShowSemesterLabel("Semester " + maxLevel);
         student.setSceneIndex(sceneIndex);
         enemyManager.setScenIndex(sceneIndex);
-        upgradeManager.setScenIndex(sceneIndex);
+        upgradeManager.setSceneIndex(sceneIndex);
+        examManager.setSceneIndex(sceneIndex);
     }
 
     // Update is called once per frame
@@ -48,10 +52,17 @@ public class GameManager : MonoBehaviour
         enemyManager.spawnEnemy(platformManager.getPlatforms(), minLevel, maxLevel);
         handleUpgradePanel();
         handleExitPanel();
-        GameOver();
+        if (student.getCurrentHP() <= 0 && !gameOver)
+        {
+            GameOver();
+        }
         if (sceneIndex == 3 && !mainBottomPlatformGone)
         {
             removeMainPlatform();
+        }
+        if (examManager.isExamDone() && examPanel.activeSelf)
+        {
+            Resume(3);
         }
     }
     void removeMainPlatform()
@@ -70,12 +81,21 @@ public class GameManager : MonoBehaviour
         score.text = "Score : " + scoreValue;
         if (scoreValue % 1000 == 0 && maxLevel < 8)
         {
+            examManager.generateQuestion(maxLevel);
+            Pause(3);
             maxLevel++;
             enemyManager.increaseEnemyCount();
             ShowSemesterLabel("Semester " + maxLevel);
+            if (maxLevel == 3 && !student.GotHurt())
+            {
+                var language = (LanguageEnum)sceneIndex;
+                PlayerConfig.instance.playerData.levelScores[language].noDamageReceived = 1;
+            }
         }
         else if (scoreValue % 1000 == 0 && maxLevel == 8 && !universityDone)
         {
+            examManager.generateQuestion(maxLevel);
+            Pause(3);
             ShowSemesterLabel("Real life problems!");
             universityDone = true;
         }
@@ -101,6 +121,9 @@ public class GameManager : MonoBehaviour
 
         gameOverPanel = GameObject.FindWithTag("GameOver");
         gameOverPanel.SetActive(false);
+
+        examPanel = GameObject.FindWithTag("Exam");
+        examPanel.SetActive(false);
     }
 
     public void openQuestion1Panel()
@@ -147,11 +170,11 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!exitPanel.activeSelf && !upgradePanel.activeSelf && !question1Panel.activeSelf && !question2Panel.activeSelf && !gameOverPanel.activeSelf)
+            if (!exitPanel.activeSelf && !upgradePanel.activeSelf && !question1Panel.activeSelf && !question2Panel.activeSelf && !gameOverPanel.activeSelf && !examPanel.activeSelf)
             {
                 Pause(1);
             }
-            else if (exitPanel.activeSelf && !upgradePanel.activeSelf && !question1Panel.activeSelf && !question2Panel.activeSelf && !gameOverPanel.activeSelf)
+            else if (exitPanel.activeSelf && !upgradePanel.activeSelf && !question1Panel.activeSelf && !question2Panel.activeSelf && !gameOverPanel.activeSelf && !examPanel.activeSelf)
             {
                 Resume(1);
             }
@@ -162,18 +185,18 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            if (!upgradePanel.activeSelf && !exitPanel.activeSelf && !question1Panel.activeSelf && !question2Panel.activeSelf && !gameOverPanel.activeSelf)
+            if (!upgradePanel.activeSelf && !exitPanel.activeSelf && !question1Panel.activeSelf && !question2Panel.activeSelf && !gameOverPanel.activeSelf && !examPanel.activeSelf)
             {
                 Pause(0);
             }
-            else if (upgradePanel.activeSelf && !exitPanel.activeSelf && !question1Panel.activeSelf && !question2Panel.activeSelf && !gameOverPanel.activeSelf)
+            else if (upgradePanel.activeSelf && !exitPanel.activeSelf && !question1Panel.activeSelf && !question2Panel.activeSelf && !gameOverPanel.activeSelf && !examPanel.activeSelf)
             {
                 Resume(0);
             }
         }
     }
 
-    //0 - upgrades panel, 1 - exit panel, 2 - others
+    //0 - upgrades panel, 1 - exit panel, 2 - others, 3 - exam panel
     void Pause(int x)
     {
         Time.timeScale = 0f;
@@ -185,9 +208,16 @@ public class GameManager : MonoBehaviour
         {
             exitPanel.SetActive(true);
         }
+        else if (x == 3)
+        {
+            Debug.Log("Exam paused the game");
+            //disable keyboard input
+            //Input.ResetInputAxes();
+            examPanel.SetActive(true);
+        }
     }
 
-    //0 - upgrades panel, 1 - exit panel, 2 - others
+    //0 - upgrades panel, 1 - exit panel, 2 - others, 3 - exam panel
     void Resume(int x)
     {
         Time.timeScale = 1f;
@@ -199,14 +229,39 @@ public class GameManager : MonoBehaviour
         {
             exitPanel.SetActive(false);
         }
+        else if (x == 3)
+        {
+            Debug.Log("Exam resumed the game");
+            //allow kayboard input again
+            examPanel.SetActive(false);
+        }
     }
 
     void GameOver()
     {
-        if (student.getCurrentHP() <= 0)
+        CancelInvoke("updateScoreAndLevel");
+        gameOver = true;
+        UpdatePlayerConfig();
+        Invoke("DelayGameOver", 1f);
+    }
+
+    //1 - C#, 3 - Pyhton, 4 - JS
+
+    private void UpdatePlayerConfig()
+    {
+        var language = (LanguageEnum)sceneIndex;
+        var data = PlayerConfig.instance.playerData.levelScores[language];
+
+        if (data.highScore < scoreValue)
         {
-            Invoke("DelayGameOver", 1f);
+            data.highScore = scoreValue;
+            PlayFabManager.instance.StartCloudUpdatePlayerStats();
         }
+        if (data.semestersCompleted < maxLevel)
+        {
+            data.semestersCompleted = maxLevel;
+        }
+        PlayerConfig.instance.SaveStats();
     }
 
     void DelayGameOver()

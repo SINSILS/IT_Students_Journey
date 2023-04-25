@@ -88,6 +88,7 @@ public class GreenEnemy : Enemy
     {
         if (transform.position.y <= -10f && !isDead)
         {
+            PlayerConfig.instance.playerData.levelScores[LanguageEnum.Python].mobsKilled++;
             isDead = true; // Mark the enemy as dead
             gameObject.layer = 7;
             anim.SetTrigger("isDead");

@@ -77,6 +77,7 @@ public class BlueEnemy : Enemy
             }
             else
             {
+                PlayerConfig.instance.playerData.levelScores[LanguageEnum.CSharp].mobsKilled++;
                 isDead = true; // Mark the enemy as dead
                 gameObject.layer = 7;
                 anim.SetTrigger("isDead");

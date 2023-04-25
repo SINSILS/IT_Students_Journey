@@ -26,6 +26,7 @@ public class AchievementController : MonoBehaviour
             // Start flying in
             LeanTween.move(gameObject, canvasRectTransform.TransformPoint(endPosition), flyInDuration)
                 .setOnComplete(() =>
+
                 {
                     // Wait for specified duration
                     LeanTween.delayedCall(gameObject, waitDuration, () =>

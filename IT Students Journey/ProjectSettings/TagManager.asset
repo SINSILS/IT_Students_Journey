@@ -16,6 +16,7 @@ TagManager:
   - GameOver
   - Projectile
   - Achievement
+  - Exam
   layers:
   - Default
   - TransparentFX

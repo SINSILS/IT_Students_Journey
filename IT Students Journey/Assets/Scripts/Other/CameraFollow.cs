@@ -2,15 +2,29 @@
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target;
-    public float smoothSpeed = 0.125f;
-    public Vector3 locationOffset;
-    public Vector3 rotationOffset;
+    public Transform student;
+    float followSpeed = 10f;
+    float liftAmount = 3.3f;
+    float liftFrom = 7f;
+    private Vector3 startingPosition;
 
-    void FixedUpdate()
+    void Start()
     {
-        Vector3 desiredPosition = target.position + target.rotation * locationOffset;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-        transform.position = new Vector3(smoothedPosition.x, smoothedPosition.y, -10f);
+        // Save the starting position of the camera
+        startingPosition = transform.position;
+    }
+
+    void LateUpdate()
+    {
+        // If the student is above the lift threshold, follow it and Y axis
+        if (student.position.y > liftFrom)
+        {
+            transform.position = Vector3.Lerp(transform.position, new Vector3(startingPosition.x, liftAmount, transform.position.z), Time.deltaTime * followSpeed);
+        }
+        // When student is below the lift threshold, move the camera back to its starting position
+        else
+        {
+            transform.position = Vector3.Lerp(transform.position, startingPosition, Time.deltaTime * followSpeed);
+        }
     }
 }

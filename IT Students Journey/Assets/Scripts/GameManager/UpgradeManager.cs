@@ -47,7 +47,7 @@ public class UpgradeManager : MonoBehaviour
         updateDowngradeButtons();
     }
 
-    public void setScenIndex(int index)
+    public void setSceneIndex(int index)
     {
         sceneIndex = index;
     }

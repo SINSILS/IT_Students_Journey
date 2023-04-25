@@ -28,6 +28,7 @@ namespace ClearSky
         bool isJumping = false;
         private bool alive = true;
         private bool isKickboard = false;
+        bool gotHurt = false;
 
         //Bullet prefab
         public GameObject bulletPrefab;
@@ -204,10 +205,16 @@ namespace ClearSky
             }
         }
 
+        public bool GotHurt()
+        {
+            return gotHurt;
+        }
+
         public void takeDamage(int damage)
         {
             if (alive)
             {
+                gotHurt = true;
                 Hurt();
                 hp -= damage;
                 if (hp <= 0)
@@ -314,7 +321,14 @@ namespace ClearSky
 
         public void payCoins(int amount)
         {
-            coins -= amount;
+            if (coins <= 10)
+            {
+                coins = 0;
+            }
+            else
+            {
+                coins -= amount;
+            }
         }
 
 

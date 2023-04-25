@@ -8,7 +8,7 @@ public class AchievementManager : MonoBehaviour
     int x = 0;
     private void Start()
     {
-        achievementLabel = GameObject.FindWithTag("Achievement").GetComponentInChildren<TMP_Text>(); //GetComponent<TMP_Text>();
+        achievementLabel = GameObject.FindWithTag("Achievement").GetComponentInChildren<TMP_Text>();
     }
 
     private void Update()
