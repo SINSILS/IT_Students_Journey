@@ -2,12 +2,14 @@ using PlayFab;
 using PlayFab.ClientModels;
 using PlayFab.Json;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayFabManager : MonoBehaviour
 {
     public static PlayFabManager instance;
 
     public GameObject noInternetGO;
+    public Button[] buttons;
     private WelcomeMessage welcomeMessage;
 
     private void Awake()
@@ -62,6 +64,9 @@ public class PlayFabManager : MonoBehaviour
     {
         Debug.Log("LOGGED IN");
         GetPlayerProfile();
+        foreach(var btn in buttons) {
+            btn.interactable = true;
+        }
     }
 
     private void OnLoginFailure(PlayFabError error)

@@ -1,8 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class AchievementController : MonoBehaviour
 {
     public RectTransform canvasRectTransform;
+    public Image achievementLogo;
+    public TMP_Text achievementText;
     public float flyInDuration = 3f;
     public float flyOutDuration = 3f;
     public float waitDuration = 3f;
@@ -12,29 +17,35 @@ public class AchievementController : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(CheckAchievementProgress(1f));
     }
 
-    private void Update()
-    {
-        ShowAchievement();
-    }
-    //For now achievement is showed when key "O" is pressed
     public void ShowAchievement()
     {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            // Start flying in
-            LeanTween.move(gameObject, canvasRectTransform.TransformPoint(endPosition), flyInDuration)
-                .setOnComplete(() =>
+        LeanTween.move(gameObject, canvasRectTransform.TransformPoint(endPosition), flyInDuration)
+            .setOnComplete(() => {
+                // Wait for specified duration
+                LeanTween.delayedCall(gameObject, waitDuration, () => {
+                    // Start flying out
+                LeanTween.move(gameObject, canvasRectTransform.TransformPoint(startPosition), flyOutDuration);
+            });
+        });
+    }
 
-                {
-                    // Wait for specified duration
-                    LeanTween.delayedCall(gameObject, waitDuration, () =>
-                    {
-                        // Start flying out
-                        LeanTween.move(gameObject, canvasRectTransform.TransformPoint(startPosition), flyOutDuration);
-                    });
-                });
+    private IEnumerator CheckAchievementProgress(float waitTime) {
+        while (true) {
+            yield return new WaitForSeconds(waitTime);
+            PlayerConfig.instance.playerData.UpdateAchievementProgress();
+            foreach (var item in PlayerConfig.instance.languageAchievementsSO) {
+                var progressStruct = PlayerConfig.instance.playerData.progressDictionary[item.achievementName];
+
+                if (progressStruct.progressValue >= item.goal && progressStruct.achievementShown == false) {
+                    achievementText.text = item.achievementName;
+                    achievementLogo.sprite = item.achievementSprite;
+                    ShowAchievement();
+                    PlayerConfig.instance.playerData.progressDictionary[item.achievementName].achievementShown = true;
+                }
+            }
         }
     }
 }

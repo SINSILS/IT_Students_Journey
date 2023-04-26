@@ -21,7 +21,7 @@ public class AchievementDisplayer : MonoBehaviour
         {
             foreach (var item in PlayerConfig.instance.languageAchievementsSO)
             {
-                var score = PlayerConfig.instance.playerData.progressDictionary[item.achievementName];
+                var score = PlayerConfig.instance.playerData.progressDictionary[item.achievementName].progressValue;
                 var tempUI = Instantiate(achievementUIPrefab, transform);
                 achievementsUIList.Add(tempUI);
                 tempUI.logo.sprite = item.achievementSprite;

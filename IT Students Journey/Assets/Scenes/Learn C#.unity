@@ -161,6 +161,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 254335916891113134, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
+      propertyPath: m_Name
+      value: Title
+      objectReference: {fileID: 0}
+    - target: {fileID: 550601140169780980, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
+      propertyPath: m_text
+      value: Achievement unlocked
+      objectReference: {fileID: 0}
+    - target: {fileID: 550601140169780980, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 566755806315815907, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
       propertyPath: m_SizeDelta.x
       value: 919.95
@@ -433,6 +445,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2426256885312834790, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
+      propertyPath: m_Name
+      value: achievementLogo
+      objectReference: {fileID: 0}
     - target: {fileID: 2473358111474761045, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
       propertyPath: m_Name
       value: Answer B
@@ -473,13 +489,29 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4083285225226747806, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 408.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083285225226747806, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 56.4841
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083285225226747806, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 29.113
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083285225226747806, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 63.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4154625576325757012, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4877025448202643115, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
       propertyPath: m_text
-      value: Method used in LINQ to sort a sequence in ascending order?
+      value: QUESTION
       objectReference: {fileID: 0}
     - target: {fileID: 5476799882985609215, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
       propertyPath: m_SizeDelta.x
@@ -503,7 +535,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6995279065088444881, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
       propertyPath: m_text
-      value: A] A web application framework
+      value: AApplication Programming Interface
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358671744117823822, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 408.223
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358671744117823822, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 29.111492
       objectReference: {fileID: 0}
     - target: {fileID: 7751542841656669913, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
       propertyPath: m_SizeDelta.x
@@ -548,6 +588,14 @@ PrefabInstance:
     - target: {fileID: 8072369242800918494, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8740092553297743071, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -108.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8740092553297743071, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -34.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c222061e0c86c14582f0f6fb569f545, type: 3}

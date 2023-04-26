@@ -25,7 +25,7 @@ public class PlayerConfig : MonoBehaviour
             }
         }
         DontDestroyOnLoad(this.gameObject);
-        // PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
         LoadStats();
     }
 
@@ -46,7 +46,7 @@ public class PlayerConfig : MonoBehaviour
         playerData = new PlayerData();
         foreach (var ach in languageAchievementsSO)
         {
-            playerData.progressDictionary.Add(ach.achievementName, 0);
+            playerData.progressDictionary.Add(ach.achievementName, new ProgressData());
             if (!playerData.levelScores.ContainsKey(ach.language) && ach.language != LanguageEnum.None)
             {
                 playerData.levelScores.Add(ach.language, new LanguageData());

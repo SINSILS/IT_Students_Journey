@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     int minLevel = 0;
     int maxLevel = 1;
     bool universityDone = false;
+    bool examinating = false;
     bool mainBottomPlatformGone = false;
 
     GameObject upgradePanel;
@@ -36,8 +37,8 @@ public class GameManager : MonoBehaviour
     {
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
         Resume(2);
-        //InvokeRepeating("updateScoreAndLevel", 0.05f, 0.05f);
-        InvokeRepeating("updateScoreAndLevel", 0.005f, 0.005f);
+        InvokeRepeating("updateScoreAndLevel", 0.05f, 0.05f);
+        //InvokeRepeating("updateScoreAndLevel", 0.005f, 0.005f);
         Invoke("setupPanels", 0.0001f); // Wait for 0.0001 seconds before calling setupPanels()
         ShowSemesterLabel("Semester " + maxLevel);
         student.setSceneIndex(sceneIndex);
@@ -60,11 +61,19 @@ public class GameManager : MonoBehaviour
         {
             removeMainPlatform();
         }
-        if (examManager.isExamDone() && examPanel.activeSelf)
+        if (examManager.isExamDone() && examinating)
         {
-            Resume(3);
+            StartCoroutine(WaitBeforeResume());
+            examinating = false;
         }
     }
+
+    IEnumerator WaitBeforeResume()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        Resume(3);
+    }
+
     void removeMainPlatform()
     {
         Platform mainBottomPlatform = GameObject.FindWithTag("MainBottomPlatform").GetComponent<Platform>();
@@ -81,6 +90,7 @@ public class GameManager : MonoBehaviour
         score.text = "Score : " + scoreValue;
         if (scoreValue % 1000 == 0 && maxLevel < 8)
         {
+            examinating = true;
             examManager.generateQuestion(maxLevel);
             Pause(3);
             maxLevel++;
@@ -210,9 +220,6 @@ public class GameManager : MonoBehaviour
         }
         else if (x == 3)
         {
-            Debug.Log("Exam paused the game");
-            //disable keyboard input
-            //Input.ResetInputAxes();
             examPanel.SetActive(true);
         }
     }
@@ -231,8 +238,6 @@ public class GameManager : MonoBehaviour
         }
         else if (x == 3)
         {
-            Debug.Log("Exam resumed the game");
-            //allow kayboard input again
             examPanel.SetActive(false);
         }
     }
@@ -264,6 +269,11 @@ public class GameManager : MonoBehaviour
         PlayerConfig.instance.SaveStats();
     }
 
+    private void OnApplicationQuit()
+    {
+        UpdatePlayerConfig();
+    }
+
     void DelayGameOver()
     {
         Pause(2);
@@ -289,7 +299,7 @@ public class GameManager : MonoBehaviour
 
     void ShowSemesterLabel(string text)
     {
-        semester.text = "Semester " + maxLevel;
+        semester.text = text;
         semester.enabled = true;
         StartCoroutine(FadeOutSemesterLabel());
     }

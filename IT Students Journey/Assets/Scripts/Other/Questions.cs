@@ -152,288 +152,288 @@ public class Question
 
     //JS
     string[][] questions_JS = new string[8][] { new string[3]{
-                                            "1What value can be stored in int variable?",
-                                            "1Question 2",
-                                            "1Question 3"},
+                                            "What data type is assigned to the variable 'x' in the statement 'var x = \"name\"'?",
+                                            "What is the value of 'x' after the following code is executed: 'let x = 10; x += 5;'?",
+                                            "What is the output of the following code: 'console.log(typeof 3.14);'?"},
                                         new string[3]{
-                                            "2Question 1",
-                                            "2Question 2",
-                                            "2Question 3"},
+                                            "Which statement is used in JS to execute code repeatedly for a specified number of times?",
+                                            "Which statement is used in JS to execute code repeatedly as long as a certain condition is true?",
+                                            "Which statement is used in JavaScript to execute code only if a certain condition is true?"},
                                         new string[3]{
-                                            "3Question 1",
-                                            "3Question 2",
-                                            "3Question 3"},
+                                            "What is the keyword used in JavaScript to define a function?",
+                                            "What is the term used in JavaScript to describe the values passed into a function?",
+                                            "What is the term used in JavaScript to describe a function that doesn't have a name?"},
                                         new string[3]{
-                                            "4Question 1",
-                                            "4Question 2",
-                                            "4Question 3" },
+                                            "In JavaScript, what is the syntax for creating a new object?",
+                                            "Which keyword is used in JavaScript to iterate over an object's properties?",
+                                            "Which method is used in JavaScript to remove the last element of an array?" },
                                         new string[3]{
-                                            "5Question 1",
-                                            "5Question 2",
-                                            "5Question 3"},
+                                            "In the DOM, what property is used to access an element's class?",
+                                            "Which event is triggered when an element is clicked in the DOM?",
+                                            "In the DOM, what property is used to access an element's content?"},
                                         new string[3]{
-                                            "6Question 1",
-                                            "6Question 2",
-                                            "6Question 3"},
+                                            "Which method is used to register an event listener in JavaScript?",
+                                            "Which event is triggered when a user presses a key on the keyboard in JavaScript?",
+                                            "Which method is used to stop the propagation of an event in JavaScript?"},
                                         new string[3]{
-                                            "7Question 1",
-                                            "7Question 2",
-                                            "7Question 3"},
+                                            "What does AJAX stand for in JavaScript?",
+                                            "What does API stand for in JavaScript?",
+                                            "What is the format of data returned by an API in JavaScript?"},
                                         new string[3]{
-                                            "8Question 1",
-                                            "8Question 2",
-                                            "8Question 3"}};
+                                            "What keyword is used in ES6 to declare a block-scoped variable in JavaScript?",
+                                            "Which feature in ES6 allows you to define a function that can receive a variable number of arguments?",
+                                            "What is the purpose of the \"spread operator\" in ES6?"}};
 
     string[][] answersA_JS = new string[8][] { new string[3]{
-                                            "1True",
-                                            "1AnswerA 2",
-                                            "1AnswerA 3"},
+                                            "boolean value",
+                                            "5",
+                                            "\"number\""},
                                         new string[3]{
-                                            "2AnswerA 1",
-                                            "2AnswerA 2",
-                                            "2AnswerA 3"},
+                                            "for loop",
+                                            "for loop",
+                                            "question statement"},
                                         new string[3]{
-                                            "3AnswerA 1",
-                                            "3AnswerA 2",
-                                            "3AnswerA 3"},
+                                            "create",
+                                            "arguments",
+                                            "anonymous function"},
                                         new string[3]{
-                                            "4AnswerA 1",
-                                            "4AnswerA 2",
-                                            "4AnswerA 3"},
+                                            "let obj = new Object ( );",
+                                            "for",
+                                            "push ( )"},
                                         new string[3]{
-                                            "5AnswerA 1",
-                                            "5AnswerA 2",
-                                            "5AnswerA 3"},
+                                            "classList",
+                                            "mouseover",
+                                            "innerHTML"},
                                         new string[3]{
-                                            "6AnswerA 1",
-                                            "6AnswerA 2",
-                                            "6AnswerA 3"},
+                                            "registerEvent ( )",
+                                            "keydown",
+                                            "cancelPropagation ( )"},
                                         new string[3]{
-                                            "7AnswerA 1",
-                                            "7AnswerA 2",
-                                            "7AnswerA 3"},
+                                            "Automated JavaScript and XML",
+                                            "Advanced Programming Interface",
+                                            "JSON"},
                                         new string[3]{
-                                            "8AnswerA 1",
-                                            "8AnswerA 2",
-                                            "8AnswerA 3"}};
+                                            "var",
+                                            "rest parameters",
+                                            "To split an array into arguments"}};
 
     string[][] answersB_JS = new string[8][] { new string[3]{
-                                            "3.14",
-                                            "1AnswerB 2",
-                                            "1AnswerB 3"},
+                                            "number",
+                                            "10",
+                                            "\"string\""},
                                         new string[3]{
-                                            "2AnswerB 1",
-                                            "2AnswerB 2",
-                                            "2AnswerB 3"},
+                                            "do loop",
+                                            "do loop",
+                                            "if statement"},
                                         new string[3]{
-                                            "3AnswerB 1",
-                                            "3AnswerB 2",
-                                            "3AnswerB 3"},
+                                            "function",
+                                            "parameters",
+                                            "unnamed function"},
                                         new string[3]{
-                                            "4AnswerB 1",
-                                            "4AnswerB 2",
-                                            "4AnswerB 3"},
+                                            "let obj = { };",
+                                            "while",
+                                            "pop ( )"},
                                         new string[3]{
-                                            "5AnswerB 1",
-                                            "5AnswerB 2",
-                                            "5AnswerB 3"},
+                                            "className",
+                                            "click",
+                                            "outerHTML"},
                                         new string[3]{
-                                            "6AnswerB 1",
-                                            "6AnswerB 2",
-                                            "6AnswerB 3"},
+                                            "createListener ( )",
+                                            "keyup",
+                                            "stopPropagation ( )"},
                                         new string[3]{
-                                            "7AnswerB 1",
-                                            "7AnswerB 2",
-                                            "7AnswerB 3"},
+                                            "Advanced JavaScript and XML",
+                                            "Application Programming Interface",
+                                            "XML"},
                                         new string[3]{
-                                            "8AnswerB 1",
-                                            "8AnswerB 2",
-                                            "8AnswerB 3"}};
+                                            "let",
+                                            "spread operator",
+                                            "To merge multiple arrays into one"}};
 
     string[][] answersC_JS = new string[8][] { new string[3]{
-                                            "-123",
-                                            "1AnswerC 2",
-                                            "1AnswerC 3"},
+                                            "string",
+                                            "15",
+                                            "\"boolean\""},
                                         new string[3]{
-                                            "2AnswerC 1",
-                                            "2AnswerC 2",
-                                            "2AnswerC 3"},
+                                            "while loop",
+                                            "while loop",
+                                            "while loop"},
                                         new string[3]{
-                                            "3AnswerC 1",
-                                            "3AnswerC 2",
-                                            "3AnswerC 3"},
+                                            "define",
+                                            "inputs",
+                                            "no-name function"},
                                         new string[3]{
-                                            "4AnswerC 1",
-                                            "4AnswerC 2",
-                                            "4AnswerC 3"},
+                                            "let obj = Object.create ( );",
+                                            "foreach",
+                                            "shift ( )"},
                                         new string[3]{
-                                            "5AnswerC 1",
-                                            "5AnswerC 2",
-                                            "5AnswerC 3"},
+                                            "classType",
+                                            "keypress",
+                                            "textContent"},
                                         new string[3]{
-                                            "6AnswerC 1",
-                                            "6AnswerC 2",
-                                            "6AnswerC 3"},
+                                            "addEventListener ( )",
+                                            "keypress",
+                                            "prohibitPropagation ( )"},
                                         new string[3]{
-                                            "7AnswerC 1",
-                                            "7AnswerC 2",
-                                            "7AnswerC 3"},
+                                            "Asynchronous JavaScript and XML",
+                                            "Automated Programming Interface",
+                                            "CSV"},
                                         new string[3]{
-                                            "8AnswerC 1",
-                                            "8AnswerC 2",
-                                            "8AnswerC 3"}};
+                                            "const",
+                                            "variable parameters",
+                                            "Both A and B"}};
 
-    int[][] rightAnswers_JS = new int[8][] { new int[3] { 3, 3, 3},
-                                          new int[3] { 1, 1 , 1},
-                                          new int[3] { 1, 1 , 1},
-                                          new int[3] { 1, 1 , 1},
-                                          new int[3] { 1, 1 , 1},
-                                          new int[3] { 1, 1 , 1},
-                                          new int[3] { 1, 1 , 1},
-                                          new int[3] { 1, 1 , 1}};
+    int[][] rightAnswers_JS = new int[8][] { new int[3] { 3, 3, 1},
+                                          new int[3] { 1, 3, 2},
+                                          new int[3] { 2, 2, 1},
+                                          new int[3] { 2, 1, 2},
+                                          new int[3] { 2, 2, 1},
+                                          new int[3] { 3, 1, 2},
+                                          new int[3] { 3, 2, 1},
+                                          new int[3] { 2, 1, 3}};
 
     //----------------------------------------------------------------------------------
     //Python
     string[][] questions_Python = new string[8][] { new string[3]{
-                                            "1What value can be stored in int variable?",
-                                            "1Question 2",
-                                            "1Question 3"},
+                                            "How do you find the length of a string in Python?",
+                                            "How do you declare a variable in Python?",
+                                            "How do you swap the values of two variables in Python without using a third variable?"},
                                         new string[3]{
-                                            "2Question 1",
-                                            "2Question 2",
-                                            "2Question 3"},
+                                            "What does the continue statement do in a loop in Python?",
+                                            "What does the break statement do in a loop in Python?",
+                                            "What does the range() function do in a for loop in Python?"},
                                         new string[3]{
-                                            "3Question 1",
-                                            "3Question 2",
-                                            "3Question 3"},
+                                            "How do you add an element to the end of a list in Python?",
+                                            "What is the syntax for creating a tuple in Python?",
+                                            "How do you reverse the order of a list in Python?"},
                                         new string[3]{
-                                            "4Question 1",
-                                            "4Question 2",
-                                            "4Question 3" },
+                                            "What is the syntax for opening a file for reading in Python?",
+                                            "What is the syntax for opening a file for writing in Python?",
+                                            "How do you read a file line by line in Python?" },
                                         new string[3]{
-                                            "5Question 1",
-                                            "5Question 2",
-                                            "5Question 3"},
+                                            "What is inheritance in OOP?",
+                                            "What is encapsulation in OOP?",
+                                            "What is polymorphism in OOP?"},
                                         new string[3]{
-                                            "6Question 1",
-                                            "6Question 2",
-                                            "6Question 3"},
+                                            "What is the syntax for raising a custom exception in Python?",
+                                            "How can you access the error message in a Python except block?",
+                                            "What is the purpose of the \"finally\" block in a try-except statement in Python?"},
                                         new string[3]{
-                                            "7Question 1",
-                                            "7Question 2",
-                                            "7Question 3"},
+                                            "What is NumPy used for in Python?",
+                                            "What is Pandas used for in Python?",
+                                            "What is Matplotlib used for in Python?"},
                                         new string[3]{
-                                            "8Question 1",
-                                            "8Question 2",
-                                            "8Question 3"}};
+                                            "What is the main advantage of multithreading?",
+                                            "What is GIL in Python?",
+                                            "What is the difference between a thread and a process in Python?"}};
 
     string[][] answersA_Python = new string[8][] { new string[3]{
-                                            "1True",
-                                            "1AnswerA 2",
-                                            "1AnswerA 3"},
+                                            "len(string)",
+                                            "var name = value",
+                                            "x = y; y = x"},
                                         new string[3]{
-                                            "2AnswerA 1",
-                                            "2AnswerA 2",
-                                            "2AnswerA 3"},
+                                            "It exits the loop",
+                                            "Continues to the next iteration",
+                                            "Creates a list of integers"},
                                         new string[3]{
-                                            "3AnswerA 1",
-                                            "3AnswerA 2",
-                                            "3AnswerA 3"},
+                                            "list.append(element)",
+                                            "(element1, element2, ...)",
+                                            "list.sort(reverse=True)"},
                                         new string[3]{
-                                            "4AnswerA 1",
-                                            "4AnswerA 2",
-                                            "4AnswerA 3"},
+                                            "open(filename, \"w\")",
+                                            "open(filename, \"r\")",
+                                            "file.read()"},
                                         new string[3]{
-                                            "5AnswerA 1",
-                                            "5AnswerA 2",
-                                            "5AnswerA 3"},
+                                            "New code",
+                                            "Data hiding",
+                                            "Only one behaviour"},
                                         new string[3]{
-                                            "6AnswerA 1",
-                                            "6AnswerA 2",
-                                            "6AnswerA 3"},
+                                            "raise Exception (Error message)",
+                                            "By using the \"try\" keyword",
+                                            "It always executes"},
                                         new string[3]{
-                                            "7AnswerA 1",
-                                            "7AnswerA 2",
-                                            "7AnswerA 3"},
+                                            "Scientific computing",
+                                            "Data analysis",
+                                            "Data manipulation"},
                                         new string[3]{
-                                            "8AnswerA 1",
-                                            "8AnswerA 2",
-                                            "8AnswerA 3"}};
+                                            "Improved performance",
+                                            "Global Identifier Lock",
+                                            "Process is lighter than a thread"}};
 
     string[][] answersB_Python = new string[8][] { new string[3]{
-                                            "3.14",
-                                            "1AnswerB 2",
-                                            "1AnswerB 3"},
+                                            "count(string)",
+                                            "name = value",
+                                            "x = y; y = x + y"},
                                         new string[3]{
-                                            "2AnswerB 1",
-                                            "2AnswerB 2",
-                                            "2AnswerB 3"},
+                                            "Restarts the loop",
+                                            "It exits the loop",
+                                            "Performs a mathematical stuff"},
                                         new string[3]{
-                                            "3AnswerB 1",
-                                            "3AnswerB 2",
-                                            "3AnswerB 3"},
+                                            "list.insert(element)",
+                                            "[element1, element2, ...]",
+                                            "list.reverse()"},
                                         new string[3]{
-                                            "4AnswerB 1",
-                                            "4AnswerB 2",
-                                            "4AnswerB 3"},
+                                            "open(filename, \"r\")",
+                                            "open(filename, \"w\")",
+                                            "file.readall()"},
                                         new string[3]{
-                                            "5AnswerB 1",
-                                            "5AnswerB 2",
-                                            "5AnswerB 3"},
+                                            "File sharing",
+                                            "File hiding",
+                                            "All answers are incorect"},
                                         new string[3]{
-                                            "6AnswerB 1",
-                                            "6AnswerB 2",
-                                            "6AnswerB 3"},
+                                            "raise Error (Error message)",
+                                            "By using the \"raise\" keyword",
+                                            "It never executes"},
                                         new string[3]{
-                                            "7AnswerB 1",
-                                            "7AnswerB 2",
-                                            "7AnswerB 3"},
+                                            "Data visualization",
+                                            "Image processing",
+                                            "Data visualization"},
                                         new string[3]{
-                                            "8AnswerB 1",
-                                            "8AnswerB 2",
-                                            "8AnswerB 3"}};
+                                            "Simpler code",
+                                            "Global Import Lock",
+                                            "Thread is lighter than a process"}};
 
     string[][] answersC_Python = new string[8][] { new string[3]{
-                                            "-123",
-                                            "1AnswerC 2",
-                                            "1AnswerC 3"},
+                                            "length(string)",
+                                            "declare name = value",
+                                            "x, y = y, x"},
                                         new string[3]{
-                                            "2AnswerC 1",
-                                            "2AnswerC 2",
-                                            "2AnswerC 3"},
+                                            "Continues to the next iteration",
+                                            "It adds a value to the loop",
+                                            "Generates a sequence of numbers"},
                                         new string[3]{
-                                            "3AnswerC 1",
-                                            "3AnswerC 2",
-                                            "3AnswerC 3"},
+                                            "list.add(element)",
+                                            "{element1, element2, ...}",
+                                            "list.flip()"},
                                         new string[3]{
-                                            "4AnswerC 1",
-                                            "4AnswerC 2",
-                                            "4AnswerC 3"},
+                                            "open(filename, \"a\")",
+                                            "open(filename, \"a\")",
+                                            "file.readlines()"},
                                         new string[3]{
-                                            "5AnswerC 1",
-                                            "5AnswerC 2",
-                                            "5AnswerC 3"},
+                                            "Parent-child relationship",
+                                            "Public attributes",
+                                            "Many behaviors"},
                                         new string[3]{
-                                            "6AnswerC 1",
-                                            "6AnswerC 2",
-                                            "6AnswerC 3"},
+                                            "throw Exception (Error message)",
+                                            "By using the \"as\" keyword",
+                                            "Same as \"finish\""},
                                         new string[3]{
-                                            "7AnswerC 1",
-                                            "7AnswerC 2",
-                                            "7AnswerC 3"},
+                                            "Web development",
+                                            "Machine learning",
+                                            "Data storage"},
                                         new string[3]{
-                                            "8AnswerC 1",
-                                            "8AnswerC 2",
-                                            "8AnswerC 3"}};
+                                            "Easier debugging",
+                                            "Global Interpreter Lock",
+                                            "They are the same thing"}};
 
-    int[][] rightAnswers_Python = new int[8][] { new int[3] { 3, 3, 3},
-                                          new int[3] { 1, 1 , 1},
-                                          new int[3] { 1, 1 , 1},
-                                          new int[3] { 1, 1 , 1},
-                                          new int[3] { 1, 1 , 1},
-                                          new int[3] { 1, 1 , 1},
-                                          new int[3] { 1, 1 , 1},
-                                          new int[3] { 1, 1 , 1}};
+    int[][] rightAnswers_Python = new int[8][] { new int[3] { 1, 2, 3},
+                                          new int[3] { 3, 2, 3},
+                                          new int[3] { 1, 1, 2},
+                                          new int[3] { 2, 2, 3},
+                                          new int[3] { 3, 1, 1},
+                                          new int[3] { 1, 3, 1},
+                                          new int[3] { 2, 2, 1},
+                                          new int[3] { 1, 3, 2}};
 
     public Question(int sceneIndex, int semester)
     {
@@ -473,4 +473,3 @@ public class Question
         }
     }
 }
-

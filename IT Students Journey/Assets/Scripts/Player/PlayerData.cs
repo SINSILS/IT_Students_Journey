@@ -8,24 +8,30 @@ public class LanguageData
     public int noDamageReceived;
 }
 
+public class ProgressData
+{
+    public int progressValue;
+    public bool achievementShown;
+}
+
 [System.Serializable]
 public class PlayerData
 {
     public Dictionary<LanguageEnum, LanguageData> levelScores = new Dictionary<LanguageEnum, LanguageData>();
-    public Dictionary<string, int> progressDictionary = new Dictionary<string, int>();
+    public Dictionary<string, ProgressData> progressDictionary = new Dictionary<string, ProgressData>();
 
     public void UpdateAchievementProgress()
     {
-        progressDictionary["C# Graduate"] = levelScores[LanguageEnum.CSharp].semestersCompleted;
-        progressDictionary["C# Master"] = levelScores[LanguageEnum.CSharp].mobsKilled;
-        progressDictionary["C# Untouchable"] = levelScores[LanguageEnum.CSharp].noDamageReceived;
+        progressDictionary["C# Graduate"].progressValue = levelScores[LanguageEnum.CSharp].semestersCompleted;
+        progressDictionary["C# Master"].progressValue = levelScores[LanguageEnum.CSharp].mobsKilled;
+        progressDictionary["C# Untouchable"].progressValue = levelScores[LanguageEnum.CSharp].noDamageReceived;
 
-        progressDictionary["JavaScript Graduate"] = levelScores[LanguageEnum.JavaScript].semestersCompleted;
-        progressDictionary["JavaScript Master"] = levelScores[LanguageEnum.JavaScript].mobsKilled;
-        progressDictionary["JavaScript Untouchable"] = levelScores[LanguageEnum.JavaScript].noDamageReceived;
+        progressDictionary["JavaScript Graduate"].progressValue = levelScores[LanguageEnum.JavaScript].semestersCompleted;
+        progressDictionary["JavaScript Master"].progressValue = levelScores[LanguageEnum.JavaScript].mobsKilled;
+        progressDictionary["JavaScript Untouchable"].progressValue = levelScores[LanguageEnum.JavaScript].noDamageReceived;
 
-        progressDictionary["Python Graduate"] = levelScores[LanguageEnum.Python].semestersCompleted;
-        progressDictionary["Python Master"] = levelScores[LanguageEnum.Python].mobsKilled;
-        progressDictionary["Python Untouchable"] = levelScores[LanguageEnum.Python].noDamageReceived;
+        progressDictionary["Python Graduate"].progressValue = levelScores[LanguageEnum.Python].semestersCompleted;
+        progressDictionary["Python Master"].progressValue = levelScores[LanguageEnum.Python].mobsKilled;
+        progressDictionary["Python Untouchable"].progressValue = levelScores[LanguageEnum.Python].noDamageReceived;
     }
 }
