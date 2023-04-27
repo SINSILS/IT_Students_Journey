@@ -5,12 +5,12 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     //To decide which enemies needs to be spawned
-    public int sceneIndex;
+    int sceneIndex;
 
     //Enemy prefab
-    public GameObject blueEnemyPrefab;
-    public GameObject greenEnemyPrefab;
-    public GameObject redEnemyPrefab;
+    [SerializeField] private GameObject blueEnemyPrefab;
+    [SerializeField] private GameObject greenEnemyPrefab;
+    [SerializeField] private GameObject redEnemyPrefab;
     private List<GameObject> enemies = new List<GameObject>();
     private int maxEnemyCount = 3;
 

@@ -2,7 +2,7 @@
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform student;
+    [SerializeField] private Transform student;
     float followSpeed = 10f;
     float liftAmount = 3.3f;
     float liftFrom = 7f;

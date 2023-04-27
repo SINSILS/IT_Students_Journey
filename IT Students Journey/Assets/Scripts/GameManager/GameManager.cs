@@ -7,39 +7,38 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     int sceneIndex;
-    bool gameOver = false;
 
-    public StudentController student;
-    public PlatformManager platformManager;
-    public EnemyManager enemyManager;
-    public UpgradeManager upgradeManager;
-    public ExamManager examManager;
+    [SerializeField] private StudentController student;
+    [SerializeField] private PlatformManager platformManager;
+    [SerializeField] private EnemyManager enemyManager;
+    [SerializeField] private UpgradeManager upgradeManager;
+    [SerializeField] private ExamManager examManager;
 
-    public TMP_Text semester;
-    public TMP_Text score;
+    [SerializeField] private TMP_Text semester;
+    [SerializeField] private TMP_Text score;
     int scoreValue = 0;
     int minLevel = 0;
     int maxLevel = 1;
     bool universityDone = false;
     bool examinating = false;
     bool mainBottomPlatformGone = false;
+    bool gameOver = false;
 
-    GameObject upgradePanel;
-    GameObject exitPanel;
-    GameObject question1Panel;
-    GameObject question2Panel;
-    GameObject gameOverPanel;
-    GameObject examPanel;
+    [SerializeField] private GameObject upgradePanel;
+    [SerializeField] private GameObject exitPanel;
+    [SerializeField] private GameObject question1Panel;
+    [SerializeField] private GameObject question2Panel;
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject examPanel;
 
 
     // Start is called before the first frame update
     void Start()
     {
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        Resume(2);
+        //Resume(2);
         InvokeRepeating("updateScoreAndLevel", 0.05f, 0.05f);
         //InvokeRepeating("updateScoreAndLevel", 0.005f, 0.005f);
-        Invoke("setupPanels", 0.0001f); // Wait for 0.0001 seconds before calling setupPanels()
         ShowSemesterLabel("Semester " + maxLevel);
         student.setSceneIndex(sceneIndex);
         enemyManager.setScenIndex(sceneIndex);
@@ -108,32 +107,12 @@ public class GameManager : MonoBehaviour
             Pause(3);
             ShowSemesterLabel("Real life problems!");
             universityDone = true;
+            examinating = true;
         }
         else if (scoreValue % 1000 == 0 && minLevel < 4 && universityDone)
         {
             minLevel++;
         }
-    }
-
-    void setupPanels()
-    {
-        upgradePanel = GameObject.FindWithTag("UpgradePanel");
-        upgradePanel.SetActive(false);
-
-        exitPanel = GameObject.FindWithTag("Exit");
-        exitPanel.SetActive(false);
-
-        question1Panel = GameObject.FindWithTag("QuestionPanel1");
-        question1Panel.SetActive(false);
-
-        question2Panel = GameObject.FindWithTag("QuestionPanel2");
-        question2Panel.SetActive(false);
-
-        gameOverPanel = GameObject.FindWithTag("GameOver");
-        gameOverPanel.SetActive(false);
-
-        examPanel = GameObject.FindWithTag("Exam");
-        examPanel.SetActive(false);
     }
 
     public void openQuestion1Panel()
@@ -163,12 +142,14 @@ public class GameManager : MonoBehaviour
 
     public void backToMainMenu()
     {
+        Resume(2);
         SceneManager.LoadScene(0);
     }
 
     public void restartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Resume(2);
+        SceneManager.LoadScene(sceneIndex);
     }
 
     public void backToGame()

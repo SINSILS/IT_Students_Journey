@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlatformManager : MonoBehaviour
 {
     //Platform prefab
-    public GameObject platformPrefab;
+    [SerializeField] private GameObject platformPrefab;
     private List<GameObject> platforms = new List<GameObject>();
     private float platformStartPointX = 20f;
     private float platformEndPointX;

@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public projectileController projectile;
     public Animator anim;
+    public projectileController projectile;
     public TMP_Text title;
 
     //Additional parameters

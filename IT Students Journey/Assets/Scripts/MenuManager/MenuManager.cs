@@ -3,10 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public int CSharp = 1;
-    public int Python = 3;
-    public int JS = 4;
-    public int TutorialScene = 2;
+    int CSharp = 1;
+    int Python = 3;
+    int JS = 4;
+    int TutorialScene = 2;
 
     public void learnCSharp()
     {

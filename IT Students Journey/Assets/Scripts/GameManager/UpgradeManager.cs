@@ -5,22 +5,22 @@ using UnityEngine;
 public class UpgradeManager : MonoBehaviour
 {
     //To decide which upgrades will be needed
-    public int sceneIndex;
+    int sceneIndex;
 
-    public StudentController student;
-    public TMP_Text maxHP;
-    public TMP_Text speed;
-    public TMP_Text power;
-    public TMP_Text fireRate;
-    public TMP_Text hpPotion;
+    [SerializeField] private StudentController student;
+    [SerializeField] private TMP_Text maxHP;
+    [SerializeField] private TMP_Text speed;
+    [SerializeField] private TMP_Text power;
+    [SerializeField] private TMP_Text fireRate;
+    [SerializeField] private TMP_Text hpPotion;
 
-    public TMP_Text maxHPPrice;
-    public TMP_Text speedPrice;
-    public TMP_Text powerPrice;
-    public TMP_Text fireRatePrice;
-    public TMP_Text hpPotionPrice;
+    [SerializeField] private TMP_Text maxHPPrice;
+    [SerializeField] private TMP_Text speedPrice;
+    [SerializeField] private TMP_Text powerPrice;
+    [SerializeField] private TMP_Text fireRatePrice;
+    [SerializeField] private TMP_Text hpPotionPrice;
 
-    GameObject[] buttons = new GameObject[9];
+    [SerializeField] private GameObject[] buttons = new GameObject[9];
 
     UpgradeStats[] upgradeStats = new UpgradeStats[5] { new UpgradeStats(),
                                                         new UpgradeStats(),
@@ -28,12 +28,6 @@ public class UpgradeManager : MonoBehaviour
                                                         new UpgradeStats(),
                                                         new UpgradeStats()
                                                       };
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        gatherButtons();
-    }
 
     // Update is called once per frame
     void Update()
@@ -50,11 +44,6 @@ public class UpgradeManager : MonoBehaviour
     public void setSceneIndex(int index)
     {
         sceneIndex = index;
-    }
-
-    void gatherButtons()
-    {
-        buttons = GameObject.FindGameObjectsWithTag("Button");
     }
 
     void updateUpgradeButtons()

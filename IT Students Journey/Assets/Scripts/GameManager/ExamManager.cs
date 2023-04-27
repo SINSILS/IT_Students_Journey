@@ -8,29 +8,17 @@ public class ExamManager : MonoBehaviour
     int sceneIndex;
     bool examDone = false;
     public StudentController student;
-    Question question;
-    TMP_Text examLabel;
-    TMP_Text examQuestionLabel;
-    TMP_Text answerALabel;
-    TMP_Text answerBLabel;
-    TMP_Text answerCLabel;
-    Button answerAButton;
-    Button answerBButton;
-    Button answerCButton;
+    [SerializeField] private Question question;
+    [SerializeField] private TMP_Text examLabel;
+    [SerializeField] private TMP_Text examQuestionLabel;
+    [SerializeField] private TMP_Text answerALabel;
+    [SerializeField] private TMP_Text answerBLabel;
+    [SerializeField] private TMP_Text answerCLabel;
+    [SerializeField] private Button answerAButton;
+    [SerializeField] private Button answerBButton;
+    [SerializeField] private Button answerCButton;
     private void Start()
     {
-        examLabel = GameObject.Find("Exam label").GetComponent<TMP_Text>();
-        examQuestionLabel = GameObject.Find("Exam question").GetComponent<TMP_Text>();
-        var tempA = GameObject.Find("Answer A").GetComponent<TMP_Text>();
-        var tempB = GameObject.Find("Answer B").GetComponent<TMP_Text>();
-        var tempC = GameObject.Find("Answer C").GetComponent<TMP_Text>();
-        answerALabel = tempA.GetComponent<TMP_Text>();
-        answerAButton = tempA.GetComponent<Button>();
-        answerBLabel = tempB.GetComponent<TMP_Text>();
-        answerBButton = tempB.GetComponent<Button>();
-        answerCLabel = tempC.GetComponent<TMP_Text>();
-        answerCButton = tempC.GetComponent<Button>();
-
     }
 
     public void setSceneIndex(int x)

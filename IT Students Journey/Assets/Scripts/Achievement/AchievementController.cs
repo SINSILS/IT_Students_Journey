@@ -1,7 +1,7 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class AchievementController : MonoBehaviour
 {
@@ -23,23 +23,29 @@ public class AchievementController : MonoBehaviour
     public void ShowAchievement()
     {
         LeanTween.move(gameObject, canvasRectTransform.TransformPoint(endPosition), flyInDuration)
-            .setOnComplete(() => {
+            .setOnComplete(() =>
+            {
                 // Wait for specified duration
-                LeanTween.delayedCall(gameObject, waitDuration, () => {
+                LeanTween.delayedCall(gameObject, waitDuration, () =>
+                {
                     // Start flying out
-                LeanTween.move(gameObject, canvasRectTransform.TransformPoint(startPosition), flyOutDuration);
+                    LeanTween.move(gameObject, canvasRectTransform.TransformPoint(startPosition), flyOutDuration);
+                });
             });
-        });
     }
 
-    private IEnumerator CheckAchievementProgress(float waitTime) {
-        while (true) {
+    private IEnumerator CheckAchievementProgress(float waitTime)
+    {
+        while (true)
+        {
             yield return new WaitForSeconds(waitTime);
             PlayerConfig.instance.playerData.UpdateAchievementProgress();
-            foreach (var item in PlayerConfig.instance.languageAchievementsSO) {
+            foreach (var item in PlayerConfig.instance.languageAchievementsSO)
+            {
                 var progressStruct = PlayerConfig.instance.playerData.progressDictionary[item.achievementName];
 
-                if (progressStruct.progressValue >= item.goal && progressStruct.achievementShown == false) {
+                if (progressStruct.progressValue >= item.goal && progressStruct.achievementShown == false)
+                {
                     achievementText.text = item.achievementName;
                     achievementLogo.sprite = item.achievementSprite;
                     ShowAchievement();
