@@ -90,6 +90,7 @@ public class GreenEnemy : Enemy
         {
             PlayerConfig.instance.playerData.levelScores[LanguageEnum.Python].mobsKilled++;
             isDead = true; // Mark the enemy as dead
+            AudioHelper.instance.PlayEnemyDeath();
             gameObject.layer = 7;
             anim.SetTrigger("isDead");
             StudentController student = GameObject.FindWithTag("Player").GetComponent<StudentController>();

@@ -21,6 +21,7 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        AudioHelper.instance.PlayEnemyHit();
         collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent);
         if (!enemyComponent.isDead)
         {

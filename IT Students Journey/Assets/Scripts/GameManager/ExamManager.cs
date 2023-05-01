@@ -39,6 +39,7 @@ public class ExamManager : MonoBehaviour
         answerAButton.interactable = true;
         answerBButton.interactable = true;
         answerCButton.interactable = true;
+        AudioHelper.instance.PlayQuizSong();
     }
 
     public void checkAnswer(int x)
@@ -61,6 +62,7 @@ public class ExamManager : MonoBehaviour
         answerBButton.interactable = false;
         answerCButton.interactable = false;
         examDone = true;
+        AudioHelper.instance.StopQuizSong();
     }
 
     public bool isExamDone()

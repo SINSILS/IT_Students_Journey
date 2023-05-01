@@ -178,6 +178,7 @@ namespace ClearSky
         {
             if (Input.GetKeyDown(KeyCode.Space) && Time.time > fireRate + lastShot)
             {
+                AudioHelper.instance.PlayThrowSound();
                 anim.SetTrigger("attack");
                 float x = transform.position.x + 1.5f;
                 if (direction == -1)

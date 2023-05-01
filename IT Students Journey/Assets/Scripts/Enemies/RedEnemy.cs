@@ -39,6 +39,7 @@ public class RedEnemy : Enemy
 
     public void TakeDamage(int damageAmount)
     {
+        AudioHelper.instance.PlayEnemyHit();
         hp -= damageAmount;
     }
 
@@ -83,6 +84,7 @@ public class RedEnemy : Enemy
                 {
                     PlayerConfig.instance.playerData.levelScores[LanguageEnum.JavaScript].mobsKilled++;
                     isDead = true; // Mark the enemy as dead
+                    AudioHelper.instance.PlayEnemyDeath();
                     gameObject.layer = 7;
                     anim.SetTrigger("isDead");
                     student.addCoins(value);
