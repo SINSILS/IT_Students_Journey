@@ -1,17 +1,17 @@
 using ClearSky;
 using UnityEngine;
 
-public class projectileController : MonoBehaviour
+public class ProjectileController : MonoBehaviour
 {
     private float speed = 10f;
     private int damage;
-    private GameObject player;
+    private GameObject student;
     private Vector2 direction;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        direction = (player.transform.position - transform.position).normalized;
+        student = GameObject.FindGameObjectWithTag("Player");
+        direction = (student.transform.position - transform.position).normalized;
         direction.y += 0.05f;
     }
 

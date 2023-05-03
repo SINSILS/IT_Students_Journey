@@ -4,8 +4,14 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public Animator anim;
-    public projectileController projectile;
+    public ProjectileController projectile;
     public TMP_Text title;
+
+    //Stats
+    public int hp = 0;
+    public int damage = 0;
+    public float speed = 0;
+    public int value = 0;
 
     //Additional parameters
     public bool canMove = false;
@@ -14,7 +20,7 @@ public class Enemy : MonoBehaviour
     public bool isDead = false;
     public int platformIndex { get; set; }
 
-    public void Move()
+    public void move()
     {
         if (!isDead)
         {

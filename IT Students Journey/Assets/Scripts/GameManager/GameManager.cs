@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     bool universityDone = false;
     bool examinating = false;
     bool mainBottomPlatformGone = false;
-    bool gameOver = false;
+    bool _gameOver = false;
 
     [SerializeField] private GameObject upgradePanel;
     [SerializeField] private GameObject exitPanel;
@@ -37,9 +37,9 @@ public class GameManager : MonoBehaviour
     {
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
         //Resume(2);
-        InvokeRepeating("updateScoreAndLevel", 0.05f, 0.05f);
-        //InvokeRepeating("updateScoreAndLevel", 0.005f, 0.005f);
-        ShowSemesterLabel("Semester " + maxLevel);
+        //InvokeRepeating("updateScoreAndLevel", 0.05f, 0.05f); //Real
+        InvokeRepeating("updateScoreAndLevel", 0.01f, 0.01f); //Testing
+        showSemesterLabel("Semester " + maxLevel);
         student.setSceneIndex(sceneIndex);
         enemyManager.setScenIndex(sceneIndex);
         upgradeManager.setSceneIndex(sceneIndex);
@@ -52,9 +52,9 @@ public class GameManager : MonoBehaviour
         enemyManager.spawnEnemy(platformManager.getPlatforms(), minLevel, maxLevel);
         handleUpgradePanel();
         handleExitPanel();
-        if (student.getCurrentHP() <= 0 && !gameOver)
+        if (student.getCurrentHP() <= 0 && !_gameOver)
         {
-            GameOver();
+            gameOver();
         }
         if (sceneIndex == 3 && !mainBottomPlatformGone)
         {
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
     IEnumerator WaitBeforeResume()
     {
         yield return new WaitForSecondsRealtime(2f);
-        Resume(3);
+        resume(3);
     }
 
     void removeMainPlatform()
@@ -91,11 +91,11 @@ public class GameManager : MonoBehaviour
         {
             examinating = true;
             examManager.generateQuestion(maxLevel);
-            Pause(3);
+            pause(3);
             maxLevel++;
             enemyManager.increaseEnemyCount();
-            ShowSemesterLabel("Semester " + maxLevel);
-            if (maxLevel == 3 && !student.GotHurt())
+            showSemesterLabel("Semester " + maxLevel);
+            if (maxLevel == 3 && !student.gotHurt())
             {
                 var language = (LanguageEnum)sceneIndex;
                 PlayerConfig.instance.playerData.levelScores[language].noDamageReceived = 1;
@@ -104,8 +104,8 @@ public class GameManager : MonoBehaviour
         else if (scoreValue % 1000 == 0 && maxLevel == 8 && !universityDone)
         {
             examManager.generateQuestion(maxLevel);
-            Pause(3);
-            ShowSemesterLabel("Real life problems!");
+            pause(3);
+            showSemesterLabel("Real life problems!");
             universityDone = true;
             examinating = true;
         }
@@ -142,19 +142,19 @@ public class GameManager : MonoBehaviour
 
     public void backToMainMenu()
     {
-        Resume(2);
+        resume(2);
         SceneManager.LoadScene(0);
     }
 
     public void restartGame()
     {
-        Resume(2);
+        resume(2);
         SceneManager.LoadScene(sceneIndex);
     }
 
     public void backToGame()
     {
-        Resume(1);
+        resume(1);
     }
 
     void handleExitPanel()
@@ -163,11 +163,11 @@ public class GameManager : MonoBehaviour
         {
             if (!exitPanel.activeSelf && !upgradePanel.activeSelf && !question1Panel.activeSelf && !question2Panel.activeSelf && !gameOverPanel.activeSelf && !examPanel.activeSelf)
             {
-                Pause(1);
+                pause(1);
             }
             else if (exitPanel.activeSelf && !upgradePanel.activeSelf && !question1Panel.activeSelf && !question2Panel.activeSelf && !gameOverPanel.activeSelf && !examPanel.activeSelf)
             {
-                Resume(1);
+                resume(1);
             }
         }
     }
@@ -178,17 +178,17 @@ public class GameManager : MonoBehaviour
         {
             if (!upgradePanel.activeSelf && !exitPanel.activeSelf && !question1Panel.activeSelf && !question2Panel.activeSelf && !gameOverPanel.activeSelf && !examPanel.activeSelf)
             {
-                Pause(0);
+                pause(0);
             }
             else if (upgradePanel.activeSelf && !exitPanel.activeSelf && !question1Panel.activeSelf && !question2Panel.activeSelf && !gameOverPanel.activeSelf && !examPanel.activeSelf)
             {
-                Resume(0);
+                resume(0);
             }
         }
     }
 
     //0 - upgrades panel, 1 - exit panel, 2 - others, 3 - exam panel
-    void Pause(int x)
+    void pause(int x)
     {
         Time.timeScale = 0f;
         if (x == 0)
@@ -206,7 +206,7 @@ public class GameManager : MonoBehaviour
     }
 
     //0 - upgrades panel, 1 - exit panel, 2 - others, 3 - exam panel
-    void Resume(int x)
+    void resume(int x)
     {
         Time.timeScale = 1f;
         if (x == 0)
@@ -223,17 +223,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void GameOver()
+    void gameOver()
     {
         CancelInvoke("updateScoreAndLevel");
-        gameOver = true;
-        UpdatePlayerConfig();
-        Invoke("DelayGameOver", 1f);
+        _gameOver = true;
+        updatePlayerConfig();
+        Invoke("delayGameOver", 1f);
     }
 
     //1 - C#, 3 - Pyhton, 4 - JS
 
-    private void UpdatePlayerConfig()
+    private void updatePlayerConfig()
     {
         var language = (LanguageEnum)sceneIndex;
         var data = PlayerConfig.instance.playerData.levelScores[language];
@@ -252,16 +252,16 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        UpdatePlayerConfig();
+        updatePlayerConfig();
     }
 
-    void DelayGameOver()
+    void delayGameOver()
     {
-        Pause(2);
+        pause(2);
         gameOverPanel.SetActive(true);
     }
 
-    IEnumerator FadeOutSemesterLabel()
+    IEnumerator fadeOutSemesterLabel()
     {
         float fadeDuration = 3f; // Duration of the fade effect in seconds
         float elapsedTime = 0f;
@@ -278,10 +278,10 @@ public class GameManager : MonoBehaviour
         semester.enabled = false;
     }
 
-    void ShowSemesterLabel(string text)
+    void showSemesterLabel(string text)
     {
         semester.text = text;
         semester.enabled = true;
-        StartCoroutine(FadeOutSemesterLabel());
+        StartCoroutine(fadeOutSemesterLabel());
     }
 }

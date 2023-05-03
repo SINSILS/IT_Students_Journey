@@ -5,10 +5,6 @@ public class RedEnemy : Enemy
 {
     //Red enemy stats
     Stats stats = new Stats();
-    int hp;
-    int damage;
-    public float speed;
-    public int value;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +24,7 @@ public class RedEnemy : Enemy
     {
         if (canMove)
         {
-            Move();
+            move();
         }
     }
 
@@ -37,9 +33,8 @@ public class RedEnemy : Enemy
         anim.SetBool("isJump", false);
     }
 
-    public void TakeDamage(int damageAmount)
+    public void takeDamage(int damageAmount)
     {
-        AudioHelper.instance.PlayEnemyHit();
         hp -= damageAmount;
     }
 
@@ -74,8 +69,9 @@ public class RedEnemy : Enemy
             Vector2 contactPoint = collision.contacts[0].point;
             if (contactPoint.y > transform.position.y && !isDead) // Check if the player is above the enemy
             {
-                TakeDamage(student.getPower()); // Receive damage from player
-                student.Bounce();
+                takeDamage(student.getPower()); // Receive damage from player
+                AudioHelper.instance.PlayEnemyHit();
+                student.bounce();
                 if (hp > 0)
                 {
                     anim.Play("Red Hurt - Animation");
@@ -118,7 +114,10 @@ public class RedEnemy : Enemy
         {
             random2 = Random.Range(0, 3);
         }
-        title.text = stats.title[random][random2];
+        if (title != null)
+        {
+            title.text = stats.title[random][random2];
+        }
         hp = stats.hp[random];
         damage = stats.damage[random];
         speed = stats.speed[random];
@@ -137,7 +136,7 @@ public class RedEnemy : Enemy
             var newProjectile = GameObject.Instantiate(projectile, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
             GameObject projectileParent = GameObject.Find("EnemyProjectiles");
             newProjectile.transform.SetParent(projectileParent.transform, false);
-            projectileController projectileComponent = newProjectile.GetComponent<projectileController>();
+            ProjectileController projectileComponent = newProjectile.GetComponent<ProjectileController>();
             projectileComponent.setDamage(damage);
             canFire = false;
         }

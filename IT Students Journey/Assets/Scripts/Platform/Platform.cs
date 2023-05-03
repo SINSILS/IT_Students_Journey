@@ -8,7 +8,7 @@ public class Platform : MonoBehaviour
     private bool studentOnPlatform;
     private Rigidbody2D rb;
     private float speed = 3f;
-    public bool IsTaken { get; set; }
+    public bool isTaken { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,7 @@ public class Platform : MonoBehaviour
         if (studentOnPlatform && Input.GetAxisRaw("Vertical") < 0)
         {
             collider.enabled = false;
-            StartCoroutine(EnableCollider());
+            StartCoroutine(enableCollider());
         }
 
     }
@@ -32,16 +32,16 @@ public class Platform : MonoBehaviour
     void FixedUpdate()
     {
         // Move the platform to the left
-        Move();
+        move();
     }
 
-    private IEnumerator EnableCollider()
+    private IEnumerator enableCollider()
     {
         yield return new WaitForSeconds(0.5f);
         collider.enabled = true;
     }
 
-    private void SetStudentOnPlatform(Collision2D other, bool value)
+    private void setStudentOnPlatform(Collision2D other, bool value)
     {
         var student = other.gameObject.GetComponent<StudentController>();
         if (student != null)
@@ -50,7 +50,7 @@ public class Platform : MonoBehaviour
         }
     }
 
-    void Move()
+    void move()
     {
         Vector2 move = rb.position + Vector2.left * speed * Time.fixedDeltaTime;
         rb.MovePosition(move);
@@ -58,11 +58,11 @@ public class Platform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        SetStudentOnPlatform(other, true);
+        setStudentOnPlatform(other, true);
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        SetStudentOnPlatform(other, false);
+        setStudentOnPlatform(other, false);
     }
 }

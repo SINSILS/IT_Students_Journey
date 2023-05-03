@@ -35,7 +35,7 @@ public class EnemyManager : MonoBehaviour
         maxEnemyCount++;
     }
 
-    IEnumerator DestroyTempEnemy(GameObject tempEnemy)
+    IEnumerator destroyTempEnemy(GameObject tempEnemy)
     {
         yield return new WaitForSeconds(1f);
         Destroy(tempEnemy);
@@ -55,13 +55,13 @@ public class EnemyManager : MonoBehaviour
             int randomPlatformIndex = Random.Range(0, platforms.Count);
             //Debug.Log("platforms count: " + platforms.Count + "   I chose random this one: " + randomPlatformIndex);
             var tempPlatform = platforms[randomPlatformIndex].GetComponent<Platform>();
-            if (enemies.Count < maxEnemyCount && random == 0 && tempPlatform.transform.position.x > 23 && !tempPlatform.IsTaken)
+            if (enemies.Count < maxEnemyCount && random == 0 && tempPlatform.transform.position.x > 23 && !tempPlatform.isTaken)
             {
                 //Debug.Log("instantiate on the platform");
                 float x = tempPlatform.transform.position.x - 0.5f;
                 float y = tempPlatform.transform.position.y + 0.4f;
                 // Instantiate a new enemy
-                instantiateEnemy(sceneIndex, randomPlatformIndex, tempPlatform, x, y, minLevel, maxLevel);
+                instantiateEnemy(randomPlatformIndex, tempPlatform, x, y, minLevel, maxLevel);
             }
             //spawn on the ground
             else if (enemies.Count < maxEnemyCount && random == 1 && sceneIndex != 3)
@@ -69,17 +69,17 @@ public class EnemyManager : MonoBehaviour
                 //Debug.Log("instantiate on the ground");
                 float x = Random.Range(25f, 45f);
                 float y = -8.4f;
-                instantiateEnemy(sceneIndex, -1, null, x, y, minLevel, maxLevel);
+                instantiateEnemy(-1, null, x, y, minLevel, maxLevel);
             }
             else
             {
                 //Debug.Log("remove");
-                removeEnemy(sceneIndex, platforms);
+                removeEnemy(platforms);
             }
         }
     }
 
-    void instantiateEnemy(int sceneIndex, int randomPlatformIndex, Platform tempPlatform, float x, float y, int minLevel, int maxLevel)
+    void instantiateEnemy(int randomPlatformIndex, Platform tempPlatform, float x, float y, int minLevel, int maxLevel)
     {
         GameObject newEnemy = null;
         Enemy enemyComponent = null;
@@ -103,13 +103,13 @@ public class EnemyManager : MonoBehaviour
         enemyComponent.setRandomStats(minLevel, maxLevel);
         if (randomPlatformIndex != -1)
         {
-            tempPlatform.IsTaken = true;
+            tempPlatform.isTaken = true;
             enemyComponent.platformIndex = randomPlatformIndex;
         }
         enemies.Add(newEnemy);
     }
 
-    void removeEnemy(int sceneIndex, List<GameObject> platforms)
+    void removeEnemy(List<GameObject> platforms)
     {
         GameObject tempEnemy = null;
         Enemy tempEnemyComponent = null;
@@ -137,10 +137,10 @@ public class EnemyManager : MonoBehaviour
         {
             if (!tempEnemyComponent.platformIndex.Equals(null))
             {
-                platforms[tempEnemyComponent.platformIndex].GetComponent<Platform>().IsTaken = false;
+                platforms[tempEnemyComponent.platformIndex].GetComponent<Platform>().isTaken = false;
             }
             enemies.Remove(tempEnemy);
-            StartCoroutine(DestroyTempEnemy(tempEnemy));
+            StartCoroutine(destroyTempEnemy(tempEnemy));
         }
     }
 }

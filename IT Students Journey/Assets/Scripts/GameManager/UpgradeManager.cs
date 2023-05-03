@@ -46,6 +46,16 @@ public class UpgradeManager : MonoBehaviour
         sceneIndex = index;
     }
 
+    public int getSceneIndex()
+    {
+        return sceneIndex;
+    }
+
+    public void setStudent(StudentController _student)
+    {
+        student = _student;
+    }
+
     void updateUpgradeButtons()
     {
         //Max hp
@@ -137,7 +147,7 @@ public class UpgradeManager : MonoBehaviour
         maxHPPrice.text = upgradeStats[0].price.ToString();
     }
 
-    public void ugradeMaxHP()
+    public void upgradeMaxHP()
     {
         student.updateMaxHP(10);
         student.payCoins(upgradeStats[0].price);

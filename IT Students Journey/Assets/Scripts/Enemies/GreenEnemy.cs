@@ -6,10 +6,6 @@ public class GreenEnemy : Enemy
     private Rigidbody2D rb;
     //Green enemy stats
     Stats stats = new Stats();
-    int mass;
-    int damage;
-    public float speed = 3f;
-    public int value;
 
     // Start is called before the first frame update
     void Start()
@@ -32,10 +28,10 @@ public class GreenEnemy : Enemy
         anim.SetBool("isJump", false);
     }
 
-    public void Knockback(int direction, int damage)
+    public void knockback(int direction, int damage)
     {
-        rb.mass = mass;
-        // Calculate the knockback force based on the enemy's mass and damage
+        rb.mass = hp;
+        // Calculate the knockback force based on the enemy's hp and damage
         float knockbackForce = damage * 0.5f + rb.mass * 0.1f;
 
         // Apply the knockback force in the specified direction
@@ -71,7 +67,7 @@ public class GreenEnemy : Enemy
 
         if (collision.gameObject.TryGetComponent<BulletController>(out BulletController bulletComponent))
         {
-            Knockback(bulletComponent.getDirection(), bulletComponent.getDamage());
+            knockback(bulletComponent.getDirection(), bulletComponent.getDamage());
             anim.Play("Green Hurt - Animation");
         }
         else if (collision.gameObject.CompareTag("Player"))
@@ -122,8 +118,11 @@ public class GreenEnemy : Enemy
         {
             random2 = Random.Range(0, 3);
         }
-        title.text = stats.title[random][random2];
-        mass = stats.mass[random];
+        if (title != null)
+        {
+            title.text = stats.title[random][random2];
+        }
+        hp = stats.hp[random];
         damage = stats.damage[random];
         value = stats.value[random];
     }
@@ -135,7 +134,7 @@ public class GreenEnemy : Enemy
             var newProjectile = GameObject.Instantiate(projectile, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
             GameObject projectileParent = GameObject.Find("EnemyProjectiles");
             newProjectile.transform.SetParent(projectileParent.transform, false);
-            projectileController projectileComponent = newProjectile.GetComponent<projectileController>();
+            ProjectileController projectileComponent = newProjectile.GetComponent<ProjectileController>();
             projectileComponent.setDamage(damage);
             canFire = false;
         }
@@ -152,7 +151,7 @@ public class GreenEnemy : Enemy
                                         new string[3]{ "NumPy", "Pandas", "Matplotlib"},
                                         new string[1]{ "Multithreading"},
     };
-        public int[] mass = { 2, 4, 6, 8, 10, 12, 14, 16 };
+        public int[] hp = { 2, 4, 6, 8, 10, 12, 14, 16 };
         public int[] damage = { 5, 10, 15, 20, 25, 30, 35, 40 };
         public int[] value = { 1, 2, 3, 4, 5, 6, 7, 8 };
     }

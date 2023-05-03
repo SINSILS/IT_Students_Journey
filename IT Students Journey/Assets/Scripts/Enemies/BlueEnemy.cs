@@ -5,10 +5,6 @@ public class BlueEnemy : Enemy
 {
     //Blue enemy stats
     Stats stats = new Stats();
-    int hp;
-    int damage;
-    public float speed;
-    public int value;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +24,7 @@ public class BlueEnemy : Enemy
     {
         if (canMove)
         {
-            Move();
+            move();
         }
     }
 
@@ -37,7 +33,7 @@ public class BlueEnemy : Enemy
         anim.SetBool("isJump", false);
     }
 
-    public void TakeDamage(int damageAmount)
+    public void takeDamage(int damageAmount)
     {
         hp -= damageAmount;
     }
@@ -70,7 +66,7 @@ public class BlueEnemy : Enemy
 
         if (collision.gameObject.TryGetComponent<BulletController>(out BulletController bulletComponent))
         {
-            TakeDamage(bulletComponent.getDamage());
+            takeDamage(bulletComponent.getDamage());
             if (hp > 0)
             {
                 anim.Play("Blue Hurt - Animation");
@@ -113,7 +109,10 @@ public class BlueEnemy : Enemy
         {
             random2 = Random.Range(0, 4);
         }
-        title.text = stats.title[random][random2];
+        if (title != null)
+        {
+            title.text = stats.title[random][random2];
+        }
         hp = stats.hp[random];
         damage = stats.damage[random];
         speed = stats.speed[random];
@@ -121,14 +120,14 @@ public class BlueEnemy : Enemy
     }
 
     //Might need to update with fireRate instead of 1 projectile per enemy
-    public void fireProjectile()
+    private void fireProjectile()
     {
         if (!isDead && !canMove && canFire && transform.position.x < firePosition)
         {
             var newProjectile = GameObject.Instantiate(projectile, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
             GameObject projectileParent = GameObject.Find("EnemyProjectiles");
             newProjectile.transform.SetParent(projectileParent.transform, false);
-            projectileController projectileComponent = newProjectile.GetComponent<projectileController>();
+            ProjectileController projectileComponent = newProjectile.GetComponent<ProjectileController>();
             projectileComponent.setDamage(damage);
             canFire = false;
         }

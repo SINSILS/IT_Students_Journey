@@ -17,9 +17,6 @@ public class ExamManager : MonoBehaviour
     [SerializeField] private Button answerAButton;
     [SerializeField] private Button answerBButton;
     [SerializeField] private Button answerCButton;
-    private void Start()
-    {
-    }
 
     public void setSceneIndex(int x)
     {

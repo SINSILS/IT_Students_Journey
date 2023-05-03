@@ -9,10 +9,9 @@ namespace ClearSky
         private int studyingLanguage;
 
         //Student stats
-        int hp = 50;
+        private int hp = 50;
         private int coins = 0;
-        public float KickBoardMovePower = 15f;
-        public float jumpPower = 20f;
+        private float jumpPower = 25f;
 
         //Upgradable stats
         private int maxHP = 50;
@@ -20,18 +19,17 @@ namespace ClearSky
         private int power = 5;
         private double fireRate = 1.0;
 
-        public TMP_Text hpLabel;
-        public TMP_Text coinsLabel;
+        [SerializeField] private TMP_Text hpLabel;
+        [SerializeField] private TMP_Text coinsLabel;
         private Rigidbody2D rb;
         private Animator anim;
         private int direction = 1;
         bool isJumping = false;
         private bool alive = true;
-        private bool isKickboard = false;
-        bool gotHurt = false;
+        bool _gotHurt = false;
 
         //Bullet prefab
-        public GameObject bulletPrefab;
+        [SerializeField] private GameObject bulletPrefab;
         private double lastShot = 0.0;
 
         //Parent GameObjects
@@ -52,13 +50,12 @@ namespace ClearSky
             updateHPLabel();
             if (alive)
             {
-                Jump();
-                //KickBoard();
-                Run();
+                jump();
+                run();
                 updateCoinsLabel();
                 if (studyingLanguage != 4)
                 {
-                    Attack();
+                    attack();
                 }
                 if (studyingLanguage == 3)
                 {
@@ -71,17 +68,19 @@ namespace ClearSky
             anim.SetBool("isJump", false);
         }
 
-        void KickBoard()
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha4) && isKickboard)
+            if (alive)
             {
-                isKickboard = false;
-                anim.SetBool("isKickBoard", false);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha4) && !isKickboard)
-            {
-                isKickboard = true;
-                anim.SetBool("isKickBoard", true);
+                if (collision.gameObject.TryGetComponent<ProjectileController>(out ProjectileController projectile))
+                {
+                    hurt();
+                }
+                if (collision.gameObject.tag == "MainBottomPlatform" || (collision.gameObject.tag == "Platform" && studyingLanguage == 3))
+                {
+                    anim.SetBool("isJump", false);
+                    isJumping = false;
+                }
             }
         }
 
@@ -90,58 +89,41 @@ namespace ClearSky
             studyingLanguage = index;
         }
 
-        void Run()
+        public int getSceneIndex()
         {
-            if (!isKickboard)
-            {
-                Vector3 moveVelocity = Vector3.zero;
-                anim.SetBool("isRun", false);
-
-
-                if (Input.GetAxisRaw("Horizontal") < 0)
-                {
-                    direction = -1;
-                    moveVelocity = Vector3.left;
-
-                    transform.localScale = new Vector3(direction, 1, 1);
-                    if (!anim.GetBool("isJump"))
-                        anim.SetBool("isRun", true);
-
-                }
-                if (Input.GetAxisRaw("Horizontal") > 0)
-                {
-                    direction = 1;
-                    moveVelocity = Vector3.right;
-
-                    transform.localScale = new Vector3(direction, 1, 1);
-                    if (!anim.GetBool("isJump"))
-                        anim.SetBool("isRun", true);
-
-                }
-                transform.position += moveVelocity * speed * Time.deltaTime;
-
-            }
-            if (isKickboard)
-            {
-                Vector3 moveVelocity = Vector3.zero;
-                if (Input.GetAxisRaw("Horizontal") < 0)
-                {
-                    direction = -1;
-                    moveVelocity = Vector3.left;
-
-                    transform.localScale = new Vector3(direction, 1, 1);
-                }
-                if (Input.GetAxisRaw("Horizontal") > 0)
-                {
-                    direction = 1;
-                    moveVelocity = Vector3.right;
-
-                    transform.localScale = new Vector3(direction, 1, 1);
-                }
-                transform.position += moveVelocity * KickBoardMovePower * Time.deltaTime;
-            }
+            return studyingLanguage;
         }
-        void Jump()
+
+        void run()
+        {
+
+            Vector3 moveVelocity = Vector3.zero;
+            anim.SetBool("isRun", false);
+
+
+            if (Input.GetAxisRaw("Horizontal") < 0)
+            {
+                direction = -1;
+                moveVelocity = Vector3.left;
+
+                transform.localScale = new Vector3(direction, 1, 1);
+                if (!anim.GetBool("isJump"))
+                    anim.SetBool("isRun", true);
+
+            }
+            if (Input.GetAxisRaw("Horizontal") > 0)
+            {
+                direction = 1;
+                moveVelocity = Vector3.right;
+
+                transform.localScale = new Vector3(direction, 1, 1);
+                if (!anim.GetBool("isJump"))
+                    anim.SetBool("isRun", true);
+
+            }
+            transform.position += moveVelocity * speed * Time.deltaTime;
+        }
+        void jump()
         {
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetAxisRaw("Vertical") > 0) && !anim.GetBool("isJump"))
             {
@@ -161,7 +143,7 @@ namespace ClearSky
             isJumping = false;
         }
 
-        public void Bounce()
+        public void bounce()
         {
             if (!anim.GetBool("isJump"))
             {
@@ -174,7 +156,7 @@ namespace ClearSky
             isJumping = false;
         }
 
-        void Attack()
+        void attack()
         {
             if (Input.GetKeyDown(KeyCode.Space) && Time.time > fireRate + lastShot)
             {
@@ -202,40 +184,46 @@ namespace ClearSky
             if (transform.position.y <= -9.2f)
             {
                 hp = 0;
-                Die();
+                die();
             }
         }
 
-        public bool GotHurt()
+        public bool gotHurt()
         {
-            return gotHurt;
+            return _gotHurt;
         }
 
         public void takeDamage(int damage)
         {
             if (alive)
             {
-                gotHurt = true;
-                Hurt();
+                _gotHurt = true;
+                hurt();
                 hp -= damage;
                 if (hp <= 0)
                 {
-                    Die();
+                    die();
                 }
             }
         }
-        void Hurt()
+        void hurt()
         {
-            anim.SetTrigger("hurt");
-            if (direction == 1)
-                rb.AddForce(new Vector2(-5f, 1f), ForceMode2D.Impulse);
-            else
-                rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
+            if (anim != null && rb != null)
+            {
+                anim.SetTrigger("hurt");
+                if (direction == 1)
+                    rb.AddForce(new Vector2(-5f, 1f), ForceMode2D.Impulse);
+                else
+                    rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
+            }
         }
 
-        void Die()
+        void die()
         {
-            anim.SetTrigger("die");
+            if (anim != null)
+            {
+                anim.SetTrigger("die");
+            }
             alive = false;
         }
 
@@ -244,22 +232,6 @@ namespace ClearSky
             if (alive && hp < maxHP)
             {
                 hp++;
-            }
-        }
-
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (alive)
-            {
-                if (collision.gameObject.TryGetComponent<projectileController>(out projectileController projectile))
-                {
-                    Hurt();
-                }
-                if (collision.gameObject.tag == "MainBottomPlatform" || (collision.gameObject.tag == "Platform" && studyingLanguage == 3))
-                {
-                    anim.SetBool("isJump", false);
-                    isJumping = false;
-                }
             }
         }
 
@@ -332,7 +304,6 @@ namespace ClearSky
             }
         }
 
-
         public void updateMaxHP(int x)
         {
             if (hp >= 60 && x < 0)
@@ -369,6 +340,11 @@ namespace ClearSky
         public void resetHealth()
         {
             hp = maxHP;
+        }
+
+        public bool isAlive()
+        {
+            return alive;
         }
     }
 }
