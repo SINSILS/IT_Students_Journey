@@ -25,7 +25,6 @@ public class PlayerConfig : MonoBehaviour
             }
         }
         DontDestroyOnLoad(this.gameObject);
-        //PlayerPrefs.DeleteAll();
         LoadStats();
     }
 

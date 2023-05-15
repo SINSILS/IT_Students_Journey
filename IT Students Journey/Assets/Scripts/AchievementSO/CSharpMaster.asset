@@ -16,5 +16,5 @@ MonoBehaviour:
   achievementSprite: {fileID: 21300000, guid: 95f7cc6ad0da9924aadf85a45fb098cc, type: 3}
   imageRect: {x: 150, y: 150}
   achievementName: C# Master
-  description: Kill 5 Mobs
-  goal: 5
+  description: Kill 100 Mobs
+  goal: 100

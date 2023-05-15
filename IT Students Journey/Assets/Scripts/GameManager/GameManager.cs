@@ -35,10 +35,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        //Resume(2);
-        //InvokeRepeating("updateScoreAndLevel", 0.05f, 0.05f); //Real
-        InvokeRepeating("updateScoreAndLevel", 0.01f, 0.01f); //Testing
+        setSceneIndex();
+        InvokeRepeating("updateScoreAndLevel", 0.05f, 0.05f);
         showSemesterLabel("Semester " + maxLevel);
         student.setSceneIndex(sceneIndex);
         enemyManager.setScenIndex(sceneIndex);
@@ -49,6 +47,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        platformManager.spawnPlatform();
         enemyManager.spawnEnemy(platformManager.getPlatforms(), minLevel, maxLevel);
         handleUpgradePanel();
         handleExitPanel();
@@ -73,6 +72,11 @@ public class GameManager : MonoBehaviour
         resume(3);
     }
 
+    void setSceneIndex()
+    {
+        sceneIndex = SceneManager.GetActiveScene().buildIndex;
+    }
+
     void removeMainPlatform()
     {
         Platform mainBottomPlatform = GameObject.FindWithTag("MainBottomPlatform").GetComponent<Platform>();
@@ -95,7 +99,7 @@ public class GameManager : MonoBehaviour
             maxLevel++;
             enemyManager.increaseEnemyCount();
             showSemesterLabel("Semester " + maxLevel);
-            if (maxLevel == 3 && !student.gotHurt())
+            if (maxLevel == 4 && !student.gotHurt())
             {
                 var language = (LanguageEnum)sceneIndex;
                 PlayerConfig.instance.playerData.levelScores[language].noDamageReceived = 1;

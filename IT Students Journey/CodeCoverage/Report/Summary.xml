@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CoverageReport scope="Summary">
+  <Summary>
+    <Generatedon>5/15/2023 - 1:05:52 PM</Generatedon>
+    <Parser>MultiReportParser (2x OpenCoverParser)</Parser>
+    <Assemblies>2</Assemblies>
+    <Classes>79</Classes>
+    <Files>68</Files>
+    <Coveredlines>471</Coveredlines>
+    <Uncoveredlines>7197</Uncoveredlines>
+    <Coverablelines>7668</Coverablelines>
+    <Totallines>14200</Totallines>
+    <Linecoverage>6.1</Linecoverage>
+    <Coveredbranches>0</Coveredbranches>
+    <Totalbranches>0</Totalbranches>
+    <Coveredmethods>90</Coveredmethods>
+    <Totalmethods>1121</Totalmethods>
+    <Methodcoverage>8</Methodcoverage>
+  </Summary>
+  <Coverage>
+    <Assembly name="Assembly-CSharp" classes="75" coverage="3.3" coveredlines="248" coverablelines="7420" totallines="43651" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="52" totalmethods="1078" methodcoverage="4.8">
+      <Class name="AchievementController" coverage="0" coveredlines="0" coverablelines="34" totallines="57" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="4" methodcoverage="0" />
+      <Class name="AchievementDisplayer" coverage="4.2" coveredlines="2" coverablelines="47" totallines="64" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="4" methodcoverage="25" />
+      <Class name="AchievementPopUp" coverage="0" coveredlines="0" coverablelines="13" totallines="27" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="4" methodcoverage="0" />
+      <Class name="AchievementSO" coverage="0" coveredlines="0" coverablelines="1" totallines="21" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="1" methodcoverage="0" />
+      <Class name="AudioHelper" coverage="0" coveredlines="0" coverablelines="38" totallines="68" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="7" methodcoverage="0" />
+      <Class name="BlueEnemy" coverage="23.8" coveredlines="25" coverablelines="105" totallines="152" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="11" methodcoverage="36.3" />
+      <Class name="Boundaries" coverage="0" coveredlines="0" coverablelines="12" totallines="23" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="BulletController" coverage="0" coveredlines="0" coverablelines="45" totallines="72" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="11" methodcoverage="0" />
+      <Class name="CameraFollow" coverage="0" coveredlines="0" coverablelines="15" totallines="30" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="ClearSky.StudentController" coverage="38.4" coveredlines="93" coverablelines="242" totallines="350" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="21" totalmethods="34" methodcoverage="61.7" />
+      <Class name="DentedPixel.LTExamples.PathBezier" coverage="0" coveredlines="0" coverablelines="21" totallines="48" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="4" methodcoverage="0" />
+      <Class name="DentedPixel.LTExamples.TestingUnitTests" coverage="0" coveredlines="0" coverablelines="456" totallines="647" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="11" methodcoverage="0" />
+      <Class name="Enemy" coverage="35.7" coveredlines="10" coverablelines="28" totallines="52" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="8" methodcoverage="25" />
+      <Class name="EnemyManager" coverage="0" coveredlines="0" coverablelines="97" totallines="146" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="8" methodcoverage="0" />
+      <Class name="ExamManager" coverage="0" coveredlines="0" coverablelines="41" totallines="69" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="5" methodcoverage="0" />
+      <Class name="ExampleSpline" coverage="0" coveredlines="0" coverablelines="18" totallines="38" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="Following" coverage="0" coveredlines="0" coverablelines="39" totallines="91" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="GameManager" coverage="0" coveredlines="0" coverablelines="210" totallines="292" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="23" methodcoverage="0" />
+      <Class name="GeneralAdvancedTechniques" coverage="0" coveredlines="0" coverablelines="21" totallines="60" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="GeneralBasic" coverage="0" coveredlines="0" coverablelines="40" totallines="83" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="GeneralBasics2d" coverage="0" coveredlines="0" coverablelines="53" totallines="102" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="GeneralCameraShake" coverage="0" coveredlines="0" coverablelines="38" totallines="82" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="GeneralEasingTypes" coverage="0" coveredlines="0" coverablelines="40" totallines="72" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="4" methodcoverage="0" />
+      <Class name="GeneralEventsListeners" coverage="0" coveredlines="0" coverablelines="47" totallines="83" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="9" methodcoverage="0" />
+      <Class name="GeneralSequencer" coverage="0" coveredlines="0" coverablelines="22" totallines="61" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="GeneralSimpleUI" coverage="0" coveredlines="0" coverablelines="27" totallines="56" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="1" methodcoverage="0" />
+      <Class name="GeneralUISpace" coverage="0" coveredlines="0" coverablelines="30" totallines="89" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="1" methodcoverage="0" />
+      <Class name="GreenEnemy" coverage="16.3" coveredlines="18" coverablelines="110" totallines="158" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="3" totalmethods="11" methodcoverage="27.2" />
+      <Class name="Leaderboard" coverage="3.8" coveredlines="1" coverablelines="26" totallines="49" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="4" methodcoverage="25" />
+      <Class name="LeanAudio" coverage="0" coveredlines="0" coverablelines="169" totallines="418" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="14" methodcoverage="0" />
+      <Class name="LeanAudioOptions" coverage="0" coveredlines="0" coverablelines="42" totallines="418" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="10" methodcoverage="0" />
+      <Class name="LeanAudioStream" coverage="0" coveredlines="0" coverablelines="15" totallines="418" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="LeanSmooth" coverage="0" coveredlines="0" coverablelines="118" totallines="364" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="12" methodcoverage="0" />
+      <Class name="LeanTest" coverage="0" coveredlines="0" coverablelines="68" totallines="123" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="9" methodcoverage="0" />
+      <Class name="LeanTester" coverage="0" coveredlines="0" coverablelines="15" totallines="123" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="LeanTween" coverage="0" coveredlines="0" coverablelines="1217" totallines="4090" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="176" methodcoverage="0" />
+      <Class name="LeanTweenExt" coverage="0" coveredlines="0" coverablelines="113" totallines="187" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="99" methodcoverage="0" />
+      <Class name="LogoCinematic" coverage="0" coveredlines="0" coverablelines="16" totallines="44" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="LTBezier" coverage="0" coveredlines="0" coverablelines="43" totallines="4090" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="4" methodcoverage="0" />
+      <Class name="LTBezierPath" coverage="0" coveredlines="0" coverablelines="101" totallines="4090" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="13" methodcoverage="0" />
+      <Class name="LTDescr" coverage="0" coveredlines="0" coverablelines="1483" totallines="2308" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="221" methodcoverage="0" />
+      <Class name="LTDescrOptional" coverage="0" coveredlines="0" coverablelines="52" totallines="89" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="44" methodcoverage="0" />
+      <Class name="LTEvent" coverage="0" coveredlines="0" coverablelines="4" totallines="4090" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="1" methodcoverage="0" />
+      <Class name="LTGUI" coverage="0" coveredlines="0" coverablelines="182" totallines="4090" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="17" methodcoverage="0" />
+      <Class name="LTRect" coverage="0" coveredlines="0" coverablelines="137" totallines="4090" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="29" methodcoverage="0" />
+      <Class name="LTSeq" coverage="0" coveredlines="0" coverablelines="83" totallines="225" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="16" methodcoverage="0" />
+      <Class name="LTSpline" coverage="0" coveredlines="0" coverablelines="230" totallines="4090" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="20" methodcoverage="0" />
+      <Class name="LTUtility" coverage="0" coveredlines="0" coverablelines="11" totallines="4090" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="1" methodcoverage="0" />
+      <Class name="MenuManager" coverage="21" coveredlines="4" coverablelines="19" totallines="35" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="6" methodcoverage="16.6" />
+      <Class name="OldGUIExamplesCS" coverage="0" coveredlines="0" coverablelines="49" totallines="84" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="PathBezier2d" coverage="0" coveredlines="0" coverablelines="11" totallines="32" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="PathSpline2d" coverage="0" coveredlines="0" coverablelines="11" totallines="36" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="PathSplineEndless" coverage="0" coveredlines="0" coverablelines="70" totallines="125" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="7" methodcoverage="0" />
+      <Class name="PathSplinePerformance" coverage="0" coveredlines="0" coverablelines="52" totallines="93" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="5" methodcoverage="0" />
+      <Class name="PathSplines" coverage="0" coveredlines="0" coverablelines="22" totallines="46" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="4" methodcoverage="0" />
+      <Class name="PathSplineTrack" coverage="0" coveredlines="0" coverablelines="33" totallines="68" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="5" methodcoverage="0" />
+      <Class name="Platform" coverage="0" coveredlines="0" coverablelines="37" totallines="68" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="11" methodcoverage="0" />
+      <Class name="PlatformManager" coverage="0" coveredlines="0" coverablelines="62" totallines="93" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="4" methodcoverage="0" />
+      <Class name="PlayerConfig" coverage="0" coveredlines="0" coverablelines="47" totallines="75" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="6" methodcoverage="0" />
+      <Class name="PlayerData" coverage="15.3" coveredlines="2" coverablelines="13" totallines="37" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="2" methodcoverage="50" />
+      <Class name="PlayFabManager" coverage="0" coveredlines="0" coverablelines="118" totallines="219" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="18" methodcoverage="0" />
+      <Class name="ProjectileController" coverage="0" coveredlines="0" coverablelines="27" totallines="47" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="6" methodcoverage="0" />
+      <Class name="Question" coverage="0" coveredlines="0" coverablelines="46" totallines="475" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="RandomNameGenerator" coverage="0" coveredlines="0" coverablelines="15" totallines="32" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="RedEnemy" coverage="21.9" coveredlines="25" coverablelines="114" totallines="161" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="12" methodcoverage="33.3" />
+      <Class name="Rotator" coverage="0" coveredlines="0" coverablelines="3" totallines="10" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="1" methodcoverage="0" />
+      <Class name="Scroller" coverage="0" coveredlines="0" coverablelines="3" totallines="12" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="1" methodcoverage="0" />
+      <Class name="ShowLevelHighScores" coverage="0" coveredlines="0" coverablelines="5" totallines="16" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="1" methodcoverage="0" />
+      <Class name="TestingPunch" coverage="0" coveredlines="0" coverablelines="125" totallines="182" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="9" methodcoverage="0" />
+      <Class name="TestingRigidbodyCS" coverage="0" coveredlines="0" coverablelines="7" totallines="21" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="TestingZLegacy" coverage="0" coveredlines="0" coverablelines="152" totallines="233" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="30" methodcoverage="0" />
+      <Class name="TestingZLegacyExt" coverage="0" coveredlines="0" coverablelines="155" totallines="269" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="30" methodcoverage="0" />
+      <Class name="UpgradeManager" coverage="33.3" coveredlines="66" coverablelines="198" totallines="292" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="13" totalmethods="21" methodcoverage="61.9" />
+      <Class name="UpgradeStats" coverage="100" coveredlines="2" coverablelines="2" totallines="292" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="1" methodcoverage="100" />
+      <Class name="WelcomeMessage" coverage="0" coveredlines="0" coverablelines="9" totallines="19" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="1" methodcoverage="0" />
+    </Assembly>
+    <Assembly name="Assembly-CSharp-Editor" classes="4" coverage="89.9" coveredlines="223" coverablelines="248" totallines="430" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="38" totalmethods="43" methodcoverage="88.3">
+      <Class name="LeanTweenDocumentationEditor" coverage="0" coveredlines="0" coverablelines="25" totallines="59" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="5" methodcoverage="0" />
+      <Class name="UnitTest_upgradeManager" coverage="100" coveredlines="78" coverablelines="78" totallines="122" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="11" totalmethods="11" methodcoverage="100" />
+      <Class name="UnitTests_enemy" coverage="100" coveredlines="49" coverablelines="49" totallines="82" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="7" totalmethods="7" methodcoverage="100" />
+      <Class name="UnitTests_studentController" coverage="100" coveredlines="96" coverablelines="96" totallines="167" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="20" totalmethods="20" methodcoverage="100" />
+    </Assembly>
+  </Coverage>
+</CoverageReport>

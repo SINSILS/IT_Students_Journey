@@ -6,8 +6,8 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638180159870397762
-    m_Hash: 1978100298
+      ticks: 638187049180039261
+    m_Hash: 1166358608
   m_LockFileStatus:
     m_FilePath: C:/Users/Lenovo/Desktop/Bakalauras/IT_Students_Journey/IT_Students_Journey/IT
       Students Journey/Packages/packages-lock.json
@@ -15,8 +15,8 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638180159870967693
-    m_Hash: 1792405462
+      ticks: 638187049180119266
+    m_Hash: 289193246
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
@@ -807,6 +807,7 @@ m_PackageAssets:
         - 2.9.5
         - 3.0.0-pre.3
         - 3.0.0-pre.4
+        - 3.0.0-pre.5
         compatible:
         - 2.5.0
         - 2.6.0-preview.2
@@ -1379,6 +1380,7 @@ m_PackageAssets:
         - 3.0.2
         - 3.1.0
         - 3.2.0
+        - 3.2.1
         compatible:
         - 1.0.0-preview.2
         - 1.0.0-preview.3
@@ -1395,6 +1397,7 @@ m_PackageAssets:
         - 3.0.2
         - 3.1.0
         - 3.2.0
+        - 3.2.1
         verified: 3.0.2
       dependencies: []
       resolvedDependencies: []
@@ -1533,6 +1536,131 @@ m_PackageAssets:
         type: git
         url: https://github.com/Unity-Technologies/com.unity.test-framework.git
         revision: 34a4d423d64926635eb36d3bb86276179cc186e1
+        path: 
+    - packageId: com.unity.testtools.codecoverage@1.2.3
+      testable: 0
+      isDirectDependency: 1
+      version: 1.2.3
+      source: 1
+      resolvedPath: C:\Users\Lenovo\Desktop\Bakalauras\IT_Students_Journey\IT_Students_Journey\IT
+        Students Journey\Library\PackageCache\com.unity.testtools.codecoverage@1.2.3
+      assetPath: Packages/com.unity.testtools.codecoverage
+      name: com.unity.testtools.codecoverage
+      displayName: Code Coverage
+      author:
+        name: 
+        email: 
+        url: 
+      category: 
+      type: asset
+      description: Use this package to export code coverage data and reports from
+        your automated tests. Additionally, the Code Coverage package offers a Coverage
+        Recording feature which allows capturing coverage data on demand, for manual
+        testing or when there are no automated tests in the project.
+      status: 0
+      errors: []
+      versions:
+        all:
+        - 0.2.0-preview
+        - 0.2.1-preview
+        - 0.2.2-preview
+        - 0.2.3-preview
+        - 0.3.0-preview
+        - 0.3.1-preview
+        - 0.4.0-preview
+        - 0.4.1-preview
+        - 0.4.2-preview
+        - 0.4.3-preview
+        - 1.0.0-pre.1
+        - 1.0.0-pre.2
+        - 1.0.0-pre.3
+        - 1.0.0-pre.4
+        - 1.0.0
+        - 1.0.1
+        - 1.1.0
+        - 1.1.1
+        - 1.2.0-exp.1
+        - 1.2.0-exp.2
+        - 1.2.0-exp.3
+        - 1.2.0-exp.4
+        - 1.2.0-exp.5
+        - 1.2.0-exp.6
+        - 1.2.0-exp.7
+        - 1.2.0
+        - 1.2.1
+        - 1.2.2
+        - 1.2.3
+        compatible:
+        - 0.2.0-preview
+        - 0.2.1-preview
+        - 0.2.2-preview
+        - 0.2.3-preview
+        - 0.3.0-preview
+        - 0.3.1-preview
+        - 0.4.0-preview
+        - 0.4.1-preview
+        - 0.4.2-preview
+        - 0.4.3-preview
+        - 1.0.0-pre.2
+        - 1.0.0-pre.3
+        - 1.0.0-pre.4
+        - 1.0.0
+        - 1.0.1
+        - 1.1.0
+        - 1.1.1
+        - 1.2.0-exp.1
+        - 1.2.0-exp.2
+        - 1.2.0-exp.3
+        - 1.2.0-exp.4
+        - 1.2.0-exp.5
+        - 1.2.0-exp.6
+        - 1.2.0-exp.7
+        - 1.2.0
+        - 1.2.1
+        - 1.2.2
+        - 1.2.3
+        verified: 
+      dependencies:
+      - name: com.unity.test-framework
+        version: 1.0.16
+      - name: com.unity.settings-manager
+        version: 1.0.1
+      resolvedDependencies:
+      - name: com.unity.test-framework
+        version: 1.1.33
+      - name: com.unity.ext.nunit
+        version: 1.0.6
+      - name: com.unity.modules.imgui
+        version: 1.0.0
+      - name: com.unity.modules.jsonserialize
+        version: 1.0.0
+      - name: com.unity.settings-manager
+        version: 1.0.1
+      keywords:
+      - test
+      - coverage
+      - testing
+      - opencover
+      registry:
+        id: main
+        name: 
+        url: https://packages.unity.com
+        scopes: []
+        isDefault: 1
+        capabilities: 7
+        configSource: 0
+      hasRegistry: 1
+      hideInEditor: 0
+      entitlements:
+        isAllowed: 1
+      isAssetStorePackage: 0
+      datePublishedTicks: 638169790470000000
+      documentationUrl: https://docs.unity3d.com/Packages/com.unity.testtools.codecoverage@1.2/manual/index.html
+      hasRepository: 1
+      repository:
+        type: git
+        url: https://github.cds.internal.unity3d.com/unity/com.unity.testtools.codecoverage.git
+        revision: d4b7ffdbe5fd9b2506f04f112caa0ed3f898c59b
         path: 
     - packageId: com.unity.textmeshpro@3.0.6
       testable: 0
@@ -1795,6 +1923,7 @@ m_PackageAssets:
         - 1.6.2
         - 1.6.3
         - 1.6.4
+        - 1.6.5
         - 1.7.0-pre.1
         - 1.7.0-pre.2
         - 1.7.0
@@ -1829,6 +1958,7 @@ m_PackageAssets:
         - 1.6.2
         - 1.6.3
         - 1.6.4
+        - 1.6.5
         - 1.7.0-pre.1
         - 1.7.0-pre.2
         - 1.7.0
@@ -1911,6 +2041,7 @@ m_PackageAssets:
       versions:
         all:
         - 1.0.0
+        - 3.0.0-exp.1
         compatible:
         - 1.0.0
         verified: 1.0.0
@@ -3757,6 +3888,70 @@ m_PackageAssets:
         type: 
         url: 
         revision: 
+        path: 
+    - packageId: com.unity.settings-manager@1.0.1
+      testable: 0
+      isDirectDependency: 0
+      version: 1.0.1
+      source: 1
+      resolvedPath: C:\Users\Lenovo\Desktop\Bakalauras\IT_Students_Journey\IT_Students_Journey\IT
+        Students Journey\Library\PackageCache\com.unity.settings-manager@1.0.1
+      assetPath: Packages/com.unity.settings-manager
+      name: com.unity.settings-manager
+      displayName: Settings Manager
+      author:
+        name: 
+        email: 
+        url: 
+      category: 
+      type: asset
+      description: A framework for making any serializable field a setting, complete
+        with a pre-built settings interface.
+      status: 0
+      errors: []
+      versions:
+        all:
+        - 0.1.0-preview.4
+        - 0.1.0-preview.8
+        - 1.0.0
+        - 1.0.1
+        - 1.0.2
+        - 1.0.3
+        - 2.0.0
+        - 2.0.1
+        compatible:
+        - 0.1.0-preview.4
+        - 0.1.0-preview.8
+        - 1.0.0
+        - 1.0.1
+        - 1.0.2
+        - 1.0.3
+        - 2.0.0
+        - 2.0.1
+        verified: 1.0.3
+      dependencies: []
+      resolvedDependencies: []
+      keywords: []
+      registry:
+        id: main
+        name: 
+        url: https://packages.unity.com
+        scopes: []
+        isDefault: 1
+        capabilities: 7
+        configSource: 0
+      hasRegistry: 1
+      hideInEditor: 0
+      entitlements:
+        isAllowed: 1
+      isAssetStorePackage: 0
+      datePublishedTicks: 637115980280000000
+      documentationUrl: 
+      hasRepository: 1
+      repository:
+        type: git
+        url: git@github.com:Unity-Technologies/com.unity.settings-manager.git
+        revision: 4e1ab5cb77b40205e6bf01d377846a851232c4e3
         path: 
     - packageId: com.unity.ext.nunit@1.0.6
       testable: 0

@@ -20,18 +20,12 @@ public class PlatformManager : MonoBehaviour
         platformParent = new GameObject("Platforms");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        spawnPlatform();
-    }
-
     public List<GameObject> getPlatforms()
     {
         return platforms;
     }
 
-    void spawnPlatform()
+    public void spawnPlatform()
     {
         // Check if there are less than 10 platforms
         if (platforms.Count < 10)
